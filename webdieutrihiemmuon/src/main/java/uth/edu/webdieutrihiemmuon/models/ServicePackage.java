@@ -2,11 +2,12 @@ package uth.edu.webdieutrihiemmuon.models;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name ="services")
-public class Service {
+@Table(name ="service_package")
+public class ServicePackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idService;
@@ -15,9 +16,9 @@ public class Service {
     private String serviceName;
 
     @Column(nullable = false)
-    private String describe;
+    private String serviceDescription;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String patientType;
 
     @Column(nullable = false)
@@ -26,13 +27,15 @@ public class Service {
     @Column(nullable = false)
     private Double price;
 
+    @OneToMany(mappedBy = "servicePackage",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
 
-    public Service() {
+    public ServicePackage() {
     }
 
-    public Service( String serviceName, String describe, String patientType, int numberOfTreatmentSessions, Double price) {
+    public ServicePackage(String serviceName, String serviceDescription, String patientType, int numberOfTreatmentSessions, Double price) {
         this.serviceName = serviceName;
-        this.describe = describe;
+        this.serviceDescription = serviceDescription;
         this.patientType = patientType;
         this.numberOfTreatmentSessions = numberOfTreatmentSessions;
         this.price = price;
@@ -47,7 +50,7 @@ public class Service {
     }
 
     public String getDescribe() {
-        return describe;
+        return serviceDescription;
     }
 
     public String getPatientType() {
@@ -71,7 +74,7 @@ public class Service {
     }
 
     public void setDescribe(String describe) {
-        this.describe = describe;
+        this.serviceDescription = describe;
     }
 
     public void setPatientType(String patientType) {

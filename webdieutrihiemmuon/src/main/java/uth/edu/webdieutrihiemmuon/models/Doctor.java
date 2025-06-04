@@ -1,6 +1,9 @@
 package uth.edu.webdieutrihiemmuon.models;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "Doctor")
 public class Doctor {
@@ -16,9 +19,14 @@ public class Doctor {
 
     @Column(unique = true, nullable = false)
     private String expertise;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_user")
     private User user;
+
+    @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
+
     public Doctor() {
 
     }

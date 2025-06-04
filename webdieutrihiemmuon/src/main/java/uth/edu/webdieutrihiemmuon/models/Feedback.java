@@ -20,6 +20,9 @@ public class Feedback {
     @Column(nullable = false, length = 10)
     private LocalDate reviewDate;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_treatmentCycle")
+    private TreatmentCycle treatmentCycle;
     public Feedback() {
     }
 

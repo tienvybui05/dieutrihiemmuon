@@ -31,12 +31,25 @@ public class TreatmentCycle {
     @Column(length = 200)
     private String generalNotes;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id_treatmentcycle")
+    @OneToMany(mappedBy = "treatmentCycle",cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
+
+    @OneToMany(mappedBy = "treatmentCycle" ,cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Feedback> feedbacks = new HashSet<Feedback>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_user")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_service")
+    private ServicePackage servicePackage;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_doctor")
+    private Doctor doctor;
     public TreatmentCycle() {
     }
-
     public TreatmentCycle(String generalNotes, LocalDate startDate, String confirmationStatus, String paymentStatus, String executionStatus, LocalDate serviceBookingDate) {
         this.generalNotes = generalNotes;
         this.startDate = startDate;

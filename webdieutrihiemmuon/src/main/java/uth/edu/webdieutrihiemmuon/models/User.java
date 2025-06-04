@@ -28,8 +28,13 @@ public class User {
     private String gender;
     @Column(nullable = false, length = 20)
     private String role;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Doctor> doctors = new HashSet<Doctor>();
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
+
     public User() {
 
     }

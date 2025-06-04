@@ -1,0 +1,74 @@
+package uth.edu.webdieutrihiemmuon.models;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "treatment_session")
+public class TreatmentSession {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idTreatmentTimes;
+
+    @Column(nullable = false)
+    private int treatmentTime;
+
+    private LocalDate treatmentDay;
+
+    @Column(length = 200)
+    private String note;
+
+    @Column(nullable = false)
+    private String treatmentStatus;
+
+    public TreatmentSession() {
+    }
+
+    public TreatmentSession(int treatmentTime, LocalDate treatmentDay, String note, String treatmentStatus) {
+        this.treatmentTime = treatmentTime;
+        this.treatmentDay = treatmentDay;
+        this.note = note;
+        this.treatmentStatus = treatmentStatus;
+    }
+
+    public Long getIdTreatmentTimes() {
+        return idTreatmentTimes;
+    }
+
+    public void setIdTreatmentTimes(Long idTreatmentTimes) {
+        this.idTreatmentTimes = idTreatmentTimes;
+    }
+
+    public int getTreatmentTime() {
+        return treatmentTime;
+    }
+
+    public void setTreatmentTime(int treatmentTime) {
+        this.treatmentTime = treatmentTime;
+    }
+
+    public LocalDate getTreatmentDay() {
+        return treatmentDay;
+    }
+
+    public void setTreatmentDay(LocalDate treatmentDay) {
+        this.treatmentDay = treatmentDay;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getTreatmentStatus() {
+        return treatmentStatus;
+    }
+
+    public void setTreatmentStatus(String treatmentStatus) {
+        this.treatmentStatus = treatmentStatus;
+    }
+}

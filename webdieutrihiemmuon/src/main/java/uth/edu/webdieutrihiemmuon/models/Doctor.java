@@ -16,7 +16,9 @@ public class Doctor {
 
     @Column(unique = true, nullable = false)
     private String expertise;
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_user")
+    private User user;
     public Doctor() {
 
     }
@@ -59,6 +61,11 @@ public class Doctor {
         this.expertise = expertise;
     }
 
+    public User getUser() {
+        return user;
+    }
 
-
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

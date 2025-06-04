@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idService;
+    private int idService;
 
     @Column(unique = true, nullable = false, length = 50)
     private String serviceName;
@@ -21,7 +21,7 @@ public class Service {
     private String patientType;
 
     @Column(nullable = false)
-    private Integer numberOfTreatmentSessions;
+    private int numberOfTreatmentSessions;
 
     @Column(nullable = false)
     private Double price;
@@ -30,8 +30,7 @@ public class Service {
     public Service() {
     }
 
-    public Service(Long idService, String serviceName, String describe, String patientType, Integer numberOfTreatmentSessions, Double price) {
-        this.idService = idService;
+    public Service( String serviceName, String describe, String patientType, int numberOfTreatmentSessions, Double price) {
         this.serviceName = serviceName;
         this.describe = describe;
         this.patientType = patientType;
@@ -39,7 +38,7 @@ public class Service {
         this.price = price;
     }
 
-    public Long getIdService() {
+    public int getIdService() {
         return idService;
     }
 
@@ -55,7 +54,7 @@ public class Service {
         return patientType;
     }
 
-    public Integer getNumberOfTreatmentSessions() {
+    public int getNumberOfTreatmentSessions() {
         return numberOfTreatmentSessions;
     }
 
@@ -63,7 +62,7 @@ public class Service {
         return price;
     }
 
-    public void setIdService(Long idService) {
+    public void setIdService(int idService) {
         this.idService = idService;
     }
 
@@ -79,7 +78,7 @@ public class Service {
         this.patientType = patientType;
     }
 
-    public void setNumberOfTreatmentSessions(Integer numberOfTreatmentSessions) {
+    public void setNumberOfTreatmentSessions(int numberOfTreatmentSessions) {
         this.numberOfTreatmentSessions = numberOfTreatmentSessions;
     }
 

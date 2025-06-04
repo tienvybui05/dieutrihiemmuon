@@ -1,6 +1,9 @@
 package uth.edu.webdieutrihiemmuon.models;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "User")
 public class User {
@@ -25,7 +28,8 @@ public class User {
     private String gender;
     @Column(nullable = false, length = 20)
     private String role;
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Doctor> doctors = new HashSet<Doctor>();
     public User() {
 
     }
@@ -109,9 +113,6 @@ public class User {
         return gender;
     }
 
-    public void setGender() {
-        this.gender = gender;
-    }
 
     public String getRole() {
         return role;
@@ -119,5 +120,24 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Set<Doctor> getDoctor() {
+        return doctors;
+    }
+    public void setDoctor(Set<Doctor> doctor) {
+        this.doctors = doctor;
+    }
+    public void addDoctor(Doctor doctor){
+        this.doctors.add(doctor);
+        doctor.setUser(this);
+    }
+    public void removeDoctor(Doctor doctor){
+        this.doctors.remove(doctor);
+        doctor.setUser(null);
     }
 }

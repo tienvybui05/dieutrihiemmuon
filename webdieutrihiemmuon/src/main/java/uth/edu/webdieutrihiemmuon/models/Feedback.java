@@ -9,13 +9,13 @@ import java.time.LocalDate;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFeedback;
+    private int idFeedback;
 
     @Column(nullable = false)
     private String reviewText;
 
     @Column(nullable = false)
-    private Integer rating;
+    private int rating;
 
     @Column(nullable = false, length = 10)
     private LocalDate reviewDate;
@@ -23,14 +23,13 @@ public class Feedback {
     public Feedback() {
     }
 
-    public Feedback(Long idFeedback, Integer rating, String reviewText, LocalDate reviewDate) {
-        this.idFeedback = idFeedback;
+    public Feedback( int rating, String reviewText, LocalDate reviewDate) {
         this.rating = rating;
         this.reviewText = reviewText;
         this.reviewDate = reviewDate;
     }
 
-    public Long getIdFeedback() {
+    public int getIdFeedback() {
         return idFeedback;
     }
 
@@ -38,7 +37,7 @@ public class Feedback {
         return reviewText;
     }
 
-    public Integer getRating() {
+    public int getRating() {
         return rating;
     }
 
@@ -46,7 +45,7 @@ public class Feedback {
         return reviewDate;
     }
 
-    public void setIdFeedback(Long idFeedback) {
+    public void setIdFeedback(int idFeedback) {
         this.idFeedback = idFeedback;
     }
 
@@ -54,7 +53,7 @@ public class Feedback {
         this.reviewText = reviewText;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 

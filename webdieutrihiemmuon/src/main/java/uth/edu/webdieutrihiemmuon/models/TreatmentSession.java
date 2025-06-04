@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class TreatmentSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTreatmentTimes;
+    private int idTreatmentTimes;
 
     @Column(nullable = false)
     private int treatmentTime;
@@ -22,7 +22,7 @@ public class TreatmentSession {
     @Column(nullable = false)
     private String treatmentStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_treatmentcycle")
     private TreatmentCycle treatmentCycle;
     public TreatmentSession() {
@@ -35,11 +35,11 @@ public class TreatmentSession {
         this.treatmentStatus = treatmentStatus;
     }
 
-    public Long getIdTreatmentTimes() {
+    public int getIdTreatmentTimes() {
         return idTreatmentTimes;
     }
 
-    public void setIdTreatmentTimes(Long idTreatmentTimes) {
+    public void setIdTreatmentTimes(int idTreatmentTimes) {
         this.idTreatmentTimes = idTreatmentTimes;
     }
 

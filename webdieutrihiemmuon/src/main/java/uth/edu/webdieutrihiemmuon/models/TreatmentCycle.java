@@ -11,7 +11,7 @@ import java.util.Set;
 public class TreatmentCycle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTreatmentCycle;
+    private int idTreatmentCycle;
 
     @Column(nullable = false)
     private LocalDate serviceBookingDate;
@@ -31,7 +31,7 @@ public class TreatmentCycle {
     @Column(length = 200)
     private String generalNotes;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_treatmentcycle")
     private Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
     public TreatmentCycle() {
@@ -46,11 +46,11 @@ public class TreatmentCycle {
         this.serviceBookingDate = serviceBookingDate;
     }
 
-    public Long getIdTreatmentCycle() {
+    public int getIdTreatmentCycle() {
         return idTreatmentCycle;
     }
 
-    public void setIdTreatmentCycle(Long idTreatmentCycle) {
+    public void setIdTreatmentCycle(int idTreatmentCycle) {
         this.idTreatmentCycle = idTreatmentCycle;
     }
 

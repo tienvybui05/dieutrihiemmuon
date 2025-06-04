@@ -11,13 +11,13 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idService;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false, length = 50)
     private String serviceName;
 
     @Column(nullable = false)
     private String describe;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String patientType;
 
     @Column(nullable = false)
@@ -30,7 +30,8 @@ public class Service {
     public Service() {
     }
 
-    public Service(String serviceName, String describe, String patientType, Integer numberOfTreatmentSessions, Double price) {
+    public Service(Long idService, String serviceName, String describe, String patientType, Integer numberOfTreatmentSessions, Double price) {
+        this.idService = idService;
         this.serviceName = serviceName;
         this.describe = describe;
         this.patientType = patientType;

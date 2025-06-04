@@ -17,7 +17,7 @@ public class Feedback {
     @Column(nullable = false)
     private Integer rating;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private LocalDate reviewDate;
 
     public Feedback() {

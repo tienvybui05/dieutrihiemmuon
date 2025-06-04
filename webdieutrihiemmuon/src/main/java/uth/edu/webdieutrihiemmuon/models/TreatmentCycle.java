@@ -3,6 +3,8 @@ package uth.edu.webdieutrihiemmuon.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name ="treatment_cycle")
@@ -29,6 +31,9 @@ public class TreatmentCycle {
     @Column(length = 200)
     private String generalNotes;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_treatmentcycle")
+    private Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
     public TreatmentCycle() {
     }
 
@@ -96,6 +101,20 @@ public class TreatmentCycle {
     public void setGeneralNotes(String generalNotes) {
         this.generalNotes = generalNotes;
     }
+    public Set<TreatmentSession> getTreatmentSessions() {
+        return treatmentSessions;
+    }
 
+    public void setTreatmentSessions(Set<TreatmentSession> treatmentSessions) {
+        this.treatmentSessions = treatmentSessions;
+    }
+    public void addTreatmentSession(TreatmentSession treatmentSession) {
+        this.treatmentSessions.add(treatmentSession);
+        treatmentSession.setTreatmentCycle(this);
+    }
+    public void removeTreatmentSession(TreatmentSession treatmentSession) {
+        this.treatmentSessions.remove(treatmentSession);
+        treatmentSession.setTreatmentCycle(null);
+    }
 
 }

@@ -22,6 +22,9 @@ public class TreatmentSession {
     @Column(nullable = false)
     private String treatmentStatus;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_treatmentcycle")
+    private TreatmentCycle treatmentCycle;
     public TreatmentSession() {
     }
 
@@ -70,5 +73,12 @@ public class TreatmentSession {
 
     public void setTreatmentStatus(String treatmentStatus) {
         this.treatmentStatus = treatmentStatus;
+    }
+    public TreatmentCycle getTreatmentCycle() {
+        return treatmentCycle;
+    }
+
+    public void setTreatmentCycle(TreatmentCycle treatmentCycle) {
+        this.treatmentCycle = treatmentCycle;
     }
 }

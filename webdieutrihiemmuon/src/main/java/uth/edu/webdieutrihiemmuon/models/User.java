@@ -134,8 +134,8 @@ public class User {
     public Set<Doctor> getDoctor() {
         return doctors;
     }
-    public void setDoctor(Set<Doctor> doctor) {
-        this.doctors = doctor;
+    public void setDoctors(Set<Doctor> doctors) {
+        this.doctors = doctors;
     }
     public void addDoctor(Doctor doctor){
         this.doctors.add(doctor);
@@ -144,5 +144,26 @@ public class User {
     public void removeDoctor(Doctor doctor){
         this.doctors.remove(doctor);
         doctor.setUser(null);
+    }
+    public void addTreatmentCycle(TreatmentCycle treatmentCycle){
+        this.treatmentCycles.add(treatmentCycle);
+        treatmentCycle.setUser(this);
+    }
+    public void removeTreatmentCycle(TreatmentCycle treatmentCycle){
+        this.treatmentCycles.remove(treatmentCycle);
+        treatmentCycle.setUser(null);
+    }
+
+    public Set<Doctor> getDoctors() {
+        return doctors;
+    }
+
+
+    public Set<TreatmentCycle> getTreatmentCycles() {
+        return treatmentCycles;
+    }
+
+    public void setTreatmentCycles(Set<TreatmentCycle> treatmentCycles) {
+        this.treatmentCycles = treatmentCycles;
     }
 }

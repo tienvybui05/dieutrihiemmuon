@@ -129,5 +129,44 @@ public class TreatmentCycle {
         this.treatmentSessions.remove(treatmentSession);
         treatmentSession.setTreatmentCycle(null);
     }
+    public void addFeedback(Feedback feedback) {
+        this.feedbacks.add(feedback);
+        feedback.setTreatmentCycle(this);
+    }
+    public void removeFeedback(Feedback feedback) {
+        this.feedbacks.remove(feedback);
+        feedback.setTreatmentCycle(null);
+    }
 
+    public Set<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(Set<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ServicePackage getServicePackage() {
+        return servicePackage;
+    }
+
+    public void setServicePackage(ServicePackage servicePackage) {
+        this.servicePackage = servicePackage;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 }

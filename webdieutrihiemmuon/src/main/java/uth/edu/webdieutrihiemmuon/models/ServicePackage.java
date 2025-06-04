@@ -49,10 +49,6 @@ public class ServicePackage {
         return serviceName;
     }
 
-    public String getDescribe() {
-        return serviceDescription;
-    }
-
     public String getPatientType() {
         return patientType;
     }
@@ -73,10 +69,6 @@ public class ServicePackage {
         this.serviceName = serviceName;
     }
 
-    public void setDescribe(String describe) {
-        this.serviceDescription = describe;
-    }
-
     public void setPatientType(String patientType) {
         this.patientType = patientType;
     }
@@ -87,5 +79,29 @@ public class ServicePackage {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getServiceDescription() {
+        return serviceDescription;
+    }
+
+    public void setServiceDescription(String serviceDescription) {
+        this.serviceDescription = serviceDescription;
+    }
+
+    public Set<TreatmentCycle> getTreatmentCycles() {
+        return treatmentCycles;
+    }
+
+    public void setTreatmentCycles(Set<TreatmentCycle> treatmentCycles) {
+        this.treatmentCycles = treatmentCycles;
+    }
+    public void addTreatmentCycle(TreatmentCycle treatmentCycle) {
+        this.treatmentCycles.add(treatmentCycle);
+        treatmentCycle.setServicePackage(this);
+    }
+    public void removeTreatmentCycle(TreatmentCycle treatmentCycle) {
+        this.treatmentCycles.remove(treatmentCycle);
+        treatmentCycle.setServicePackage(null);
     }
 }

@@ -81,4 +81,5 @@ public class TreatmentSession {
     public void setTreatmentCycle(TreatmentCycle treatmentCycle) {
         this.treatmentCycle = treatmentCycle;
     }
+
 }

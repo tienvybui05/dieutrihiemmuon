@@ -76,4 +76,20 @@ public class Doctor {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Set<TreatmentCycle> getTreatmentCycles() {
+        return treatmentCycles;
+    }
+
+    public void setTreatmentCycles(Set<TreatmentCycle> treatmentCycles) {
+        this.treatmentCycles = treatmentCycles;
+    }
+    public void addTreatmentCycle(TreatmentCycle treatmentCycle) {
+        this.treatmentCycles.add(treatmentCycle);
+        treatmentCycle.setDoctor(this);
+    }
+    public void removeTreatmentCycle(TreatmentCycle treatmentCycle) {
+        this.treatmentCycles.remove(treatmentCycle);
+        treatmentCycle.setDoctor(null);
+    }
 }

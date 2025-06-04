@@ -63,4 +63,12 @@ public class Feedback {
     public void setReviewDate(LocalDate reviewDate) {
         this.reviewDate = reviewDate;
     }
+
+    public TreatmentCycle getTreatmentCycle() {
+        return treatmentCycle;
+    }
+
+    public void setTreatmentCycle(TreatmentCycle treatmentCycle) {
+        this.treatmentCycle = treatmentCycle;
+    }
 }

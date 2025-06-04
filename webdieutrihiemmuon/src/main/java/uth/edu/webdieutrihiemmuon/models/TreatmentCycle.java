@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Table(name ="treatment_cycle")
 public class TreatmentCycle {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTreatmentCycle;
 
     @Column(nullable = false)

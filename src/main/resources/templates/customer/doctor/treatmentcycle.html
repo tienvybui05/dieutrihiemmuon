@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <title>Startup - Startup Website Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Free HTML Templates">
+    <meta name="description" content="Free HTML Templates">
+
+    <!-- Favicon -->
+    <link th:href="@{customer/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{customer/lib/animate/animate.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{customer/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{customer/css/style.css}" rel="stylesheet">
+    <style>
+        .chu-ki-dieu-tri {
+            width: 100%;
+            max-width: none; /* hoặc tăng lên 1400px - 1600px nếu muốn giữ giới hạn */
+            margin: 0 15px;
+            display: flex;
+            gap: 30px;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Cột bên trái: bảng điều trị (rộng hơn) */
+        .danh-sach-buoi-dieu-tri {
+            flex: 3;
+        }
+
+        /* Cột bên phải: form (hẹp hơn) */
+        .cap-nhat-buoi-dieu-tri {
+            flex: 1;
+            border-left: 1px solid #ddd;
+            padding:  0 20px 0 20px;
+            max-width: 300px;  /* Giới hạn chiều rộng tối đa */
+        }
+
+        /* Phần bảng */
+        .bang-dieu-tri {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .bang-dieu-tri th, .bang-dieu-tri td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .bang-dieu-tri th {
+            background-color: #06A3DA;
+            color: white;
+        }
+
+
+
+        /* Form */
+        .cap-nhat-buoi-dieu-tri span {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .cap-nhat-buoi-dieu-tri span.buoi {
+            display: inline; /* hoặc inline-block nếu cần thêm padding/margin */
+            margin-left: 5px;
+            font-weight: normal;
+            color:#06A3DA;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .cap-nhat-buoi-dieu-tri input[type="text"],
+        .cap-nhat-buoi-dieu-tri select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            transition: border 0.3s ease;
+        }
+
+        .cap-nhat-buoi-dieu-tri input[type="text"]:focus,
+        .cap-nhat-buoi-dieu-tri select:focus {
+            border-color: #2c7be5;
+            outline: none;
+        }
+        .cap-nhat-buoi-dieu-tri input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            font-family: 'Nunito', sans-serif;
+            transition: border 0.3s ease;
+            color: #333;
+        }
+
+        .cap-nhat-buoi-dieu-tri input[type="date"]:focus {
+            border-color: #2c7be5;
+            outline: none;
+            box-shadow: 0 0 3px rgba(44, 123, 229, 0.5);
+        }
+
+        .cap-nhat-buoi-dieu-tri button {
+            background-color: #06A3DA;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cap-nhat-buoi-dieu-tri button:hover {
+            background-color: #1b5dc9;
+        }
+
+        .quay-ve-lịch-lam {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .quay-ve-lịch-lam a {
+            text-decoration: none;
+            color: #06A3DA;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .quay-ve-lịch-lam a:hover {
+            color: #1b5dc9;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<!-- Gọi header -->
+<div th:replace="layout/customer/header :: headerFragment"></div>
+
+<!-- Nội dung chính -->
+<main>
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Chu kì điều trị</h1>
+                <a href="" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white">About</a>
+            </div>
+        </div>
+    </div>
+    <div class="chu-ki-dieu-tri">
+        <div class="danh-sach-buoi-dieu-tri">
+            <table class="bang-dieu-tri">
+                <tr>
+                    <th>Chọn</th>
+                    <th>Buổi điều trị</th>
+                    <th>Ngày điều trị</th>
+                    <th>Ghi chú</th>
+                    <th>Trạng thái</th>
+                </tr>
+
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>1</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>2</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>3</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>4</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>5</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>6</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>7</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>8</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>9</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>10</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>11</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td><div class="check-buoi-dieu-tri">
+                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                    </div>
+                    </td>
+                    <td>12</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td>Hoàn thành</td>
+                </tr>
+            </table>
+        </div>
+        <div class="cap-nhat-buoi-dieu-tri">
+            <form action="" method="post">
+                <span>Buổi điều trị: <span class="buoi">1</span></span>
+                <span>Ngày điều trị</span>
+                <input type="date">
+                <span>Ghi chú:</span>
+                <input type="text">
+                <span>Trạng thái:</span>
+                <select name="trangthai">
+                    <option value="dahoanthanh">Đã hoàn thành</option>
+                    <option value="chuahoanthanh">Chưa hoàn thành</option>
+                </select>
+                <button type="submit">Cập nhật</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="quay-ve-lịch-lam">
+        <a href="#">Quay về</a>
+    </div>
+    <!-- Navbar & Carousel End -->
+</main>
+
+<!-- Gọi footer -->
+<div th:replace="layout/customer/footer :: footerFragment"></div>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top">
+    <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{customer/lib/wow/wow.min.js}"></script>
+<script th:src="@{customer/lib/easing/easing.min.js}"></script>
+<script th:src="@{customer/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{customer/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{customer/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{customer/js/main.js}"></script>
+
+</body>
+</html>

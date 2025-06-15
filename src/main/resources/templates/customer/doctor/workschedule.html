@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <title>Startup - Startup Website Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Free HTML Templates">
+    <meta name="description" content="Free HTML Templates">
+
+    <!-- Favicon -->
+    <link th:href="@{customer/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{customer/lib/animate/animate.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{customer/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{customer/css/style.css}" rel="stylesheet">
+    <style>
+        .lich-lam-viec-bac-si {
+            padding: 30px;
+            background-color: #ffffff;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .bang-lich-lam {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+        }
+
+        .bang-lich-lam th {
+            background-color: #06A3DA; /* Blue primary */
+            color: #ffffff;
+            text-align: center;
+            padding: 12px 10px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .bang-lich-lam td {
+            text-align: center;
+            padding: 10px 8px;
+            font-size: 14px;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            background-color:#FFFFFF;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .bang-lich-lam tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .bang-lich-lam tr:hover {
+            background-color: #e9f2ff;
+            transition: 0.2s ease-in-out;
+        }
+
+        .bang-lich-lam a {
+            display: inline-block;
+            background-color: #06A3DA;
+            color: #ffffff;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .bang-lich-lam a:hover {
+            background-color: #0b5ed7; /* Màu xanh hover đậm hơn */
+            text-decoration: none;
+        }
+
+        .bang-lich-lam button {
+            background-color:#06A3DA; /* Bootstrap success green */
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .bang-lich-lam button:hover {
+            background-color: #01cdb6;
+        }
+        .quay-ve-lịch-lam {
+            text-align: center;
+        }
+
+        .quay-ve-lịch-lam a {
+            text-decoration: none;
+            color: #06A3DA;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .quay-ve-lịch-lam a:hover {
+            color: #1b5dc9;
+        }
+    </style>
+
+</head>
+
+<body>
+<!-- Gọi header -->
+<div th:replace="layout/customer/header :: headerFragment"></div>
+
+<!-- Nội dung chính -->
+<main>
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Lịch làm việc</h1>
+                <a href="" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white">About</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="lich-lam-viec-bac-si">
+        <table class="bang-lich-lam">
+            <tr>
+                <th>Khách hàng</th>
+                <th>Dịch vụ</th>
+                <th>Giá</th>
+                <th>Ngày đặt dịch vụ</th>
+                <th>Ngày bắt đầu</th>
+                <th>Xác nhận</th>
+                <th>Thanh toán</th>
+                <th>Thực hiện</th>
+                <th>Ghi chú tổng quan</th>
+                <th>Chu kì điều trị</th>
+                <th>Hành động</th>
+            </tr>
+            <tr>
+                <td>111111111111</td>
+                <td>1111111111111</td>
+                <td>11111111</td>
+                <td>11111111111</td>
+                <td>11111111111</td>
+                <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
+                <td>1111111111</td>
+                <td>1111111111</td>
+                <td>
+                    <a href="#">Xem</a>
+                </td>
+                <td>
+                    <button type="button">Xử lý sau</button>
+                </td>
+            </tr>
+            <tr>
+                <td>111111111111</td>
+                <td>1111111111111</td>
+                <td>11111111</td>
+                <td>11111111111</td>
+                <td>11111111111</td>
+                <td class ="trang-thai-xac-nhan">Chưa xác nhận</td>
+                <td class ="trang-thai-thanh-toan">Chưa thanh toán</td>
+                <td>1111111111</td>
+                <td>1111111111</td>
+                <td>
+                    <a href="#">Xem</a>
+                </td>
+                <td>
+                    <button type="button">Xử lý sau</button>
+                </td>
+            </tr>
+            <tr>
+                <td>111111111111</td>
+                <td>1111111111111</td>
+                <td>11111111</td>
+                <td>11111111111</td>
+                <td>11111111111</td>
+                <td class ="trang-thai-xac-nhan">Chưa xác nhận</td>
+                <td class ="trang-thai-thanh-toan" >Chưa thanh toán</td>
+                <td>1111111111</td>
+                <td>1111111111</td>
+                <td>
+                    <a href="#">Xem</a>
+                </td>
+                <td>
+                    <button type="button">Xử lý sau</button>
+                </td>
+            </tr>
+            <tr>
+                <td>111111111111</td>
+                <td>1111111111111</td>
+                <td>11111111</td>
+                <td>11111111111</td>
+                <td>11111111111</td>
+                <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                <td>1111111111</td>
+                <td>1111111111</td>
+                <td>
+                    <a href="#">Xem</a>
+                </td>
+                <td>
+                    <button type="button">Xử lý sau</button>
+                </td>
+            </tr>
+            <tr>
+                <td>111111111111</td>
+                <td>1111111111111</td>
+                <td>11111111</td>
+                <td>11111111111</td>
+                <td>11111111111</td>
+                <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                <td>1111111111</td>
+                <td>1111111111</td>
+                <td>
+                    <a href="#">Xem</a>
+                </td>
+                <td>
+                    <button type="button">Xử lý sau</button>
+                </td>
+            </tr>
+            <tr>
+                <td>111111111111</td>
+                <td>1111111111111</td>
+                <td>11111111</td>
+                <td>11111111111</td>
+                <td>11111111111</td>
+                <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                <td>1111111111</td>
+                <td>1111111111</td>
+                <td>
+                    <a href="#">Xem</a>
+                </td>
+                <td>
+                    <button type="button">Xử lý sau</button>
+                </td>
+            </tr>
+            <tr>
+                <td>111111111111</td>
+                <td>1111111111111</td>
+                <td>11111111</td>
+                <td>11111111111</td>
+                <td>11111111111</td>
+                <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                <td>1111111111</td>
+                <td>1111111111</td>
+                <td>
+                    <a href="#">Xem</a>
+                </td>
+                <td>
+                    <button type="button">Xử lý sau</button>
+                </td>
+            </tr>
+            <tr>
+                <td>111111111111</td>
+                <td>1111111111111</td>
+                <td>11111111</td>
+                <td>11111111111</td>
+                <td>11111111111</td>
+                <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                <td>1111111111</td>
+                <td>1111111111</td>
+                <td>
+                    <a href="#">Xem</a>
+                </td>
+                <td>
+                    <button type="button">Xử lý sau</button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="quay-ve-lịch-lam">
+        <a href="#">Quay về</a>
+    </div>
+    <!-- Navbar & Carousel End -->
+</main>
+
+<!-- Gọi footer -->
+<div th:replace="layout/customer/footer :: footerFragment"></div>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top">
+    <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{customer/lib/wow/wow.min.js}"></script>
+<script th:src="@{customer/lib/easing/easing.min.js}"></script>
+<script th:src="@{customer/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{customer/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{customer/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{customer/js/main.js}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function applyTextColorByContent(selector, colorMap, defaultColor) {
+            document.querySelectorAll(selector).forEach(function (cell) {
+                const text = cell.textContent.trim().toLowerCase();
+                cell.style.color = colorMap[text] || defaultColor;
+            });
+        }
+
+        const colorMap = {
+            'đã xác nhận': '#06A3DA',
+            'chưa xác nhận': '#ff001c',
+            'đã thanh toán': '#06A3DA',
+            'chưa thanh toán': '#ff001c'
+        };
+
+        applyTextColorByContent('.trang-thai-xac-nhan', colorMap, '#abaeb1');
+        applyTextColorByContent('.trang-thai-thanh-toan', colorMap, '#abaeb1');
+    });
+</script>
+
+</body>
+</html>

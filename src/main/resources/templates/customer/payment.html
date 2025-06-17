@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <title>Startup - Startup Website Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Free HTML Templates">
+    <meta name="description" content="Free HTML Templates">
+
+    <!-- Favicon -->
+    <link th:href="@{customer/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{customer/lib/animate/animate.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{customer/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{customer/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+<!-- Gọi header -->
+<div th:replace="layout/customer/header :: headerFragment"></div>
+
+<!-- Nội dung chính -->
+<main>
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Thanh toán</h1>
+                <a href="#" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="#" class="h5 text-white">Thanh toán</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h4 class="mb-0">Xác nhận Thanh toán Dịch vụ Khám bệnh</h4>
+            </div>
+            <div class="card-body px-4 py-4">
+                <table class="table table-bordered">
+                    <tr><th>Họ tên</th><td>Nguyễn Văn A</td></tr>
+                    <tr><th>Bác sĩ</th><td>BS. Trần Văn B</td></tr>
+                    <tr><th>Dịch vụ</th><td>Khám tổng quát</td></tr>
+                    <tr><th>Ngày khám</th><td>2025-06-22</td></tr>
+                    <tr><th>Giá</th><td><strong class="text-danger">500.000 VNĐ</strong></td></tr>
+                    <tr><th>Trạng thái thanh toán</th><td><span class="badge bg-warning">Chưa thanh toán</span></td></tr>
+                    <tr>
+                        <th>Minh chứng chuyển khoản</th>
+                        <td style="vertical-align: middle;">
+                            <input class="form-control form-control-sm" type="file"
+                                   name="paymentProof" id="paymentProof" accept="image/*" required>
+                            <div id="proofError" class="text-danger mt-1" style="display: none;">Vui lòng chọn ảnh minh chứng!</div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="alert alert-info">
+                    <h6><strong>Hình thức thanh toán:</strong> Chuyển khoản ngân hàng</h6>
+                    <p>Vui lòng chuyển khoản đến:</p>
+                    <ul>
+                        <li><strong>Số tài khoản:</strong> 0123456789</li>
+                        <li><strong>Ngân hàng:</strong> Vietcombank - Chi nhánh TP.HCM</li>
+                        <li><strong>Nội dung:</strong> Thanh toan [Mã dịch vụ]</li>
+                    </ul>
+                </div>
+
+                <form th:action="@{/payment/confirm}" method="post" enctype="multipart/form-data" onsubmit="return validateProof()">
+                    <input type="hidden" name="treatmentId" value="123" />
+
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success px-4 py-2">Tôi đã chuyển khoản</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</main>
+
+<!-- Gọi footer -->
+<div th:replace="layout/customer/footer :: footerFragment"></div>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top">
+    <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{customer/lib/wow/wow.min.js}"></script>
+<script th:src="@{customer/lib/easing/easing.min.js}"></script>
+<script th:src="@{customer/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{customer/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{customer/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{customer/js/main.js}"></script>
+
+</body>
+</html>

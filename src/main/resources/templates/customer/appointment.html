@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <title>Startup - Startup Website Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Free HTML Templates">
+    <meta name="description" content="Free HTML Templates">
+
+    <!-- Favicon -->
+    <link th:href="@{customer/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{customer/lib/animate/animate.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{customer/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{customer/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+<!-- Gọi header -->
+<div th:replace="layout/customer/header :: headerFragment"></div>
+
+<!-- Nội dung chính -->
+<main>
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Đăng kí dịch vụ</h1>
+                <a href="#" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="#" class="h5 text-white">Đăng kí dịch vụ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form đăng ký dịch vụ -->
+    <div class="container mb-5">
+        <div class="row shadow-lg rounded overflow-hidden">
+            <!-- Cột trái: Lưu ý -->
+            <div class="col-md-5 bg-primary text-white p-4" style="border-top-left-radius: 12px; border-bottom-left-radius: 12px;">
+                <h5 class="fw-bold mb-3">Lưu ý :</h5>
+                <p>Lịch hẹn có hiệu lực sau khi có xác nhận chính thức từ Phòng khám Bệnh viện Đại học Y Dược 1.</p>
+                <p>Quý khách hàng vui lòng cung cấp thông tin chính xác để được phục vụ tốt nhất. Trong trường hợp cung cấp sai thông tin email & điện thoại, việc xác nhận cuộc hẹn sẽ không hiệu lực.</p>
+                <p>Quý khách sử dụng dịch vụ đặt hẹn trực tuyến, xin vui lòng đặt trước ít nhất là 24 giờ trước khi đến khám.</p>
+                <p>Trong trường hợp khẩn cấp hoặc nghi ngờ có các triệu chứng nguy hiểm, quý khách vui lòng ĐẾN TRỰC TIẾP Phòng khám hoặc các trung tâm y tế gần nhất để kịp thời xử lý.</p>
+            </div>
+
+            <!-- Cột phải: Form -->
+            <div class="col-md-7 bg-white p-4">
+                <h4 class="mb-3 text-primary fw-bold">ĐĂNG KÝ KHÁM</h4>
+                <div class="card-body">
+                    <form action="#" method="post">
+                        <!-- Bác sĩ -->
+                        <div class="mb-3">
+                            <label class="form-label">Chọn bác sĩ</label>
+                            <select class="form-select" name="doctorId" required>
+                                <option disabled selected>-- Chọn bác sĩ --</option>
+                                <option value="1">Bác sĩ Trần Văn A</option>
+                                <option value="2">Bác sĩ Nguyễn Thị B</option>
+                                <option value="3">Bác sĩ Lê Văn C</option>
+                            </select>
+                        </div>
+
+                        <!-- Dịch vụ -->
+                        <div class="mb-3">
+                            <label class="form-label">Chọn dịch vụ khám</label>
+                            <select class="form-select" name="serviceId" required>
+                                <option disabled selected>-- Chọn dịch vụ --</option>
+                                <option value="101">Khám tổng quát</option>
+                                <option value="102">Khám chuyên khoa</option>
+                                <option value="103">Xét nghiệm máu</option>
+                            </select>
+                        </div>
+                        <!-- Ngày khám -->
+                        <div class="mb-3">
+                            <label class="form-label">Ngày khám mong muốn</label>
+                            <input type="date" name="startDate" class="form-control" required>
+                        </div>
+
+                        <!-- Ghi chú -->
+                        <div class="mb-3">
+                            <label class="form-label">Ghi chú</label>
+                            <textarea class="form-control" name="generalNotes" rows="3"
+                                      placeholder="Nhập ghi chú nếu có..."></textarea>
+                        </div>
+
+                        <!-- Nút đặt lịch -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Đặt Lịch Khám</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Gọi footer -->
+<div th:replace="layout/customer/footer :: footerFragment"></div>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top">
+    <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{customer/lib/wow/wow.min.js}"></script>
+<script th:src="@{customer/lib/easing/easing.min.js}"></script>
+<script th:src="@{customer/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{customer/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{customer/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{customer/js/main.js}"></script>
+
+</body>
+</html>

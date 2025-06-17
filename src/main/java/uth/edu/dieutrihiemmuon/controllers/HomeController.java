@@ -11,5 +11,38 @@ public class HomeController {
     public String index() {
         return "customer/index";  // đúng đường dẫn tới file
     }
+    @GetMapping("/about")
+    public String about() {
+        return "customer/about";
+    }
+    @GetMapping("/appointment")
+    public String appointment() {
+        return "customer/appointment";
+    }
+    @GetMapping("/history")
+    public String history() {
+        return "customer/history";
+    }
+    @GetMapping("/payment")
+    public String payment() {
+        return "customer/payment";
+    }
+    @GetMapping("/treatmentcyclecustomer")
+    public String treatmentcyclecustomer() {
+        return "customer/treatmentcycle";
+    }
+    @GetMapping("/treatmentschedulecustomer")
+    public String treatmentschedulecustomer() {
+        return "customer/treatmentschedule";
+    }
+    @GetMapping("/workscheduledoctor")
+    public String workscheduledoctor() {
+        return "customer/doctor/workschedule";
+    }
+    @GetMapping("/treatmentcycledoctor")
+    public String treatmentcycledoctor() {
+        return "customer/doctor/treatmentcycle";
+    }
+
 
 }

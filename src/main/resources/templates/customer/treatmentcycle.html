@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <title>Startup - Startup Website Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Free HTML Templates">
+    <meta name="description" content="Free HTML Templates">
+
+    <!-- Favicon -->
+    <link th:href="@{customer/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{customer/lib/animate/animate.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{customer/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{customer/css/style.css}" rel="stylesheet">
+    <style>
+        .chu-ki-dieu-tri {
+            width: 100%;
+            margin: 0 ;
+            display: flex;
+            justify-content: center;
+            background: #ffffff;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .danh-sach-buoi-dieu-tri {
+            width: 100%;
+        }
+
+        .bang-dieu-tri {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .bang-dieu-tri th, .bang-dieu-tri td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .bang-dieu-tri th {
+            background-color: #06A3DA;
+            color: white;
+        }
+
+        .quay-ve-lịch-lam {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .quay-ve-lịch-lam a {
+            text-decoration: none;
+            color: #06A3DA;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .quay-ve-lịch-lam a:hover {
+            color: #1b5dc9;
+        }
+    </style>
+
+</head>
+
+<body>
+<!-- Gọi header -->
+<div th:replace="layout/customer/header :: headerFragment"></div>
+
+<!-- Nội dung chính -->
+<main>
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Chu kì điều trị</h1>
+                <a href="" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white">About</a>
+            </div>
+        </div>
+    </div>
+    <div class="chu-ki-dieu-tri">
+        <div class="danh-sach-buoi-dieu-tri">
+            <table class="bang-dieu-tri">
+                <tr>
+                    <th>Buổi điều trị</th>
+                    <th>Ngày điều trị</th>
+                    <th>Ghi chú</th>
+                    <th>Trạng thái</th>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri">Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri">Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>1111111111</td>
+                    <td>aaaaa</td>
+                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="quay-ve-lịch-lam">
+        <a href="#">Quay về</a>
+    </div>
+    <!-- Navbar & Carousel End -->
+</main>
+
+<!-- Gọi footer -->
+<div th:replace="layout/customer/footer :: footerFragment"></div>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top">
+    <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{customer/lib/wow/wow.min.js}"></script>
+<script th:src="@{customer/lib/easing/easing.min.js}"></script>
+<script th:src="@{customer/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{customer/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{customer/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{customer/js/main.js}"></script>
+
+</body>
+</html>

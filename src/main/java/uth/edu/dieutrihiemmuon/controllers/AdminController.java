@@ -12,5 +12,9 @@ public class AdminController {
         return "admin/index";  // đúng đường dẫn tới file
     }
 
-
+    //admin
+    @GetMapping("/admin/doctor/index")
+    public String admindoctorindex() {
+        return "admin/doctor/index";
+    }
 }

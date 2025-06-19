@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/admin/css/bootstrap.css}">
+
+    <link rel="stylesheet" th:href="@{/admin/vendors/iconly/bold.css}">
+
+    <link rel="stylesheet" th:href="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap-icons/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/admin/css/app.css}">
+    <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
+    <style>
+        .can-giua-form{
+            margin: 0 auto;
+            width: 70%;
+        }
+        .quay-ve{
+            margin: 0 4px 4px 0;
+            background-color: #00d676;
+            color: white;
+        }
+
+        .quay-ve:hover {
+            background-color: #05a8a2;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+<div id="app">
+    <!--    Thêm sidebar-->
+    <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
+
+    <div id="main">
+        <!--        Thêm header-->
+        <div th:replace="layout/admin/header :: headerAdminFragment"></div>
+
+        <div class="page-heading">
+            <h3>Thêm bác sĩ</h3>
+        </div>
+        <div class="page-content">
+            <div class="col-md-6 col-12 can-giua-form">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Nhập thông tin</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form form-horizontal">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Họ và tên</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control"  placeholder="Họ và tên">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Giới tính</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control" placeholder="Giới tính">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Ngày sinh</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="date"  class="form-control" placeholder="Ngày sinh">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Ảnh cá nhân</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="file"  class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Username</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control" placeholder="Username">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Password</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control" placeholder="Password">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Địa chỉ</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control" placeholder="Địa chỉ">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Số điện thoại</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control" placeholder="Số điện thoại">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="email"  class="form-control" placeholder="Email">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Bằng cấp</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control" placeholder="Bằng cấp">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Kinh nghiệm</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control" placeholder="Kinh nghiệm">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Chuyên môn</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text"  class="form-control" placeholder="Chuyên môn">
+                                        </div>
+                                        <div class="col-sm-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">Tạo</button>
+                                            <button type="reset"
+                                                    class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                            <a href="#" class="btn  quay-ve">Quay về</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        Thêm footer-->
+        <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
+
+    </div>
+</div>
+<script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/admin/js/pages/dashboard.js}"></script>
+
+<script th:src="@{/admin/js/main.js}"></script>
+</body>
+
+</html>

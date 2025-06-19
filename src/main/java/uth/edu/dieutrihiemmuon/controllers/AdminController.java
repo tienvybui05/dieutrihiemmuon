@@ -17,4 +17,8 @@ public class AdminController {
     public String admindoctorindex() {
         return "admin/doctor/index";
     }
+    @GetMapping("/admin/doctor/create")
+    public String admindoctorcreate() {
+        return "admin/doctor/create";
+    }
 }

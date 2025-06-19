@@ -44,13 +44,10 @@ xmlns:th="http://www.thymeleaf.org">
                 <img class="w-100" th:src="@{customer/img/carousel-1.jpg}" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
-                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
-                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital
-                            Solution</h1>
-                        <a href="#.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free
-                            Quote</a>
-                        <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
-                            Us</a>
+                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Điều Trị Hiếm Muộn Chuyên Sâu, Hiệu Quả</h5>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Chắp Cánh Ước Mơ Làm Cha Mẹ</h1>
+                        <a href="#.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Đăng Ký Khám</a>
+                        <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Liên Hệ Chuyên Gia</a>
                     </div>
                 </div>
             </div>
@@ -58,13 +55,10 @@ xmlns:th="http://www.thymeleaf.org">
                 <img class="w-100" th:src="@{customer/img/carousel-2.jpg}" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
-                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
-                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital
-                            Solution</h1>
-                        <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free
-                            Quote</a>
-                        <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
-                            Us</a>
+                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Công Nghệ Hỗ Trợ Sinh Sản Tiên Tiến</h5>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Hiếm Muộn Không Còn Là Nỗi Lo</h1>
+                        <a href="#.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Đăng Ký Khám</a>
+                        <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Liên Hệ Chuyên Gia</a>
                     </div>
                 </div>
             </div>
@@ -78,8 +72,169 @@ xmlns:th="http://www.thymeleaf.org">
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    </div>
     <!-- Navbar & Carousel End -->
+
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+    <!-- Facts Start -->
+    <div class="container-fluid facts py-5 pt-lg-0">
+        <div class="container py-5 pt-lg-0">
+            <div class="row gx-0">
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.1s">
+                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-users text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white mb-0">Em bé chào đời </h5>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="bg-light shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-check text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-primary mb-0">	Gia đình được trọn vẹn</h5>
+                            <h1 class="mb-0" data-toggle="counter-up">9999</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
+                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-award text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white mb-0">Kinh nghiệm</h5>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">20</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Facts Start -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="section-title position-relative pb-3 mb-5">
+                        <h5 class="fw-bold text-primary text-uppercase">Về chúng tôi</h5>
+                        <h1 class="mb-0">Đồng Hành Cùng Bạn Kiến Tạo Gia Đình Hạnh Phúc</h1>
+                    </div>
+                    <p class="mb-4">"Tại Hope Fertility Center, chúng tôi hiểu rõ hành trình tìm con có thể đầy thử thách và cảm xúc. Với sứ mệnh chắp cánh ước mơ làm cha mẹ, chúng tôi cam kết mang đến những giải pháp điều trị hiếm muộn tiên tiến nhất, cùng sự đồng hành, thấu hiểu và chăm sóc tận tâm từ đội ngũ chuyên gia hàng đầu. Mỗi câu chuyện của bạn là động lực để chúng tôi nỗ lực không ngừng, vì một gia đình hạnh phúc trọn vẹn."</p>
+                    <div class="row g-0 mb-3">
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Công nghệ hiện đại</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Tư vấn & Hỗ trợ 24/7</h5>
+                        </div>
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Bác sĩ giàu kinh nghiệm</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Hiệu quả tối ưu</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Liên hệ tư vấn chuyên gia</h5>
+                            <h4 class="text-primary mb-0">+012 345 6789</h4>
+                        </div>
+                    </div>
+                    <a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Đặt lịch khám ngay</a>
+                </div>
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="customer/img/about.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Features Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Tại sao chọn chúng tôi</h5>
+                <h1 class="mb-0">Niềm Tin Vững Chắc Cho Hành Trình Tìm Con Trọn Vẹn</h1>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-user-md text-white"></i>
+                            </div>
+                            <h4>Đội Ngũ Chuyên Gia Đầu Ngành</h4>
+                            <p class="mb-0">Với đội ngũ y bác sĩ, chuyên gia hàng đầu về hỗ trợ sinh sản, giàu kinh nghiệm và tận tâm trong từng ca bệnh.</p>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-dna text-white"></i>
+                            </div>
+                            <h4>Công Nghệ Hiện Đại Bậc Nhất</h4>
+                            <p class="mb-0">Trang bị hệ thống máy móc, phòng lab đạt chuẩn quốc tế, đảm bảo quy trình điều trị chính xác và hiệu quả.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s" src="customer/img/feature.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-heartbeat text-white"></i>
+                            </div>
+                            <h4>Chăm Sóc & Đồng Hành Tận Tâm</h4>
+                            <p class="mb-0">Mỗi bệnh nhân là một câu chuyện riêng, chúng tôi lắng nghe, thấu hiểu và hỗ trợ bạn trong suốt hành trình.</p>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-check-circle text-white"></i>
+                            </div>
+                            <h4>Tỷ Lệ Thành Công Vượt Trội</h4>
+                            <p class="mb-0">Tự hào với tỷ lệ thành công cao, mang lại niềm hạnh phúc cho hàng ngàn gia đình mong con.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features Start -->
+
+
+
 </main>
 
 <!-- Gọi footer -->

@@ -43,6 +43,9 @@ public class HomeController {
     public String treatmentcycledoctor() {
         return "customer/doctor/treatmentcycle";
     }
-
+    @GetMapping("/profile")
+    public String profile() {
+        return "customer/profile";
+    }
 
 }

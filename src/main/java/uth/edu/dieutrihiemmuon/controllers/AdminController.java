@@ -25,4 +25,9 @@ public class AdminController {
     public String admindoctoredit() {
         return "admin/doctor/edit";
     }
+    @GetMapping("/admin/doctor/detail")
+    public String admindoctordetail() {
+        return "admin/doctor/detail";
+    }
+
 }

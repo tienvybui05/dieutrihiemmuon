@@ -56,6 +56,10 @@
                         <div class="dropdown-menu m-0">
                             <a href="blog.html" class="dropdown-item">Blog Grid</a>
                             <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                                Đổi mật khẩu
+                            </a>
+
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -77,4 +81,31 @@
             </div>
         </nav>
     </div>
+
+    <!-- Modal đổi mật khẩu -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="changePasswordLabel">Đổi mật khẩu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" th:action="@{/change-password}">
+                        <div class="mb-3">
+                            <input type="password" class="form-control" name="oldPassword" placeholder="Mật khẩu cũ" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" name="newPassword" placeholder="Mật khẩu mới" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" name="confirmPassword" placeholder="Xác nhận mật khẩu" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Đổi mật khẩu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </header>

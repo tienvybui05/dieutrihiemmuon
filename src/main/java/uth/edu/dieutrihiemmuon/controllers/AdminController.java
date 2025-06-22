@@ -12,7 +12,7 @@ public class AdminController {
         return "admin/index";  // đúng đường dẫn tới file
     }
 
-    //admin
+    //admin/doctor
     @GetMapping("/admin/doctor/index")
     public String admindoctorindex() {
         return "admin/doctor/index";
@@ -28,6 +28,11 @@ public class AdminController {
     @GetMapping("/admin/doctor/detail")
     public String admindoctordetail() {
         return "admin/doctor/detail";
+    }
+    //admin/customer
+    @GetMapping("/admin/customer/index")
+    public String admincustomerindex() {
+        return "admin/customer/index";
     }
 
 }

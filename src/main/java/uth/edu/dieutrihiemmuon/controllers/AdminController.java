@@ -34,5 +34,8 @@ public class AdminController {
     public String admincustomerindex() {
         return "admin/customer/index";
     }
-
+    @GetMapping("/admin/customer/create")
+    public String admincustomercreate() {
+        return "admin/customer/create";
+    }
 }

@@ -38,4 +38,8 @@ public class AdminController {
     public String admincustomercreate() {
         return "admin/customer/create";
     }
+    @GetMapping("/admin/customer/edit")
+    public String admincustomeredit() {
+        return "admin/customer/edit";
+    }
 }

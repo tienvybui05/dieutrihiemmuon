@@ -20,9 +20,9 @@ public class Feedback {
     @Column(nullable = false, length = 10)
     private LocalDate reviewDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_treatmentCycle")
-    private TreatmentCycle treatmentCycle;
+    @OneToOne
+    @JoinColumn(name = "id_treatmentCycle", nullable = false, unique = true)
+    private TreatmentCycle fb_treatmentCycle;
     public Feedback() {
     }
 
@@ -64,11 +64,4 @@ public class Feedback {
         this.reviewDate = reviewDate;
     }
 
-    public TreatmentCycle getTreatmentCycle() {
-        return treatmentCycle;
-    }
-
-    public void setTreatmentCycle(TreatmentCycle treatmentCycle) {
-        this.treatmentCycle = treatmentCycle;
-    }
 }

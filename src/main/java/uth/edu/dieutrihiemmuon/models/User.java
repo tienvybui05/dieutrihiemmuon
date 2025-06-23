@@ -10,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
-    @Column(unique = true, nullable = false, length = 50)
+    @Column(nullable = false, length = 50)
     private String fullName;
     @Column(unique = true, nullable = false, length = 50)
     private String userName;
@@ -20,6 +20,8 @@ public class User {
     private String dateOfBirth;
     @Column(unique = true, nullable = false, length = 50)
     private String email;
+    @Column(nullable = true, length = 250)
+    private String image;
     @Column(unique = true, nullable = false, length = 15)
     private String phoneNumber;
     @Column(nullable = false, length = 100)
@@ -29,12 +31,11 @@ public class User {
     @Column(nullable = false, length = 20)
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Doctor> doctors = new HashSet<Doctor>();
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Doctor doctor;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
-
+    @OneToMany(mappedBy = "userTreatmentCycle",cascade = CascadeType.ALL)
+    Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
     public User() {
 
     }
@@ -118,7 +119,6 @@ public class User {
         return gender;
     }
 
-
     public String getRole() {
         return role;
     }
@@ -131,33 +131,21 @@ public class User {
         this.gender = gender;
     }
 
-    public Set<Doctor> getDoctor() {
-        return doctors;
-    }
-    public void setDoctors(Set<Doctor> doctors) {
-        this.doctors = doctors;
-    }
-    public void addDoctor(Doctor doctor){
-        this.doctors.add(doctor);
-        doctor.setUser(this);
-    }
-    public void removeDoctor(Doctor doctor){
-        this.doctors.remove(doctor);
-        doctor.setUser(null);
-    }
-    public void addTreatmentCycle(TreatmentCycle treatmentCycle){
-        this.treatmentCycles.add(treatmentCycle);
-        treatmentCycle.setUser(this);
-    }
-    public void removeTreatmentCycle(TreatmentCycle treatmentCycle){
-        this.treatmentCycles.remove(treatmentCycle);
-        treatmentCycle.setUser(null);
+    public String getImage() {
+        return image;
     }
 
-    public Set<Doctor> getDoctors() {
-        return doctors;
+    public void setImage(String image) {
+        this.image = image;
     }
 
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 
     public Set<TreatmentCycle> getTreatmentCycles() {
         return treatmentCycles;

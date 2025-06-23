@@ -31,23 +31,24 @@ public class TreatmentCycle {
     @Column(length = 200)
     private String generalNotes;
 
-    @OneToMany(mappedBy = "treatmentCycle",cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
-
-    @OneToMany(mappedBy = "treatmentCycle" ,cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Feedback> feedbacks = new HashSet<Feedback>();
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
-    private User user;
+    private User userTreatmentCycle;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_service")
-    private ServicePackage servicePackage;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_doctor")
-    private Doctor doctor;
+    private Doctor doctorTreatmentCycle;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_service")
+    private ServicePackage serviceTreatmentCycle;
+
+    @OneToMany(mappedBy = "treatmentCycle",cascade = CascadeType.ALL)
+    Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
+
+    @OneToOne(mappedBy = "fb_treatmentCycle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Feedback feedback;
+
     public TreatmentCycle() {
     }
     public TreatmentCycle(String generalNotes, LocalDate startDate, String confirmationStatus, String paymentStatus, String executionStatus, LocalDate serviceBookingDate) {
@@ -114,59 +115,36 @@ public class TreatmentCycle {
     public void setGeneralNotes(String generalNotes) {
         this.generalNotes = generalNotes;
     }
+
+    public User getUserTreatmentCycle() {
+        return userTreatmentCycle;
+    }
+
+    public void setUserTreatmentCycle(User userTreatmentCycle) {
+        this.userTreatmentCycle = userTreatmentCycle;
+    }
+
+    public Doctor getDoctorTreatmentCycle() {
+        return doctorTreatmentCycle;
+    }
+
+    public void setDoctorTreatmentCycle(Doctor doctorTreatmentCycle) {
+        this.doctorTreatmentCycle = doctorTreatmentCycle;
+    }
+
+    public ServicePackage getServiceTreatmentCycle() {
+        return serviceTreatmentCycle;
+    }
+
+    public void setServiceTreatmentCycle(ServicePackage serviceTreatmentCycle) {
+        this.serviceTreatmentCycle = serviceTreatmentCycle;
+    }
+
     public Set<TreatmentSession> getTreatmentSessions() {
         return treatmentSessions;
     }
 
     public void setTreatmentSessions(Set<TreatmentSession> treatmentSessions) {
         this.treatmentSessions = treatmentSessions;
-    }
-    public void addTreatmentSession(TreatmentSession treatmentSession) {
-        this.treatmentSessions.add(treatmentSession);
-        treatmentSession.setTreatmentCycle(this);
-    }
-    public void removeTreatmentSession(TreatmentSession treatmentSession) {
-        this.treatmentSessions.remove(treatmentSession);
-        treatmentSession.setTreatmentCycle(null);
-    }
-    public void addFeedback(Feedback feedback) {
-        this.feedbacks.add(feedback);
-        feedback.setTreatmentCycle(this);
-    }
-    public void removeFeedback(Feedback feedback) {
-        this.feedbacks.remove(feedback);
-        feedback.setTreatmentCycle(null);
-    }
-
-    public Set<Feedback> getFeedbacks() {
-        return feedbacks;
-    }
-
-    public void setFeedbacks(Set<Feedback> feedbacks) {
-        this.feedbacks = feedbacks;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public ServicePackage getServicePackage() {
-        return servicePackage;
-    }
-
-    public void setServicePackage(ServicePackage servicePackage) {
-        this.servicePackage = servicePackage;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
     }
 }

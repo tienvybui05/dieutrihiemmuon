@@ -11,21 +11,26 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDoctor;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String degree;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String experience;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String expertise;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_user")
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
+    @OneToMany(mappedBy = "doctorTreatmentCycle",cascade = CascadeType.ALL)
+    Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_service")
+    private ServicePackage servicePackage;
 
     public Doctor() {
 
@@ -72,7 +77,6 @@ public class Doctor {
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -84,12 +88,12 @@ public class Doctor {
     public void setTreatmentCycles(Set<TreatmentCycle> treatmentCycles) {
         this.treatmentCycles = treatmentCycles;
     }
-    public void addTreatmentCycle(TreatmentCycle treatmentCycle) {
-        this.treatmentCycles.add(treatmentCycle);
-        treatmentCycle.setDoctor(this);
+
+    public ServicePackage getServicePackage() {
+        return servicePackage;
     }
-    public void removeTreatmentCycle(TreatmentCycle treatmentCycle) {
-        this.treatmentCycles.remove(treatmentCycle);
-        treatmentCycle.setDoctor(null);
+
+    public void setServicePackage(ServicePackage servicePackage) {
+        this.servicePackage = servicePackage;
     }
 }

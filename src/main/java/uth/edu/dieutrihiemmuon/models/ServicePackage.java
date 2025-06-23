@@ -12,7 +12,7 @@ public class ServicePackage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idService;
 
-    @Column(unique = true, nullable = false, length = 50)
+    @Column(nullable = false, length = 50)
     private String serviceName;
 
     @Column(nullable = false)
@@ -27,9 +27,11 @@ public class ServicePackage {
     @Column(nullable = false)
     private Double price;
 
-    @OneToMany(mappedBy = "servicePackage",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
+    @OneToMany(mappedBy = "serviceTreatmentCycle",cascade = CascadeType.ALL)
+    Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
 
+    @OneToMany(mappedBy = "servicePackage",cascade = CascadeType.ALL)
+    Set<Doctor> doctors = new HashSet<Doctor>();
     public ServicePackage() {
     }
 
@@ -96,12 +98,12 @@ public class ServicePackage {
     public void setTreatmentCycles(Set<TreatmentCycle> treatmentCycles) {
         this.treatmentCycles = treatmentCycles;
     }
-    public void addTreatmentCycle(TreatmentCycle treatmentCycle) {
-        this.treatmentCycles.add(treatmentCycle);
-        treatmentCycle.setServicePackage(this);
+
+    public Set<Doctor> getDoctors() {
+        return doctors;
     }
-    public void removeTreatmentCycle(TreatmentCycle treatmentCycle) {
-        this.treatmentCycles.remove(treatmentCycle);
-        treatmentCycle.setServicePackage(null);
+
+    public void setDoctors(Set<Doctor> doctors) {
+        this.doctors = doctors;
     }
 }

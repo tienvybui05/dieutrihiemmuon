@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/admin/css/bootstrap.css}">
+
+    <link rel="stylesheet" th:href="@{/admin/vendors/iconly/bold.css}">
+
+    <link rel="stylesheet" th:href="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap-icons/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/admin/css/app.css}">
+    <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
+    <link rel="stylesheet"  th:href="@{/admin/vendors/simple-datatables/style.css}">
+    <style>
+        .lich-lam-viec-bac-si {
+            padding: 30px;
+            background-color: #ffffff;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .bang-lich-lam {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+        }
+
+        .bang-lich-lam th {
+            background-color: #06A3DA; /* Blue primary */
+            color: #ffffff;
+            text-align: center;
+            padding: 12px 10px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .bang-lich-lam td {
+            text-align: center;
+            padding: 10px 8px;
+            font-size: 14px;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            background-color:#FFFFFF;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .bang-lich-lam tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .bang-lich-lam tr:hover {
+            background-color: #e9f2ff;
+            transition: 0.2s ease-in-out;
+        }
+
+        .bang-lich-lam a {
+            display: inline-block;
+            background-color: #06A3DA;
+            color: #ffffff;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .bang-lich-lam a:hover {
+            background-color: #0b5ed7; /* Màu xanh hover đậm hơn */
+            text-decoration: none;
+        }
+
+        .bang-lich-lam button {
+            background-color:#06A3DA; /* Bootstrap success green */
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .bang-lich-lam button:hover {
+            background-color: #01cdb6;
+        }
+        .quay-ve-lịch-lam {
+            text-align: center;
+        }
+
+        .quay-ve-lịch-lam a {
+            text-decoration: none;
+            color: #06A3DA;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .quay-ve-lịch-lam a:hover {
+            color: #1b5dc9;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <!--    Thêm sidebar-->
+    <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
+
+    <div id="main">
+        <!--        Thêm header-->
+        <div th:replace="layout/admin/header :: headerAdminFragment"></div>
+
+        <div class="page-heading">
+            <h3>Quản lý lịch làm việc bác sĩ</h3>
+        </div>
+        <div class="lich-lam-viec-bac-si">
+            <table class="bang-lich-lam">
+                <tr>
+                    <th>Khách hàng</th>
+                    <th>Dịch vụ</th>
+                    <th>Giá</th>
+                    <th>Ngày đặt dịch vụ</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Xác nhận</th>
+                    <th>Thanh toán</th>
+                    <th>Thực hiện</th>
+                    <th>Ghi chú tổng quan</th>
+                    <th>Chu kì điều trị</th>
+                    <th>Hành động</th>
+                </tr>
+                <tr>
+                    <td>111111111111</td>
+                    <td>1111111111111</td>
+                    <td>11111111</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                    <td class="trang-thai-thanh-toan">Đã thanh toán</td>
+                    <td>1111111111</td>
+                    <td>1111111111</td>
+                    <td>
+                        <a href="#">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button">Xác nhận</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>111111111111</td>
+                    <td>1111111111111</td>
+                    <td>11111111</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td class ="trang-thai-xac-nhan">Chưa xác nhận</td>
+                    <td class ="trang-thai-thanh-toan">Chưa thanh toán</td>
+                    <td>1111111111</td>
+                    <td>1111111111</td>
+                    <td>
+                        <a href="#">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button">Xác nhận</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>111111111111</td>
+                    <td>1111111111111</td>
+                    <td>11111111</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td class ="trang-thai-xac-nhan">Chưa xác nhận</td>
+                    <td class ="trang-thai-thanh-toan" >Chưa thanh toán</td>
+                    <td>1111111111</td>
+                    <td>1111111111</td>
+                    <td>
+                        <a href="#">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button">Xác nhận</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>111111111111</td>
+                    <td>1111111111111</td>
+                    <td>11111111</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                    <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                    <td>1111111111</td>
+                    <td>1111111111</td>
+                    <td>
+                        <a href="#">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button">Xác nhận</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>111111111111</td>
+                    <td>1111111111111</td>
+                    <td>11111111</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                    <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                    <td>1111111111</td>
+                    <td>1111111111</td>
+                    <td>
+                        <a href="#">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button">Xác nhận</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>111111111111</td>
+                    <td>1111111111111</td>
+                    <td>11111111</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                    <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                    <td>1111111111</td>
+                    <td>1111111111</td>
+                    <td>
+                        <a href="#">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button">Xác nhận</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>111111111111</td>
+                    <td>1111111111111</td>
+                    <td>11111111</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                    <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                    <td>1111111111</td>
+                    <td>1111111111</td>
+                    <td>
+                        <a href="#">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button">Xác nhận</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>111111111111</td>
+                    <td>1111111111111</td>
+                    <td>11111111</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
+                    <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
+                    <td>1111111111</td>
+                    <td>1111111111</td>
+                    <td>
+                        <a href="#">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button">Xác nhận</button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+        <!--        Thêm footer-->
+        <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
+
+    </div>
+</div>
+
+{% block js %}
+<script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
+<script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}
+<script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/admin/js/pages/dashboard.js}"></script>
+
+<script th:src="@{/admin/js/main.js}"></script>
+<!-- Template Javascript -->
+<script th:src="@{customer/js/main.js}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function applyTextColorByContent(selector, colorMap, defaultColor) {
+            document.querySelectorAll(selector).forEach(function (cell) {
+                const text = cell.textContent.trim().toLowerCase();
+                cell.style.color = colorMap[text] || defaultColor;
+            });
+        }
+
+        const colorMap = {
+            'đã xác nhận': '#06A3DA',
+            'chưa xác nhận': '#ff001c',
+            'đã thanh toán': '#06A3DA',
+            'chưa thanh toán': '#ff001c'
+        };
+
+        applyTextColorByContent('.trang-thai-xac-nhan', colorMap, '#abaeb1');
+        applyTextColorByContent('.trang-thai-thanh-toan', colorMap, '#abaeb1');
+    });
+</script>
+</body>
+
+</html>

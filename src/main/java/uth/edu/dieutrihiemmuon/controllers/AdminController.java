@@ -48,4 +48,9 @@ public class AdminController {
     public String adminemployeecreate() {
         return "admin/employee/create";
     }
+    // auth
+    @GetMapping("/admin/auth/login")
+    public String adminauthlogin() {
+        return "admin/auth/login";
+    }
 }

@@ -15,37 +15,22 @@ public class HomeController {
     public String about() {
         return "customer/about";
     }
+    @GetMapping("/blog")
+    public String blog(){ return "customer/blog";}
     @GetMapping("/appointment")
-    public String appointment() {
-        return "customer/appointment";
-    }
+    public String appointment() { return "customer/appointment";}
     @GetMapping("/history")
-    public String history() {
-        return "customer/history";
-    }
+    public String history() { return "customer/history";}
     @GetMapping("/payment")
-    public String payment() {
-        return "customer/payment";
-    }
+    public String payment() { return "customer/payment";}
     @GetMapping("/treatmentcyclecustomer")
-    public String treatmentcyclecustomer() {
-        return "customer/treatmentcycle";
-    }
+    public String treatmentcyclecustomer() { return "customer/treatmentcycle";}
     @GetMapping("/treatmentschedulecustomer")
-    public String treatmentschedulecustomer() {
-        return "customer/treatmentschedule";
-    }
+    public String treatmentschedulecustomer() { return "customer/treatmentschedule";}
     @GetMapping("/workscheduledoctor")
-    public String workscheduledoctor() {
-        return "customer/doctor/workschedule";
-    }
+    public String workscheduledoctor() { return "customer/doctor/workschedule";}
     @GetMapping("/treatmentcycledoctor")
-    public String treatmentcycledoctor() {
-        return "customer/doctor/treatmentcycle";
-    }
+    public String treatmentcycledoctor() { return "customer/doctor/treatmentcycle";}
     @GetMapping("/profile")
-    public String profile() {
-        return "customer/profile";
-    }
-
+    public String profile() { return "customer/profile";}
 }

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <title>Startup - Startup Website Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Free HTML Templates">
+    <meta name="description" content="Free HTML Templates">
+
+    <!-- Favicon -->
+    <link th:href="@{customer/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{customer/lib/animate/animate.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{customer/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{customer/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+<!-- Gọi header -->
+<div th:replace="layout/customer/header :: headerFragment"></div>
+
+<!-- Nội dung chính -->
+<main>
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Tin tức</h1>
+                <a href="#" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="#" class="h5 text-white">Blog</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Start -->
+    <div class="container-fluid blog py-3" style="background-color: #f8f2f2;">
+        <div class="container py-3">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3"><strong>Chia Sẻ Kiến Thức & Hành Trình Điều Trị</strong></h5>
+                <h1 class="mb-4"><b>Hiếm Muộn</b></h1>
+                <p class="mb-0" style="color: black;">
+                    Những bài viết mới nhất từ các chuyên gia và bệnh nhân về điều trị hiếm muộn, sức khỏe sinh sản và hơn thế nữa.
+                </p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <div class="blog-img-inner">
+                                <img class="img-fluid w-100 rounded-top" src="img/blog1.webp" alt="Image">
+                                <div class="blog-icon">
+                                    <a href="/tin-tuc/cac-benh-ca-koi" class="my-auto"><i
+                                            class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-calendar-alt text-primary me-2"></i>28 Oct 2024
+                                </small>
+
+                            </div>
+                        </div>
+                        <div class="blog-content border border-top-0 rounded-bottom p-4">
+                            <p class="mb-3">Biên Tập: Nhất Duy </p>
+                            <a href="/tin-tuc/cac-benh-ca-koi" class="h4">Dấu Hiệu Bạn Nên Gặp Bác Sĩ Chuyên Khoa</a>
+                            <p class="my-3">
+                                Nhiều cặp đôi thường bỏ qua những dấu hiệu bất thường trong hành trình mang thai. Cùng tìm hiểu những tín hiệu quan trọng cần lưu ý...
+
+                            </p>
+                            <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <div class="blog-img-inner">
+                                <img class="img-fluid w-100 rounded-top" src="img/blog2.webp" alt="Image">
+                                <div class="blog-icon">
+                                    <a href="#" class="my-auto"><i
+                                            class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-calendar-alt text-primary me-2"></i>15 05 2025
+                                </small>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="blog-content border border-top-0 rounded-bottom p-4">
+                            <p class="mb-3">Biên Tập: Nhất Duy </p>
+                            <a href="/tin-tuc/huong-dan-ky-thuat-nuoi-va-cham" class="h4">Hành Trình Của Một Cặp Đôi Thành Công Với IVF</a>
+                            <p class="my-3">
+                                Chia sẻ xúc động của chị Lan và anh Dũng sau 3 năm điều trị vô sinh, cuối cùng họ đã chào đón thiên thần nhỏ...
+
+                            </p>
+                            <a href="#"
+                               class="btn btn-primary rounded-pill py-2 px-4">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <div class="blog-img-inner">
+                                <img class="img-fluid w-100 rounded-top" src="img/blog3.webp" alt="Image">
+                                <div class="blog-icon">
+                                    <a href="#" class="my-auto"><i
+                                            class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-calendar-alt text-primary me-2"></i>13 June 2025
+                                </small>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="blog-content border border-top-0 rounded-bottom p-4">
+                            <p class="mb-3">Biên Tập: Nhất Duy </p>
+                            <a href="/tin-tuc/quy-trinh-ve-sinh-ho-ca" class="h4">Thực Phẩm Hỗ Trợ Sinh Sản</a>
+                            <p class="my-3">
+                                Chế độ ăn ảnh hưởng thế nào đến sức khỏe sinh sản? Những thực phẩm nên ăn và nên tránh sẽ được bác sĩ dinh dưỡng phân tích kỹ lưỡng...
+
+                            </p>
+                            <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Xem
+                                thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+</main>
+
+<!-- Gọi footer -->
+<div th:replace="layout/customer/footer :: footerFragment"></div>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top">
+    <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{customer/lib/wow/wow.min.js}"></script>
+<script th:src="@{customer/lib/easing/easing.min.js}"></script>
+<script th:src="@{customer/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{customer/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{customer/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{customer/js/main.js}"></script>
+
+</body>
+</html>

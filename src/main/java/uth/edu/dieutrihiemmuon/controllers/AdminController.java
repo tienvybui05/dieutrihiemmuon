@@ -42,4 +42,10 @@ public class AdminController {
     public String admincustomeredit() {
         return "admin/customer/edit";
     }
+
+    // employee
+    @GetMapping("/admin/employee/create")
+    public String adminemployeecreate() {
+        return "admin/employee/create";
+    }
 }

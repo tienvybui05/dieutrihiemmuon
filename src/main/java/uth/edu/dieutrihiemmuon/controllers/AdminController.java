@@ -53,4 +53,19 @@ public class AdminController {
     public String adminauthlogin() {
         return "admin/auth/login";
     }
+
+    @GetMapping("admin/ScheduleManagement/DoctorScheduleManagement")
+    public String ScheduleManagement() {
+        return "admin/ScheduleManagement/DoctorScheduleManagement";
+    }
+
+    @GetMapping("admin/ScheduleManagement/DetailDoctorScheduleManagement")
+    public String DetailDoctorScheduleManagement() {
+        return "admin/ScheduleManagement/DetailDoctorScheduleManagement";
+    }
+
+    @GetMapping("admin/ScheduleManagement/ConfirmDoctorSchedule")
+    public String ConfirmDoctorSchedule() {
+        return "admin/ScheduleManagement/ConfirmDoctorSchedule";
+    }
 }

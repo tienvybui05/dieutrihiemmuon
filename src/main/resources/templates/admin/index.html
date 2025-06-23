@@ -29,11 +29,14 @@ xmlns:th="http://www.thymeleaf.org">
         <div th:replace="layout/admin/header :: headerAdminFragment"></div>
 
         <div class="page-heading">
-            <h3>Profile Statistics</h3>
+            <h3>Trang chủ  <img th:src="@{/admin/vendors/svg-loaders/hearts.svg}" class="me-4" style="width: 3rem" alt="audio"></h3>
         </div>
         <div class="page-content">
             <section class="row">
-                <div class="col-12 col-lg-9">
+                <div class="col-12 col-lg-9" >
+                    <div class="row">
+
+                    </div>
                     <div class="row">
                         <div class="col-6 col-lg-3 col-md-6">
                             <div class="card">
@@ -41,11 +44,12 @@ xmlns:th="http://www.thymeleaf.org">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="stats-icon purple">
-                                                <i class="iconly-boldShow"></i>
+                                                <i class="iconly-boldUser"></i>
+
                                             </div>
                                         </div>
                                         <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Profile Views</h6>
+                                            <h6 class="text-muted font-semibold">Khách hàng</h6>
                                             <h6 class="font-extrabold mb-0">112.000</h6>
                                         </div>
                                     </div>
@@ -58,11 +62,11 @@ xmlns:th="http://www.thymeleaf.org">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="stats-icon blue">
-                                                <i class="iconly-boldProfile"></i>
+                                                <i class="iconly-boldUser1"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Followers</h6>
+                                            <h6 class="text-muted font-semibold">Bác sĩ</h6>
                                             <h6 class="font-extrabold mb-0">183.000</h6>
                                         </div>
                                     </div>
@@ -75,11 +79,11 @@ xmlns:th="http://www.thymeleaf.org">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="stats-icon green">
-                                                <i class="iconly-boldAdd-User"></i>
+                                                <i class="iconly-boldWork"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Following</h6>
+                                            <h6 class="text-muted font-semibold">Dịch vụ</h6>
                                             <h6 class="font-extrabold mb-0">80.000</h6>
                                         </div>
                                     </div>
@@ -92,11 +96,11 @@ xmlns:th="http://www.thymeleaf.org">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="stats-icon red">
-                                                <i class="iconly-boldBookmark"></i>
+                                                <i class="iconly-boldGraph"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Saved Post</h6>
+                                            <h6 class="text-muted font-semibold">Doanh thu</h6>
                                             <h6 class="font-extrabold mb-0">112</h6>
                                         </div>
                                     </div>
@@ -105,85 +109,55 @@ xmlns:th="http://www.thymeleaf.org">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-md-6" style="max-width: 50%;">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Profile Visit</h4>
+                                    <h5 class="card-title">Thông báo</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div id="chart-profile-visit"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-xl-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Profile Visit</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <svg class="bi text-primary" width="32" height="32" fill="blue"
-                                                     style="width:10px">
-                                                    <use
-                                                            xlink:href="admin/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                </svg>
-                                                <h5 class="mb-0 ms-3">Europe</h5>
-                                            </div>
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
+                                               aria-controls="home" aria-selected="true">Trang chủ</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
+                                               aria-controls="profile" aria-selected="false">👤 Nhân viên</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
+                                               aria-controls="contact" aria-selected="false">📋 Quy định</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <p class='my-2'>👋 Chào mừng đến với Hệ thống Quản trị Trung tâm hiếm muộn!</p>
+                                            <p>Chúng tôi rất vui được đồng hành cùng bạn trong hành trình mang đến hy vọng và hạnh phúc cho hàng ngàn gia đình.</p>
+                                            <p>💡 Đừng quên kiểm tra thường xuyên để nắm bắt kịp thời các thay đổi trong hoạt động vận hành.</p>
+                                            <p>🤝 Chúng tôi tin rằng, với sự phối hợp hiệu quả giữa đội ngũ và công nghệ, Trung tâm sẽ ngày càng chuyên nghiệp, tận tâm và uy tín hơn nữa trong hành trình mang lại cơ hội làm cha mẹ cho nhiều cặp vợ chồng.</p>
                                         </div>
-                                        <div class="col-6">
-                                            <h5 class="mb-0">862</h5>
+                                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <p>- Quản lý khách hàng</p>
+                                            <p>- Quản lý bác sĩ</p>
+                                            <p>- Kiểm tra và xác nhận các đơn được đặt</p>
+                                            <p>- Theo dõi lịch khám thường xuyên</p>
+                                            <p>- Kiểm tra nhận xét từ khách hàng</p>
                                         </div>
-                                        <div class="col-12">
-                                            <div id="chart-europe"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <svg class="bi text-success" width="32" height="32" fill="blue"
-                                                     style="width:10px">
-                                                    <use
-                                                            xlink:href="admin/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                </svg>
-                                                <h5 class="mb-0 ms-3">America</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h5 class="mb-0">375</h5>
-                                        </div>
-                                        <div class="col-12">
-                                            <div id="chart-america"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <svg class="bi text-danger" width="32" height="32" fill="blue"
-                                                     style="width:10px">
-                                                    <use
-                                                            xlink:href="admin/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                </svg>
-                                                <h5 class="mb-0 ms-3">Indonesia</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h5 class="mb-0">1025</h5>
-                                        </div>
-                                        <div class="col-12">
-                                            <div id="chart-indonesia"></div>
+                                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                            <p class="mt-2">📌 Một số quy định nội bộ quan trọng:</p>
+                                            <p>Bảo mật thông tin: Tuyệt đối không chia sẻ thông tin bệnh nhân ra ngoài hệ thống.</p>
+                                            <p>Giờ làm việc: Tuân thủ đúng giờ làm việc quy định, báo cáo khi có sự cố.</p>
+                                            <p>Cập nhật hồ sơ: Đảm bảo cập nhật hồ sơ bệnh nhân đầy đủ và chính xác sau mỗi buổi làm việc.</p>
+                                            <p>🛠 Nếu bạn gặp lỗi trong hệ thống, hãy liên hệ với bộ phận kỹ thuật để được hỗ trợ kịp thời.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-xl-8">
+                        <div class="col-12 col-xl-8" style="max-width: 50%;">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Latest Comments</h4>
+                                    <h4>Bình luận mới nhất</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -191,7 +165,6 @@ xmlns:th="http://www.thymeleaf.org">
                                             <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Comment</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -206,6 +179,21 @@ xmlns:th="http://www.thymeleaf.org">
                                                 </td>
                                                 <td class="col-auto">
                                                     <p class=" mb-0">Congratulations on your graduation!</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="avatar avatar-md">
+                                                            <img src="admin/images/faces/2.jpg">
+                                                        </div>
+                                                        <p class="font-bold ms-3 mb-0">Si Ganteng</p>
+                                                    </div>
+                                                </td>
+                                                <td class="col-auto">
+                                                    <p class=" mb-0">Wow amazing design! Can you make another
+                                                        tutorial for
+                                                        this design?</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -239,58 +227,14 @@ xmlns:th="http://www.thymeleaf.org">
                                     <img src="admin/images/faces/1.jpg" alt="Face 1">
                                 </div>
                                 <div class="ms-3 name">
-                                    <h5 class="font-bold">John Duck</h5>
-                                    <h6 class="text-muted mb-0">@johnducky</h6>
+                                    <h5 class="font-bold">Đinh Quốc Đạt </h5>
+                                    <h6 class="text-muted mb-0">0329626781</h6>
+                                    <h6 class="text-muted mb-0">29/04/2005</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Recent Messages</h4>
-                        </div>
-                        <div class="card-content pb-4">
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img th:src="@{/admin/images/faces/4.jpg}" alt="Face 4">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">Hank Schrader</h5>
-                                    <h6 class="text-muted mb-0">@johnducky</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img th:src="@{/admin/images/faces/5.jpg}" alt="Face 5">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">Dean Winchester</h5>
-                                    <h6 class="text-muted mb-0">@imdean</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img th:src="@{/admin/images/faces/1.jpg}" alt="Face 1">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">John Dodol</h5>
-                                    <h6 class="text-muted mb-0">@dodoljohn</h6>
-                                </div>
-                            </div>
-                            <div class="px-4">
-                                <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
-                                    Conversation</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Visitors Profile</h4>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart-visitors-profile"></div>
-                        </div>
-                    </div>
+
                 </div>
             </section>
         </div>

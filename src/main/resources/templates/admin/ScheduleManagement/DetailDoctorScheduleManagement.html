@@ -18,60 +18,66 @@
     <link rel="stylesheet" th:href="@{/admin/css/app.css}">
     <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
     <link rel="stylesheet"  th:href="@{/admin/vendors/simple-datatables/style.css}">
+    <!-- ... phần <head> giữ nguyên ... -->
     <style>
-        .admin-them {
-            display: inline-block;
+        body {
+            background-color: #f4f7fe;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .page-heading h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 700;
+        }
+
+
+        .bang-lich-lam {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+
+        .bang-lich-lam th,
+        .bang-lich-lam td {
+            text-align: center;
+            padding: 14px 10px;
+            font-size: 14px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .bang-lich-lam th {
             background-color: #435ebe;
             color: white;
-            padding: 8px 8px;
-            font-size: 16px;
             font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
         }
 
-        .admin-them:hover {
-            background-color: #435ebe;
+        .bang-lich-lam tr:nth-child(even) td {
+            background-color: #f9f9f9;
         }
 
-        .admin-hanh-dong a {
-            display: inline-block;
-            padding: 5px 8px;
-            margin: 4px 1px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 14px;
-            color: #FFFFFF;
+        .bang-lich-lam tr:hover td {
+            background-color: #eef6fc;
+            transition: 0.2s ease-in-out;
         }
 
-        .admin-sua {
-            background-color: #00c3b7;
-
+        .trang-thai {
+            font-weight: bold;
         }
 
-        .admin-sua:hover {
-            background-color: #94dcc2;
-        }
-
-        .admin-chi-tiet {
-            background-color: #b700c1;
-
-        }
-
-        .admin-chi-tiet:hover {
-            background-color: #c0f8cf;
-        }
-
-        .admin-xoa {
-            background-color: #f33643;
-
-        }
-
-        .admin-xoa:hover {
-            background-color: #f6c9cc;
+        .thong-tin-bacsi {
+            font-size: 18px;
+            border: 1px solid #435ebe;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -86,119 +92,65 @@
         <div th:replace="layout/admin/header :: headerAdminFragment"></div>
 
         <div class="page-heading">
-            <h3>Quản lý lịch làm việc bác sĩ</h3>
+            <h3>Xem lịch làm việc bác sĩ</h3>
         </div>
-        <div class="page-content">
+
+        <div class="page-content px-4">
             <section class="section">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5>Lịch làm việc bác sĩ Bùi Tiến Vỹ</h5>
-                        <div class="d-flex align-items-center gap-3">
-                            <span class="fw-bold text-primary">Bệnh nhân: Nguyễn Văn A</span>
-                            <div class="d-flex align-items-center gap-2">
-                                <button class="btn btn-outline-secondary btn-sm">
-                                    <i class="bi bi-chevron-left"></i>
-                                </button>
-                                <span class="fw-semibold">Tuần 4 - Th.3 2025</span>
-                                <button class="btn btn-outline-secondary btn-sm">
-                                    <i class="bi bi-chevron-right"></i>
-                                </button>
-                                <button class="btn btn-outline-primary btn-sm ms-2">Tuần này</button>
+                <div class="card-body">
+                    <!-- Thông tin bác sĩ -->
+                    <div class="thong-tin-bacsi">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 mb-2 mb-md-0">
+                                <div class="fw-bold text-primary">
+                                    👨‍⚕️ Bác sĩ: <span class="text-dark">Bùi Tiến Vỹ</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <div class="fw-bold text-success">
+                                    🧑‍⚕️ Bệnh nhân: <span class="text-dark">Nguyễn Văn A</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-bordered text-center align-middle">
-                            <thead class="table-light">
+
+                    <!-- Bảng lịch khám -->
+                    <div class="lich-lam-viec-bac-si">
+                        <table class="bang-lich-lam table" id="tableLichKham">
+                            <thead>
                             <tr>
-                                <th>Thứ 2 24/03</th>
-                                <th>Thứ 3 25/03</th>
-                                <th>Thứ 4 26/03</th>
-                                <th>Thứ 5 27/03</th>
-                                <th>Thứ 6 28/03</th>
-                                <th>Thứ 7 29/03</th>
-                                <th>Chủ nhật 30/03</th>
+                                <th>📅 Ngày</th>
+                                <th>Dịch vụ</th>
+                                <th>Mã DV</th>
+                                <th>Buổi</th>
+                                <th>Ghi chú</th>
+                                <th>Trạng thái</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td class="bg-light">
-                                    <div class="rounded p-2 text-start" style="background-color: #eef3fb; border-left: 4px solid #007bff;">
-                                        <div class="fw-bold text-primary">Khám tổng quát</div>
-                                        <div class="text-muted small">Mã: 011111</div>
-                                        <div class="mt-1">
-                                            <i class="bi bi-journal-bookmark-fill text-teal"></i> Buổi: 1<br>
-                                            <i class="bi bi-info-circle-fill text-teal"></i> Ghi chú: mang theo sổ khám<br>
-                                            <span class="badge bg-success">Hoàn thành</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="bg-light">
-                                    <div class="rounded p-2 text-start" style="background-color: #eef3fb; border-left: 4px solid #007bff;">
-                                        <div class="fw-bold text-primary">Khám tổng quát</div>
-                                        <div class="text-muted small">Mã: 011111</div>
-                                        <div class="mt-1">
-                                            <i class="bi bi-journal-bookmark-fill text-teal"></i> Buổi: 1<br>
-                                            <i class="bi bi-info-circle-fill text-teal"></i> Ghi chú: mang theo sổ khám<br>
-                                            <span class="badge bg-success">Hoàn thành</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="bg-light">
-                                    <div class="rounded p-2 text-start" style="background-color: #eef3fb; border-left: 4px solid #007bff;">
-                                        <div class="fw-bold text-primary">Khám tổng quát</div>
-                                        <div class="text-muted small">Mã: 011111</div>
-                                        <div class="mt-1">
-                                            <i class="bi bi-journal-bookmark-fill text-teal"></i> Buổi: 1<br>
-                                            <i class="bi bi-info-circle-fill text-teal"></i> Ghi chú: mang theo sổ khám<br>
-                                            <span class="badge bg-success">Hoàn thành</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="bg-light">
-                                    <div class="rounded p-2 text-start" style="background-color: #eef3fb; border-left: 4px solid #007bff;">
-                                        <div class="fw-bold text-primary">Khám tổng quát</div>
-                                        <div class="text-muted small">Mã: 011111</div>
-                                        <div class="mt-1">
-                                            <i class="bi bi-journal-bookmark-fill text-teal"></i> Buổi: 1<br>
-                                            <i class="bi bi-info-circle-fill text-teal"></i> Ghi chú: mang theo sổ khám<br>
-                                            <span class="badge bg-success">Hoàn thành</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="bg-light">
-                                    <div class="rounded p-2 text-start" style="background-color: #eef3fb; border-left: 4px solid #007bff;">
-                                        <div class="fw-bold text-primary">Khám tổng quát</div>
-                                        <div class="text-muted small">Mã: 011111</div>
-                                        <div class="mt-1">
-                                            <i class="bi bi-journal-bookmark-fill text-teal"></i> Buổi: 1<br>
-                                            <i class="bi bi-info-circle-fill text-teal"></i> Ghi chú: mang theo sổ khám<br>
-                                            <span class="badge bg-success">Hoàn thành</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="bg-light">
-                                    <div class="rounded p-2 text-start" style="background-color: #eef3fb; border-left: 4px solid #007bff;">
-                                        <div class="fw-bold text-primary">Khám tổng quát</div>
-                                        <div class="text-muted small">Mã: 011111</div>
-                                        <div class="mt-1">
-                                            <i class="bi bi-journal-bookmark-fill text-teal"></i> Buổi: 1<br>
-                                            <i class="bi bi-info-circle-fill text-teal"></i> Ghi chú: mang theo sổ khám<br>
-                                            <span class="badge bg-success">Hoàn thành</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="bg-light">
-                                    <div class="rounded p-2 text-start" style="background-color: #eef3fb; border-left: 4px solid #007bff;">
-                                        <div class="fw-bold text-primary">Khám tổng quát</div>
-                                        <div class="text-muted small">Mã: 011111</div>
-                                        <div class="mt-1">
-                                            <i class="bi bi-journal-bookmark-fill text-teal"></i> Buổi: 1<br>
-                                            <i class="bi bi-info-circle-fill text-teal"></i> Ghi chú: mang theo sổ khám<br>
-                                            <span class="badge bg-success">Hoàn thành</span>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td>Thứ 2 - 24/03/2025</td>
+                                <td>Khám tổng quát</td>
+                                <td>011111</td>
+                                <td>1</td>
+                                <td>Mang theo sổ khám</td>
+                                <td class="trang-thai">Hoàn thành</td>
+                            </tr>
+                            <tr>
+                                <td>Thứ 3 - 25/03/2025</td>
+                                <td>Tiêm nội tiết</td>
+                                <td>022222</td>
+                                <td>2</td>
+                                <td>Không ăn sáng</td>
+                                <td class="trang-thai">Chưa thực hiện</td>
+                            </tr>
+                            <tr>
+                                <td>Thứ 5 - 27/03/2025</td>
+                                <td>Tiêm nội tiết</td>
+                                <td>022222</td>
+                                <td>2</td>
+                                <td>Ăn sáng</td>
+                                <td class="trang-thai">Chưa thực hiện</td>
                             </tr>
                             </tbody>
                         </table>
@@ -221,6 +173,26 @@
 <script th:src="@{/admin/js/pages/dashboard.js}"></script>
 
 <script th:src="@{/admin/js/main.js}"></script>
+<script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const table = document.querySelector('#tableLichKham');
+        if (table) new simpleDatatables.DataTable(table);
+
+        // Tô màu trạng thái
+        document.querySelectorAll('.trang-thai').forEach(function (el) {
+            const text = el.textContent.trim().toLowerCase();
+            if (text.includes("hoàn thành")) {
+                el.style.color = '#28a745'; // xanh lá
+            } else if (text.includes("chưa thực hiện")) {
+                el.style.color = '#ffc107'; // vàng
+            } else {
+                el.style.color = '#6c757d'; // xám
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>

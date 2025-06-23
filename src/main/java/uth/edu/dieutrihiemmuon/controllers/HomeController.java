@@ -17,6 +17,8 @@ public class HomeController {
     }
     @GetMapping("/blog")
     public String blog(){ return "customer/blog";}
+    @GetMapping("/contact")
+    public String contact(){ return "customer/contact";}
     @GetMapping("/appointment")
     public String appointment() { return "customer/appointment";}
     @GetMapping("/history")

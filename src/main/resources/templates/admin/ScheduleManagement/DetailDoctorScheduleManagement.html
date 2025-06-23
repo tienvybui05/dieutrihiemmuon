@@ -18,67 +18,21 @@
     <link rel="stylesheet" th:href="@{/admin/css/app.css}">
     <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
     <link rel="stylesheet"  th:href="@{/admin/vendors/simple-datatables/style.css}">
-    <!-- ... phần <head> giữ nguyên ... -->
     <style>
-        body {
-            background-color: #f4f7fe;
-            font-family: 'Nunito', sans-serif;
-        }
 
-        .page-heading h3 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-            font-weight: 700;
-        }
-
-
-        .bang-lich-lam {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: #fff;
-        }
-
-        .bang-lich-lam th,
-        .bang-lich-lam td {
-            text-align: center;
-            padding: 14px 10px;
+        .admin-hanh-dong a {
+            display: inline-block;
+            padding: 5px 8px;
+            margin: 4px 1px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', sans-serif;
             font-size: 14px;
-            border-bottom: 1px solid #eaeaea;
+            color: #FFFFFF;
         }
 
-        .bang-lich-lam th {
-            background-color: #435ebe;
-            color: white;
-            font-weight: 600;
-        }
-
-        .bang-lich-lam tr:nth-child(even) td {
-            background-color: #f9f9f9;
-        }
-
-        .bang-lich-lam tr:hover td {
-            background-color: #eef6fc;
-            transition: 0.2s ease-in-out;
-        }
-
-        .trang-thai {
-            font-weight: bold;
-        }
-
-        .thong-tin-bacsi {
-            font-size: 18px;
-            border: 1px solid #435ebe;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-        }
     </style>
 </head>
 
@@ -94,32 +48,26 @@
         <div class="page-heading">
             <h3>Xem lịch làm việc bác sĩ</h3>
         </div>
-
-        <div class="page-content px-4">
+        <div class="page-content">
             <section class="section">
-                <div class="card-body">
-                    <!-- Thông tin bác sĩ -->
-                    <div class="thong-tin-bacsi">
-                        <div class="row align-items-center">
-                            <div class="col-md-6 mb-2 mb-md-0">
-                                <div class="fw-bold text-primary">
-                                    👨‍⚕️ Bác sĩ: <span class="text-dark">Bùi Tiến Vỹ</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-md-end">
-                                <div class="fw-bold text-success">
-                                    🧑‍⚕️ Bệnh nhân: <span class="text-dark">Nguyễn Văn A</span>
-                                </div>
-                            </div>
+                <div class="card">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 text-primary fw-bold">Lịch làm việc bác sĩ</h5>
+                        <div class="text-end">
+        <span class="fw-bold text-dark me-3">
+            <i class="bi bi-person-badge text-primary"></i> Bác sĩ: <span class="text-primary">Bùi Tiến Vỹ</span>
+        </span>
+                            <span class="fw-bold text-dark">
+            <i class="bi bi-person text-success"></i> Bệnh nhân: <span class="text-success">Nguyễn Văn A</span>
+        </span>
                         </div>
                     </div>
 
-                    <!-- Bảng lịch khám -->
-                    <div class="lich-lam-viec-bac-si">
-                        <table class="bang-lich-lam table" id="tableLichKham">
+                    <div class="card-body">
+                        <table class="table table-striped" id="table1">
                             <thead>
                             <tr>
-                                <th>📅 Ngày</th>
+                                <th>Ngày</th>
                                 <th>Dịch vụ</th>
                                 <th>Mã DV</th>
                                 <th>Buổi</th>
@@ -156,6 +104,7 @@
                         </table>
                     </div>
                 </div>
+
             </section>
         </div>
 
@@ -166,6 +115,14 @@
     </div>
 </div>
 
+{% block js %}
+<script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
+<script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}
 <script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
 <script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
 
@@ -173,6 +130,8 @@
 <script th:src="@{/admin/js/pages/dashboard.js}"></script>
 
 <script th:src="@{/admin/js/main.js}"></script>
+
+<!-- JS -->
 <script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

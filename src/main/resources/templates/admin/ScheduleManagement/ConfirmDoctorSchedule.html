@@ -1,221 +1,221 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý lịch làm việc bác sĩ</title>
+    <title>Dashboard - Mazer Admin Dashboard</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/admin/css/bootstrap.css}">
+
     <link rel="stylesheet" th:href="@{/admin/vendors/iconly/bold.css}">
+
     <link rel="stylesheet" th:href="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.css}">
     <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap-icons/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/admin/css/app.css}">
-    <link rel="stylesheet" th:href="@{/admin/vendors/simple-datatables/style.css}">
     <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
-
+    <link rel="stylesheet"  th:href="@{/admin/vendors/simple-datatables/style.css}">
     <style>
-        body {
-            background-color: #f4f7fe;
-            font-family: 'Nunito', sans-serif;
-        }
 
-        .lich-lam-viec-bac-si {
-            padding: 30px;
-        }
-
-        .page-heading h3 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-            font-weight: 700;
-        }
-
-        .bang-lich-lam {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: #fff;
-        }
-
-        .bang-lich-lam th,
-        .bang-lich-lam td {
-            text-align: center;
-            padding: 14px 10px;
-            font-size: 14px;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .bang-lich-lam th {
-            background-color: #435ebe;
-            color: white;
-            font-weight: 600;
-        }
-
-        .bang-lich-lam tr:nth-child(even) td {
-            background-color: #f9f9f9;
-        }
-
-        .bang-lich-lam tr:hover td {
-            background-color: #eef6fc;
-            transition: 0.2s ease-in-out;
-        }
-
-        .bang-lich-lam a {
-            background-color: #435ebe;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
+        .admin-hanh-dong a {
+            display: inline-block;
+            padding: 5px 8px;
+            margin: 4px 1px;
             text-decoration: none;
+            border-radius: 6px;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            color: #FFFFFF;
         }
 
-        .bang-lich-lam button {
-            background-color: #435ebe;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
+
+        .admin-chi-tiet {
+            background-color: #b700c1;
+
         }
 
-        .bang-lich-lam button:hover {
-            background-color: #01cdb6;
+        .admin-chi-tiet:hover {
+            background-color: #c0f8cf;
         }
 
-        .trang-thai-xac-nhan, .trang-thai-thanh-toan {
-            font-weight: bold;
-        }
     </style>
 </head>
 
 <body>
 <div id="app">
+    <!--    Thêm sidebar-->
     <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
+
     <div id="main">
+        <!--        Thêm header-->
         <div th:replace="layout/admin/header :: headerAdminFragment"></div>
 
         <div class="page-heading">
             <h3>Xác nhận lịch làm việc bác sĩ</h3>
         </div>
+        <div class="page-content">
+            <section class="section">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                            <tr>
+                                <th>Khách hàng</th>
+                                <th>Dịch vụ</th>
+                                <th>Giá</th>
+                                <th>Ngày đặt</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Xác nhận</th>
+                                <th>Thanh toán</th>
+                                <th>Thực hiện</th>
+                                <th>Ghi chú</th>
+                                <th>Chu kỳ</th>
+                                <th>Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>Tư vấn nội tiết</td>
+                                <td>1.200.000đ</td>
+                                <td>20/06/2025</td>
+                                <td>22/06/2025</td>
+                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
+                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
+                                <td>Đang thực hiện</td>
+                                <td>Ổn định</td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xem</a>
+                                </td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>Tư vấn nội tiết</td>
+                                <td>1.200.000đ</td>
+                                <td>20/06/2025</td>
+                                <td>22/06/2025</td>
+                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
+                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
+                                <td>Đang thực hiện</td>
+                                <td>Ổn định</td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xem</a>
+                                </td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>Tư vấn nội tiết</td>
+                                <td>1.200.000đ</td>
+                                <td>20/06/2025</td>
+                                <td>22/06/2025</td>
+                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
+                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
+                                <td>Đang thực hiện</td>
+                                <td>Ổn định</td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xem</a>
+                                </td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>Tư vấn nội tiết</td>
+                                <td>1.200.000đ</td>
+                                <td>20/06/2025</td>
+                                <td>22/06/2025</td>
+                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
+                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
+                                <td>Đang thực hiện</td>
+                                <td>Ổn định</td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xem</a>
+                                </td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>Tư vấn nội tiết</td>
+                                <td>1.200.000đ</td>
+                                <td>20/06/2025</td>
+                                <td>22/06/2025</td>
+                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
+                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
+                                <td>Đang thực hiện</td>
+                                <td>Ổn định</td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xem</a>
+                                </td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>Tư vấn nội tiết</td>
+                                <td>1.200.000đ</td>
+                                <td>20/06/2025</td>
+                                <td>22/06/2025</td>
+                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
+                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
+                                <td>Đang thực hiện</td>
+                                <td>Ổn định</td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xem</a>
+                                </td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-        <div class="lich-lam-viec-bac-si">
-            <table class="bang-lich-lam">
-                <thead>
-                <tr>
-                    <th>Khách hàng</th>
-                    <th>Dịch vụ</th>
-                    <th>Giá</th>
-                    <th>Ngày đặt</th>
-                    <th>Ngày bắt đầu</th>
-                    <th>Xác nhận</th>
-                    <th>Thanh toán</th>
-                    <th>Thực hiện</th>
-                    <th>Ghi chú</th>
-                    <th>Chu kỳ</th>
-                    <th>Hành động</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Nguyễn Văn A</td>
-                    <td>Tư vấn nội tiết</td>
-                    <td>1.200.000đ</td>
-                    <td>20/06/2025</td>
-                    <td>22/06/2025</td>
-                    <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                    <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                    <td>Đang thực hiện</td>
-                    <td>Ổn định</td>
-                    <td><a href="#">Xem</a></td>
-                    <td><button>Xác nhận</button></td>
-                </tr>
-                <tr>
-                    <td>Nguyễn Văn A</td>
-                    <td>Tư vấn nội tiết</td>
-                    <td>1.200.000đ</td>
-                    <td>20/06/2025</td>
-                    <td>22/06/2025</td>
-                    <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                    <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                    <td>Đang thực hiện</td>
-                    <td>Ổn định</td>
-                    <td><a href="#">Xem</a></td>
-                    <td><button>Xác nhận</button></td>
-                </tr>
-                <tr>
-                    <td>Nguyễn Văn A</td>
-                    <td>Tư vấn nội tiết</td>
-                    <td>1.200.000đ</td>
-                    <td>20/06/2025</td>
-                    <td>22/06/2025</td>
-                    <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                    <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                    <td>Đang thực hiện</td>
-                    <td>Ổn định</td>
-                    <td><a href="#">Xem</a></td>
-                    <td><button>Xác nhận</button></td>
-                </tr>
-                <tr>
-                    <td>Nguyễn Văn A</td>
-                    <td>Tư vấn nội tiết</td>
-                    <td>1.200.000đ</td>
-                    <td>20/06/2025</td>
-                    <td>22/06/2025</td>
-                    <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                    <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                    <td>Đang thực hiện</td>
-                    <td>Ổn định</td>
-                    <td><a href="#">Xem</a></td>
-                    <td><button>Xác nhận</button></td>
-                </tr>
-                <tr>
-                    <td>Nguyễn Văn A</td>
-                    <td>Tư vấn nội tiết</td>
-                    <td>1.200.000đ</td>
-                    <td>20/06/2025</td>
-                    <td>22/06/2025</td>
-                    <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                    <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                    <td>Đang thực hiện</td>
-                    <td>Ổn định</td>
-                    <td><a href="#">Xem</a></td>
-                    <td><button>Xác nhận</button></td>
-                </tr>
-                <tr>
-                    <td>Nguyễn Văn A</td>
-                    <td>Tư vấn nội tiết</td>
-                    <td>1.200.000đ</td>
-                    <td>20/06/2025</td>
-                    <td>22/06/2025</td>
-                    <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                    <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                    <td>Đang thực hiện</td>
-                    <td>Ổn định</td>
-                    <td><a href="#">Xem</a></td>
-                    <td><button>Xác nhận</button></td>
-                </tr>
-                <!-- Thêm nhiều dòng khác tương tự -->
-                </tbody>
-            </table>
+            </section>
         </div>
 
+
+        <!--        Thêm footer-->
         <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
+
     </div>
 </div>
+
+{% block js %}
+<script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
+<script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}
+<script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/admin/js/pages/dashboard.js}"></script>
+
+<script th:src="@{/admin/js/main.js}"></script>
 
 <!-- JS -->
 <script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const table = document.querySelector('.bang-lich-lam');
-        if (table) new simpleDatatables.DataTable(table);
 
         function applyTextColorByContent(selector, colorMap, defaultColor) {
             document.querySelectorAll(selector).forEach(function (cell) {
@@ -236,11 +236,6 @@
     });
 </script>
 
-<script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
-<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
-<script th:src="@{/admin/js/pages/dashboard.js}"></script>
-<script th:src="@{/admin/js/main.js}"></script>
-<script th:src="@{/customer/js/main.js}"></script>
 </body>
+
 </html>

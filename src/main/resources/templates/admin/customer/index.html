@@ -106,81 +106,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
+                            <tr th:each="customer : ${customers}">
+                                <td th:text="${customer.fullName}">Tên</td>
+                                <td th:text="${customer.dateOfBirth}">Ngày sinh</td>
+                                <td th:text="${customer.gender}">Giới tính</td>
+                                <td th:text="${customer.phoneNumber}">Số điện thoại</td>
                                 <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
+                                    <a class="admin-sua" th:href="@{'/admin/customers/edit/' + ${customer.idUser}}">Sửa</a>
+                                    <a class="admin-chi-tiet" th:href="@{'/admin/customers/detail/' + ${customer.idUser}}">Chi tiết</a>
+                                    <a class="admin-xoa" th:href="@{'/admin/customers/delete/' + ${customer.idUser}}"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
                                 </td>
                             </tr>
                             </tbody>

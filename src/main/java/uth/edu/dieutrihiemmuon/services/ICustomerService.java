@@ -8,9 +8,9 @@ import java.util.List;
 public interface ICustomerService {
     // Define methods for employee-related operations
     // For example:
-    List<User> getAllEmployees();
-    User getEmployeeById(int id);
-    void addEmployee(User employee);
-    void updateEmployee(int id, User employee);
-    void deleteEmployee(int id);
+    List<User> getAllCustomers();
+    User getCustomerById(Long id);
+    void addCustomer(User customer);
+    void updateCustomer(Long id, User customer);
+    void deleteCustomer(Long id);
 }

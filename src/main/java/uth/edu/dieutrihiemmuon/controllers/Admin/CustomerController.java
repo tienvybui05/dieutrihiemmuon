@@ -1,6 +1,6 @@
 package uth.edu.dieutrihiemmuon.controllers.Admin;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +35,27 @@ public class CustomerController {
         return "redirect:/admin/customer/index";
     }
 
+    // them tai khoan cus
     @GetMapping("/admin/customer/create")
-    public String admincustomercreate() {
+    public String adminCustomerCreateForm(Model model) {
+        model.addAttribute("customer", new User());
         return "admin/customer/create";
     }
+
+
+
+    @PostMapping("/admin/customer/create")
+    public String adminCustomerAdd(@ModelAttribute("customer") User customer, Model model) {
+        try {
+            customerService.addCustomer(customer);
+            return "redirect:/admin/customer/index";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "admin/customer/create"; // Quay lại form và hiển thị lỗi
+        }
+    }
+
+
 
     @GetMapping("/admin/customer/edit/{id}")
     public String adminCustomerEdit(@PathVariable("id") Long id, org.springframework.ui.Model model) {

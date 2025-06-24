@@ -17,6 +17,49 @@ xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap-icons/bootstrap-icons.css}">
 <link rel="stylesheet" th:href="@{/admin/css/app.css}">
 <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
+    <style>
+
+        .tieu-de-thong-tin-ca-nhan h4{
+            margin: 15px;
+            color: #435ebe;
+        }
+        .tieu-de-thong-tin-ca-nhan .blue-line{
+            border: none;
+            height: 2px;
+            background-color: #435ebe;
+            margin: 2px 0;
+        }
+        .thong-tin-ca-nhan{
+           display: flex;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+
+        }
+        .thong-tin-ca-nhan .anh-ca-nhan{
+
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+        .thong-tin-ca-nhan .anh-ca-nhan img{
+            width: 130px;
+            height: 175px;
+            border-radius: 15px;
+            border: 1px solid #435ebe;
+
+        }
+        .thong-tin{
+            margin-left: 30px;
+        }
+        .thong-tin .info-row{
+            margin: 10px 0;
+        }
+        .thong-tin .info-row label{
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,13 +72,47 @@ xmlns:th="http://www.thymeleaf.org">
         <div th:replace="layout/admin/header :: headerAdminFragment"></div>
 
         <div class="page-heading">
-            <h3>Trang chủ  <img th:src="@{/admin/vendors/svg-loaders/hearts.svg}" class="me-4" style="width: 3rem" alt="audio"></h3>
+            <h3> Trang chủ  <img th:src="@{/admin/vendors/svg-loaders/hearts.svg}" class="me-4" style="width: 3rem" alt="audio"></h3>
         </div>
         <div class="page-content">
             <section class="row">
                 <div class="col-12 col-lg-9" >
                     <div class="row">
-
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="tieu-de-thong-tin-ca-nhan">
+                                    <h4>Thông tin cá nhân</h4>
+                                    <hr class="blue-line">
+                                </div>
+                                <div class="thong-tin-ca-nhan">
+                                    <div class="anh-ca-nhan">
+                                        <img src="admin/images/faces/2.jpg" alt="vv">
+                                    </div>
+                                    <div class="thong-tin">
+                                        <div class="info-row">
+                                            <label>Họ và tên: </label>
+                                            <span>0901234567</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <label>Ngày sinh: </label>
+                                            <span>0901234567</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <label>Số điện thoại: </label>
+                                            <span>0901234567</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <label>Email: </label>
+                                            <span>0901234vvvvvvvvvvvvvvvv567</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <label>Địa chỉ: </label>
+                                            <span>090123456vvvvvvvvvvvvvvvvvvv7</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-6 col-lg-3 col-md-6">
@@ -109,51 +186,6 @@ xmlns:th="http://www.thymeleaf.org">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6" style="max-width: 50%;">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">Thông báo</h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
-                                               aria-controls="home" aria-selected="true">Trang chủ</a>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
-                                               aria-controls="profile" aria-selected="false">👤 Nhân viên</a>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
-                                               aria-controls="contact" aria-selected="false">📋 Quy định</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <p class='my-2'>👋 Chào mừng đến với Hệ thống Quản trị Trung tâm hiếm muộn!</p>
-                                            <p>Chúng tôi rất vui được đồng hành cùng bạn trong hành trình mang đến hy vọng và hạnh phúc cho hàng ngàn gia đình.</p>
-                                            <p>💡 Đừng quên kiểm tra thường xuyên để nắm bắt kịp thời các thay đổi trong hoạt động vận hành.</p>
-                                            <p>🤝 Chúng tôi tin rằng, với sự phối hợp hiệu quả giữa đội ngũ và công nghệ, Trung tâm sẽ ngày càng chuyên nghiệp, tận tâm và uy tín hơn nữa trong hành trình mang lại cơ hội làm cha mẹ cho nhiều cặp vợ chồng.</p>
-                                        </div>
-                                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                            <p>- Quản lý khách hàng</p>
-                                            <p>- Quản lý bác sĩ</p>
-                                            <p>- Kiểm tra và xác nhận các đơn được đặt</p>
-                                            <p>- Theo dõi lịch khám thường xuyên</p>
-                                            <p>- Kiểm tra nhận xét từ khách hàng</p>
-                                        </div>
-                                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                            <p class="mt-2">📌 Một số quy định nội bộ quan trọng:</p>
-                                            <p>Bảo mật thông tin: Tuyệt đối không chia sẻ thông tin bệnh nhân ra ngoài hệ thống.</p>
-                                            <p>Giờ làm việc: Tuân thủ đúng giờ làm việc quy định, báo cáo khi có sự cố.</p>
-                                            <p>Cập nhật hồ sơ: Đảm bảo cập nhật hồ sơ bệnh nhân đầy đủ và chính xác sau mỗi buổi làm việc.</p>
-                                            <p>🛠 Nếu bạn gặp lỗi trong hệ thống, hãy liên hệ với bộ phận kỹ thuật để được hỗ trợ kịp thời.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-12 col-xl-8" style="max-width: 50%;">
                             <div class="card">
                                 <div class="card-header">
@@ -217,19 +249,80 @@ xmlns:th="http://www.thymeleaf.org">
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6" style="max-width: 50%;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Thông báo</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
+                                               aria-controls="home" aria-selected="true">Trang chủ</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
+                                               aria-controls="profile" aria-selected="false">Nhân viên</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
+                                               aria-controls="contact" aria-selected="false">Quy định</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <p class='my-2'>👋 Chào mừng đến với Hệ thống Quản trị Trung tâm hiếm muộn!</p>
+                                            <p>Chúng tôi rất vui được đồng hành cùng bạn trong hành trình mang đến hy vọng và hạnh phúc cho hàng ngàn gia đình.</p>
+                                            <p>💡 Đừng quên kiểm tra thường xuyên để nắm bắt kịp thời các thay đổi trong hoạt động vận hành.</p>
+                                            <p>🤝 Chúng tôi tin rằng, với sự phối hợp hiệu quả giữa đội ngũ và công nghệ, Trung tâm sẽ ngày càng chuyên nghiệp, tận tâm và uy tín hơn nữa trong hành trình mang lại cơ hội làm cha mẹ cho nhiều cặp vợ chồng.</p>
+                                        </div>
+                                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <p>- Quản lý khách hàng</p>
+                                            <p>- Quản lý bác sĩ</p>
+                                            <p>- Kiểm tra và xác nhận các đơn được đặt</p>
+                                            <p>- Theo dõi lịch khám thường xuyên</p>
+                                            <p>- Kiểm tra nhận xét từ khách hàng</p>
+                                        </div>
+                                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                            <p class="mt-2">📌 Một số quy định nội bộ quan trọng:</p>
+                                            <p>Bảo mật thông tin: Tuyệt đối không chia sẻ thông tin bệnh nhân ra ngoài hệ thống.</p>
+                                            <p>Giờ làm việc: Tuân thủ đúng giờ làm việc quy định, báo cáo khi có sự cố.</p>
+                                            <p>Cập nhật hồ sơ: Đảm bảo cập nhật hồ sơ bệnh nhân đầy đủ và chính xác sau mỗi buổi làm việc.</p>
+                                            <p>🛠 Nếu bạn gặp lỗi trong hệ thống, hãy liên hệ với bộ phận kỹ thuật để được hỗ trợ kịp thời.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
-                    <div class="card">
-                        <div class="card-body py-4 px-5">
-                            <div class="d-flex align-items-center">
-                                <div class="avatar avatar-xl">
-                                    <img src="admin/images/faces/1.jpg" alt="Face 1">
-                                </div>
-                                <div class="ms-3 name">
-                                    <h5 class="font-bold">Đinh Quốc Đạt </h5>
-                                    <h6 class="text-muted mb-0">0329626781</h6>
-                                    <h6 class="text-muted mb-0">29/04/2005</h6>
+<!--                    <div class="card">-->
+<!--                        <div class="card-body py-4 px-5">-->
+<!--                            <div class="d-flex align-items-center">-->
+<!--                                <div class="avatar avatar-xl">-->
+<!--                                    <img src="admin/images/faces/1.jpg" alt="Face 1">-->
+<!--                                </div>-->
+<!--                                <div class="ms-3 name">-->
+<!--                                    <h5 class="font-bold">Đinh Quốc Đạt </h5>-->
+<!--                                    <h6 class="text-muted mb-0">0329626781</h6>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="col-6 col-lg-3 col-md-6" style="width: 100%">
+                        <div class="card">
+                            <div class="card-body px-3 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="stats-icon red">
+                                            <i class="iconly-boldCalendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h6 class="text-muted font-semibold">Lịch hẹn hôm nay</h6>
+                                        <h6 class="font-extrabold mb-0" style="color: #f4002d">6</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>

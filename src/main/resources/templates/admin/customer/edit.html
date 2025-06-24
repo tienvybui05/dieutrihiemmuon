@@ -57,62 +57,53 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <form class="form form-horizontal" th:object="${customer}" th:action="@{'/admin/customer/edit/' + ${customer.idUser}}" method="post">
                                 <div class="form-body">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Họ và tên</label>
-                                        </div>
+                                        <div class="col-md-4"><label>Họ và tên</label></div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control"  placeholder="Họ và tên">
+                                            <input type="text" th:field="*{fullName}" class="form-control" placeholder="Họ và tên">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Giới tính</label>
-                                        </div>
+
+                                        <div class="col-md-4"><label>Giới tính</label></div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Giới tính">
+                                            <input type="text" th:field="*{gender}" class="form-control" placeholder="Giới tính">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Ngày sinh</label>
-                                        </div>
+
+                                        <div class="col-md-4"><label>Ngày sinh</label></div>
                                         <div class="col-md-8 form-group">
-                                            <input type="date"  class="form-control" placeholder="Ngày sinh">
+                                            <input type="date" th:field="*{dateOfBirth}" class="form-control" placeholder="Ngày sinh">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Username</label>
-                                        </div>
+
+                                        <div class="col-md-4"><label>Username</label></div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Username">
+                                            <input type="text" th:field="*{userName}" class="form-control" placeholder="Username">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Password</label>
-                                        </div>
+
+                                        <div class="col-md-4"><label>Password</label></div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Password">
+                                            <input type="text" th:field="*{passWord}" class="form-control" placeholder="Password">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Địa chỉ</label>
-                                        </div>
+
+                                        <div class="col-md-4"><label>Địa chỉ</label></div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Địa chỉ">
+                                            <input type="text" th:field="*{address}" class="form-control" placeholder="Địa chỉ">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Số điện thoại</label>
-                                        </div>
+
+                                        <div class="col-md-4"><label>Số điện thoại</label></div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Số điện thoại">
+                                            <input type="text" th:field="*{phoneNumber}" class="form-control" placeholder="Số điện thoại">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>Email</label>
-                                        </div>
+
+                                        <div class="col-md-4"><label>Email</label></div>
                                         <div class="col-md-8 form-group">
-                                            <input type="email"  class="form-control" placeholder="Email">
+                                            <input type="email" th:field="*{email}" class="form-control" placeholder="Email">
                                         </div>
+
                                         <div class="col-sm-12 d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary me-1 mb-1">Cập nhật</button>
-                                            <button type="reset"
-                                                    class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                                            <a href="#" class="btn  quay-ve">Quay về</a>
+                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                            <a th:href="@{/admin/customer/index}" class="btn quay-ve">Quay về</a>
                                         </div>
                                     </div>
                                 </div>

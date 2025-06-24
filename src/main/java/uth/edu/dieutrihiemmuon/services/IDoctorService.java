@@ -6,7 +6,7 @@ import uth.edu.dieutrihiemmuon.models.Doctor;
 import java.util.List;
 
 public interface IDoctorService {
-    public  List<Doctor> getDoctors();
+    public  List<DoctorDTO> getDoctors();
     public  Doctor getDoctor(int id);
     public  boolean addDoctor(DoctorDTO doctorDTO);
     public  Doctor updateDoctor(Doctor doctor);

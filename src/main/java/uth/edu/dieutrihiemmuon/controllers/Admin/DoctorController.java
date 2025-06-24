@@ -9,6 +9,8 @@ import uth.edu.dieutrihiemmuon.models.Doctor;
 import uth.edu.dieutrihiemmuon.services.DoctorService;
 import uth.edu.dieutrihiemmuon.services.IDoctorService;
 
+import java.util.List;
+
 @Controller
 public class DoctorController {
 
@@ -16,9 +18,14 @@ public class DoctorController {
     private IDoctorService doctorService;
 
     @GetMapping("/admin/doctor/index")
-    public String admindoctorindex() {
+    public String admindoctorindex( Model model) {
+
+        List<DoctorDTO> doctorDTOS = doctorService.getDoctors();
+        model.addAttribute("DoctorDTOs", doctorDTOS);
         return "admin/doctor/index";
     }
+
+
     @GetMapping("/admin/doctor/create")
     public String admindoctorcreate( Model model)
     {

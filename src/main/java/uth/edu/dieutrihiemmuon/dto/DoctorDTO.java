@@ -1,6 +1,8 @@
 package uth.edu.dieutrihiemmuon.dto;
 
 import jakarta.persistence.Column;
+import uth.edu.dieutrihiemmuon.models.Doctor;
+import uth.edu.dieutrihiemmuon.models.User;
 
 public class DoctorDTO {
     private String fullName;
@@ -19,6 +21,22 @@ public class DoctorDTO {
 
     public DoctorDTO() {
 
+    }
+    public DoctorDTO(Doctor doctor) {
+        User user = doctor.getUser();
+        this.fullName = user.getFullName();
+        this.userName = user.getUserName();
+        this.passWord = user.getPassWord();
+        this.dateOfBirth = user.getDateOfBirth();
+        this.email = user.getEmail();
+        this.image = user.getImage();
+        this.phoneNumber = user.getPhoneNumber();
+        this.address = user.getAddress();
+        this.gender = user.getGender();
+        this.role = user.getRole();
+        this.degree = doctor.getDegree();
+        this.experience = doctor.getExperience();
+        this.expertise = doctor.getExpertise();
     }
     public DoctorDTO(String fullName, String userName, String passWord, String dateOfBirth, String email, String image, String phoneNumber, String address, String gender, String role, String degree, String experience, String expertise) {
         this.fullName = fullName;

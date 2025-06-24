@@ -8,6 +8,7 @@ import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.repositories.IDoctorRepository;
 import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class DoctorService implements IDoctorService{
@@ -17,8 +18,14 @@ public class DoctorService implements IDoctorService{
     private IUserRepository userRepository;
 
     @Override
-    public List<Doctor> getDoctors() {
-        return List.of();
+    public List<DoctorDTO> getDoctors() {
+        List<Doctor> doctors = doctorRepository.findAll();
+        List<DoctorDTO> doctorDTOs = new ArrayList<DoctorDTO>();
+        for(Doctor doctor : doctors)
+        {
+            doctorDTOs.add(new DoctorDTO(doctor));
+        }
+        return doctorDTOs;
     }
 
     @Override

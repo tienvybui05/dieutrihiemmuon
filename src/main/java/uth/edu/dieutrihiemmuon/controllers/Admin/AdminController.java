@@ -11,23 +11,6 @@ public class AdminController {
         return "admin/index";  // đúng đường dẫn tới file
     }
 
-    //admin/doctor
-    @GetMapping("/admin/doctor/index")
-    public String admindoctorindex() {
-        return "admin/doctor/index";
-    }
-    @GetMapping("/admin/doctor/create")
-    public String admindoctorcreate() {
-        return "admin/doctor/create";
-    }
-    @GetMapping("/admin/doctor/edit")
-    public String admindoctoredit() {
-        return "admin/doctor/edit";
-    }
-    @GetMapping("/admin/doctor/detail")
-    public String admindoctordetail() {
-        return "admin/doctor/detail";
-    }
     //admin/customer
     @GetMapping("/admin/customer/index")
     public String admincustomerindex() {

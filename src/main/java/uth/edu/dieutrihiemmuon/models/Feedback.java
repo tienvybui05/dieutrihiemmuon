@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFeedback;
+    private long idFeedback;
 
     @Column(nullable = false)
     private String reviewText;
@@ -32,7 +32,7 @@ public class Feedback {
         this.reviewDate = reviewDate;
     }
 
-    public int getIdFeedback() {
+    public long getIdFeedback() {
         return idFeedback;
     }
 
@@ -48,7 +48,7 @@ public class Feedback {
         return reviewDate;
     }
 
-    public void setIdFeedback(int idFeedback) {
+    public void setIdFeedback(long idFeedback) {
         this.idFeedback = idFeedback;
     }
 

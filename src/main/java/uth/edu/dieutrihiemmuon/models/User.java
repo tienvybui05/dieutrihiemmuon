@@ -9,7 +9,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+    private long idUser;
     @Column(nullable = false, length = 50)
     private String fullName;
     @Column(unique = true, nullable = false, length = 50)
@@ -50,11 +50,11 @@ public class User {
         this.address = address;
     }
 
-    public int getIdUser() {
+    public long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(long idUser) {
         this.idUser = idUser;
     }
 

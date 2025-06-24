@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class TreatmentSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTreatmentTimes;
+    private long idTreatmentTimes;
 
     @Column(nullable = false)
     private int treatmentTime;
@@ -36,11 +36,11 @@ public class TreatmentSession {
         this.treatmentStatus = treatmentStatus;
     }
 
-    public int getIdTreatmentTimes() {
+    public long getIdTreatmentTimes() {
         return idTreatmentTimes;
     }
 
-    public void setIdTreatmentTimes(int idTreatmentTimes) {
+    public void setIdTreatmentTimes(long idTreatmentTimes) {
         this.idTreatmentTimes = idTreatmentTimes;
     }
 

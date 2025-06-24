@@ -10,7 +10,7 @@ import java.util.Set;
 public class ServicePackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idService;
+    private long idService;
 
     @Column(nullable = false, length = 50)
     private String serviceName;
@@ -43,7 +43,7 @@ public class ServicePackage {
         this.price = price;
     }
 
-    public int getIdService() {
+    public long getIdService() {
         return idService;
     }
 
@@ -63,7 +63,7 @@ public class ServicePackage {
         return price;
     }
 
-    public void setIdService(int idService) {
+    public void setIdService(long idService) {
         this.idService = idService;
     }
 

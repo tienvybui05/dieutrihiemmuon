@@ -9,7 +9,7 @@ import java.util.Set;
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDoctor;
+    private long idDoctor;
 
     @Column(nullable = false)
     private String degree;
@@ -42,11 +42,11 @@ public class Doctor {
         this.expertise = expertise;
     }
 
-    public int getIdDoctor() {
+    public long getIdDoctor() {
         return idDoctor;
     }
 
-    public void setIdDoctor(int idDoctor) {
+    public void setIdDoctor(long idDoctor) {
         this.idDoctor = idDoctor;
     }
 

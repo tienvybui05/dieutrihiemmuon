@@ -11,7 +11,7 @@ import java.util.Set;
 public class TreatmentCycle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTreatmentCycle;
+    private long idTreatmentCycle;
 
     @Column(nullable = false)
     private LocalDate serviceBookingDate;
@@ -60,11 +60,11 @@ public class TreatmentCycle {
         this.serviceBookingDate = serviceBookingDate;
     }
 
-    public int getIdTreatmentCycle() {
+    public long getIdTreatmentCycle() {
         return idTreatmentCycle;
     }
 
-    public void setIdTreatmentCycle(int idTreatmentCycle) {
+    public void setIdTreatmentCycle(long idTreatmentCycle) {
         this.idTreatmentCycle = idTreatmentCycle;
     }
 

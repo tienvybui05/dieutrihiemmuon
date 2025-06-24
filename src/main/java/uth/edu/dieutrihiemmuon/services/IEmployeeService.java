@@ -6,11 +6,11 @@ import uth.edu.dieutrihiemmuon.models.User;
 import java.util.List;
 
 public interface IEmployeeService {
-    // Define methods for employee-related operations
-    // For example:
+
     List<User> getAllEmployees();
-    User getEmployeeById(int id);
+    User getEmployeeById(long id);
     void addEmployee(User employee);
-    void updateEmployee(int id, User employee);
-    void deleteEmployee(int id);
+    void updateEmployee(long id, User employee);
+    void deleteEmployee(long id);
+
 }

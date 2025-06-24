@@ -116,7 +116,7 @@
                                 <td th:text="${doctorDTO.fullName}"></td>
                                 <td class="admin-hanh-dong">
                                     <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
+                                    <a class="admin-chi-tiet" th:href="@{/admin/doctor/detail/{id}(id=${doctorDTO.getId_doctor()})}">Chi tiết</a>
                                     <a class="admin-xoa" href="#">Xóa</a>
                                 </td>
                             </tr>

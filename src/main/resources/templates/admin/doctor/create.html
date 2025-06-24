@@ -57,7 +57,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal" method="post" th:action="@{/admin/doctor/create}" th:object="${DoctorDTO}">
+                            <form class="form form-horizontal" method="post" th:action="@{/admin/doctor/create}" th:object="${DoctorDTO}"  enctype="multipart/form-data">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -78,12 +78,12 @@
                                         <div class="col-md-8 form-group">
                                             <input type="date"  class="form-control" placeholder="Ngày sinh" th:field="*{dateOfBirth}">
                                         </div>
-<!--                                        <div class="col-md-4">-->
-<!--                                            <label>Ảnh cá nhân</label>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-md-8 form-group">-->
-<!--                                            <input type="file"  class="form-control">-->
-<!--                                        </div>-->
+                                        <div class="col-md-4">
+                                            <label>Ảnh cá nhân</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="file"  class="form-control" th:field="*{imageFile}">
+                                        </div>
                                         <div class="col-md-4">
                                             <label>Username</label>
                                         </div>

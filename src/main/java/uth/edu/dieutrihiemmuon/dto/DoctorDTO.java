@@ -1,29 +1,33 @@
 package uth.edu.dieutrihiemmuon.dto;
 
 import jakarta.persistence.Column;
+import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.models.Doctor;
 import uth.edu.dieutrihiemmuon.models.User;
 
 public class DoctorDTO {
+    private long id_doctor;
     private String fullName;
     private String userName;
     private String passWord;
     private String dateOfBirth;
     private String email;
-    private String image = "wq";
+    private String image = "trong";
     private String phoneNumber;
     private String address;
     private String gender;
-    private String role = "Doctor";
+    private String role = "DOCTOR";
     private String degree;
     private String experience;
     private String expertise;
+    private MultipartFile imageFile;
 
     public DoctorDTO() {
 
     }
     public DoctorDTO(Doctor doctor) {
         User user = doctor.getUser();
+        this.id_doctor = doctor.getIdDoctor();
         this.fullName = user.getFullName();
         this.userName = user.getUserName();
         this.passWord = user.getPassWord();
@@ -156,5 +160,21 @@ public class DoctorDTO {
 
     public void setExpertise(String expertise) {
         this.expertise = expertise;
+    }
+
+    public MultipartFile getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
+    }
+
+    public long getId_doctor() {
+        return id_doctor;
+    }
+
+    public void setId_doctor(long id_doctor) {
+        this.id_doctor = id_doctor;
     }
 }

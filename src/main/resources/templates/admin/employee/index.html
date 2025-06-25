@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +16,7 @@
     <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap-icons/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/admin/css/app.css}">
     <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
-    <link rel="stylesheet"  th:href="@{/admin/vendors/simple-datatables/style.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/simple-datatables/style.css}">
     <style>
         .admin-them {
             display: inline-block;
@@ -77,142 +76,78 @@
 </head>
 
 <body>
-<div id="app">
-    <!--    Thêm sidebar-->
-    <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
+    <div id="app">
+        <!--    Thêm sidebar-->
+        <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
 
-    <div id="main">
-        <!--        Thêm header-->
-        <div th:replace="layout/admin/header :: headerAdminFragment"></div>
+        <div id="main">
+            <!--        Thêm header-->
+            <div th:replace="layout/admin/header :: headerAdminFragment"></div>
 
-        <div class="page-heading">
-            <h3>Quản lý nhân viên</h3>
-        </div>
-        <div class="page-content">
-            <section class="section">
-                <div class="card">
-                    <div class="card-header">
-                        <a class="admin-them" href="#">Thêm khách hàng</a>
+            <div class="page-heading">
+                <h3>Quản lý nhân viên</h3>
+            </div>
+            <div class="page-content">
+                <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="admin-them" href="#">Thêm khách hàng</a>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped" id="table1">
+                                <thead>
+                                    <tr>
+                                        <th>Tên</th>
+                                        <th>Ngày sinh</th>
+                                        <th>Giới tính</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="employee : ${employees}">
+                                        <td th:text="${employee.name}">Tên</td>
+                                        <td th:text="${employee.dateOfBirth}">Ngày sinh</td>
+                                        <td th:text="${employee.gender}">Giới tính</td>
+                                        <td th:text="${employee.phone}">Số điện thoại</td>
+                                        <td class="admin-hanh-dong">
+                                            <a class="admin-sua"
+                                                th:href="@{/admin/employees/edit/{id}(id=${employee.id})}">Sửa</a>
+                                            <a class="admin-chi-tiet"
+                                                th:href="@{/admin/employees/{id}(id=${employee.id})}">Chi tiết</a>
+                                            <a class="admin-xoa"
+                                                th:href="@{/admin/employees/delete/{id}(id=${employee.id})}">Xóa</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-striped" id="table1">
-                            <thead>
-                            <tr>
-                                <th>Tên</th>
-                                <th>Ngày sinh</th>
-                                <th>Giới tính</th>
-                                <th>Số điện thoại</th>
-                                <th>Hành động</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>Uth</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                </section>
+            </div>
 
-            </section>
+
+            <!--        Thêm footer-->
+            <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
+
         </div>
-
-
-        <!--        Thêm footer-->
-        <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
-
     </div>
-</div>
 
-{% block js %}
-<script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
-<script>
-    // Simple Datatable
-    let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
-</script>
-{% endblock %}
-<script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
-<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+    {% block js %}
+    <script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+    {% endblock %}
+    <script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+    <script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
 
-<script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
-<script th:src="@{/admin/js/pages/dashboard.js}"></script>
+    <script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
+    <script th:src="@{/admin/js/pages/dashboard.js}"></script>
 
-<script th:src="@{/admin/js/main.js}"></script>
+    <script th:src="@{/admin/js/main.js}"></script>
 </body>
 
 </html>

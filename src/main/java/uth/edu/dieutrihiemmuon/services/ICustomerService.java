@@ -13,4 +13,7 @@ public interface ICustomerService {
     void addCustomer(User customer);
     void updateCustomer(Long id, User customer);
     void deleteCustomer(Long id);
+    boolean isUsernameExists(String username);
+    boolean isEmailExists(String email);
+    boolean isPhoneNumberExists(String phoneNumber);
 }

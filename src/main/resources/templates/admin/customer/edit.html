@@ -78,6 +78,7 @@
                                         <div class="col-md-4"><label>Username</label></div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" th:field="*{userName}" class="form-control" placeholder="Username">
+                                            <div class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
                                         </div>
 
                                         <div class="col-md-4"><label>Password</label></div>
@@ -93,11 +94,13 @@
                                         <div class="col-md-4"><label>Số điện thoại</label></div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" th:field="*{phoneNumber}" class="form-control" placeholder="Số điện thoại">
+                                            <div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
                                         </div>
 
                                         <div class="col-md-4"><label>Email</label></div>
                                         <div class="col-md-8 form-group">
                                             <input type="email" th:field="*{email}" class="form-control" placeholder="Email">
+                                            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                                         </div>
 
                                         <div class="col-sm-12 d-flex justify-content-end">

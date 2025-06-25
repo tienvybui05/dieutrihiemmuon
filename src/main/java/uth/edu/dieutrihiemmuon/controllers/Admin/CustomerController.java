@@ -3,6 +3,7 @@ package uth.edu.dieutrihiemmuon.controllers.Admin;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,15 +46,35 @@ public class CustomerController {
 
 
     @PostMapping("/admin/customer/create")
-    public String adminCustomerAdd(@ModelAttribute("customer") User customer, Model model) {
-        try {
-            customerService.addCustomer(customer);
-            return "redirect:/admin/customer/index";
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
-            return "admin/customer/create"; // Quay lại form và hiển thị lỗi
+    public String adminCustomerAdd(
+            @ModelAttribute("customer") User customer,
+            BindingResult result,
+            Model model) {
+
+        // Kiểm tra trùng username
+        if (customerService.isUsernameExists(customer.getUserName())) {
+            result.rejectValue("userName", "error.customer", "Tên đăng nhập đã tồn tại");
         }
+        // Kiểm tra trùng email
+        if (customerService.isEmailExists(customer.getEmail())) {
+            result.rejectValue("email", "error.customer", "Email đã tồn tại");
+        }
+        // Kiểm tra trùng SĐT
+        if (customerService.isPhoneNumberExists(customer.getPhoneNumber())) {
+            result.rejectValue("phoneNumber", "error.customer", "Số điện thoại đã tồn tại");
+        }
+
+        // Nếu có lỗi thì quay lại form
+        if (result.hasErrors()) {
+            return "admin/customer/create";
+        }
+
+        // Không có lỗi => Lưu
+        customer.setRole("CUSTOMER");
+        customerService.addCustomer(customer);
+        return "redirect:/admin/customer/index";
     }
+
 
 
     // Chinh sua cus theo id
@@ -65,16 +86,49 @@ public class CustomerController {
     }
 
     @PostMapping("/admin/customer/edit/{id}")
-    public String updateCustomer(@PathVariable("id") Long id, @ModelAttribute("customer") User updatedCustomer) {
+    public String updateCustomer(
+            @PathVariable("id") Long id,
+            @ModelAttribute("customer") User updatedCustomer,
+            BindingResult result,
+            Model model) {
+
         User existingCustomer = customerService.getCustomerById(id);
 
-        if (existingCustomer != null) {
-            // Gán lại role cũ
-            updatedCustomer.setRole(existingCustomer.getRole());
-
-            // Cập nhật thông tin
-            customerService.updateCustomer(id, updatedCustomer);
+        // Nếu không tồn tại thì trả về
+        if (existingCustomer == null) {
+            model.addAttribute("error", "Không tìm thấy người dùng");
+            return "admin/customer/edit";
         }
+
+        // Kiểm tra trùng username (loại trừ bản ghi hiện tại)
+        if (!updatedCustomer.getUserName().equals(existingCustomer.getUserName()) &&
+                customerService.isUsernameExists(updatedCustomer.getUserName())) {
+            result.rejectValue("userName", "error.customer", "Tên đăng nhập đã tồn tại");
+        }
+
+        // Kiểm tra trùng email
+        if (!updatedCustomer.getEmail().equals(existingCustomer.getEmail()) &&
+                customerService.isEmailExists(updatedCustomer.getEmail())) {
+            result.rejectValue("email", "error.customer", "Email đã tồn tại");
+        }
+
+        // Kiểm tra trùng SĐT
+        if (!updatedCustomer.getPhoneNumber().equals(existingCustomer.getPhoneNumber()) &&
+                customerService.isPhoneNumberExists(updatedCustomer.getPhoneNumber())) {
+            result.rejectValue("phoneNumber", "error.customer", "Số điện thoại đã tồn tại");
+        }
+
+        // Nếu có lỗi thì quay lại form
+        if (result.hasErrors()) {
+            return "admin/customer/edit";
+        }
+
+        // Gán lại role và id cũ
+        updatedCustomer.setRole(existingCustomer.getRole());
+        updatedCustomer.setIdUser(existingCustomer.getIdUser());
+
+        // Cập nhật thông tin
+        customerService.updateCustomer(id, updatedCustomer);
 
         return "redirect:/admin/customer/index";
     }

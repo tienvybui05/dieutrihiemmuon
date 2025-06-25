@@ -28,28 +28,23 @@ public class CustomerService implements ICustomerService{
 
     @Override
     public void addCustomer(User customer) {
-        if (customer == null) {
-            throw new IllegalArgumentException("Dữ liệu nhân viên không hợp lệ");
-        }
-
-        List<String> errors = new ArrayList<>();
-
-        if (userRepository.findByUserName(customer.getUserName()) != null) {
-            errors.add("Tên đăng nhập đã tồn tại");
-        }
-        if (userRepository.findByEmail(customer.getEmail()) != null) {
-            errors.add("Email đã tồn tại");
-        }
-        if (userRepository.findByPhoneNumber(customer.getPhoneNumber()) != null) {
-            errors.add("Số điện thoại đã tồn tại");
-        }
-
-        if (!errors.isEmpty()) {
-            throw new IllegalArgumentException(String.join(", ", errors));
-        }
-
         customer.setRole("CUSTOMER");
         userRepository.save(customer);
+    }
+
+    @Override
+    public boolean isPhoneNumberExists(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber) != null;
+    }
+
+    @Override
+    public boolean isEmailExists(String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+
+    @Override
+    public boolean isUsernameExists(String username) {
+        return userRepository.findByUserName(username) != null;
     }
 
     @Override

@@ -3,6 +3,10 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "User")
@@ -10,24 +14,44 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idUser;
+
+    @NotEmpty(message = "Vui lòng nhập tên")
     @Column(nullable = false, length = 50)
     private String fullName;
+
+    @Pattern(regexp = "^[^\\s]+$", message = "Vui lòng nhập username")
     @Column(unique = true, nullable = false, length = 50)
     private String userName;
+
+    @NotEmpty(message = "Vui lòng nhập passWord")
     @Column(nullable = false, length = 100)
     private String passWord;
+
+    @NotEmpty(message = "Vui lòng nhập ngày sinh")
     @Column(nullable = false, length = 10)
     private String dateOfBirth;
+
+    @NotEmpty(message = "Vui lòng nhập email")
+    @Email(message = "Email không đúng định dạng")
     @Column(unique = true, nullable = false, length = 50)
     private String email;
+
     @Column(nullable = true, length = 250)
     private String image;
-    @Column(unique = true, nullable = false, length = 15)
+
+    @Pattern(regexp = "\\d{10,11}", message = "Số điện thoại không hợp lệ")
+    @NotEmpty(message = "Vui lòng nhập số điện thoại")
+    @Column(unique = true, nullable = false, length = 10)
     private String phoneNumber;
+
+    @NotEmpty(message = "Vui lòng nhập địa chỉ")
     @Column(nullable = false, length = 100)
     private String address;
+
+    @NotEmpty(message = "Vui lòng nhập giới tinh")
     @Column(nullable = false, length = 10)
     private String gender;
+
     @Column(nullable = false, length = 20)
     private String role;
 

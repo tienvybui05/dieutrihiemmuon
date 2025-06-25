@@ -1,5 +1,6 @@
 package uth.edu.dieutrihiemmuon.controllers.Admin;
 
+import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class CustomerController {
 
     @PostMapping("/admin/customer/create")
     public String adminCustomerAdd(
-            @ModelAttribute("customer") User customer,
+            @ModelAttribute("customer") @Valid User customer,
             BindingResult result,
             Model model) {
 
@@ -88,7 +89,7 @@ public class CustomerController {
     @PostMapping("/admin/customer/edit/{id}")
     public String updateCustomer(
             @PathVariable("id") Long id,
-            @ModelAttribute("customer") User updatedCustomer,
+            @ModelAttribute("customer") @Valid User updatedCustomer,
             BindingResult result,
             Model model) {
 

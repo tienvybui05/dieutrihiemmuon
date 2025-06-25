@@ -63,14 +63,17 @@
                                         <div class="col-md-4"><label>Họ và tên</label></div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" th:field="*{fullName}" class="form-control" placeholder="Họ và tên">
+                                            <div class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
                                         </div>
                                         <div class="col-md-4"><label>Giới tính</label></div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" th:field="*{gender}" class="form-control" placeholder="Giới tính">
+                                            <div class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
                                         </div>
                                         <div class="col-md-4"><label>Ngày sinh</label></div>
                                         <div class="col-md-8 form-group">
                                             <input type="date" th:field="*{dateOfBirth}" class="form-control" placeholder="Ngày sinh">
+                                            <div class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
                                         </div>
                                         <div class="col-md-4"><label>Username</label></div>
                                         <div class="col-md-8 form-group">
@@ -80,10 +83,12 @@
                                         <div class="col-md-4"><label>Password</label></div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" th:field="*{passWord}" class="form-control" placeholder="Password">
+                                            <div class="text-danger" th:if="${#fields.hasErrors('passWord')}" th:errors="*{passWord}"></div>
                                         </div>
                                         <div class="col-md-4"><label>Địa chỉ</label></div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" th:field="*{address}" class="form-control" placeholder="Địa chỉ">
+                                            <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
                                         </div>
                                         <div class="col-md-4"><label>Số điện thoại</label></div>
                                         <div class="col-md-8 form-group">

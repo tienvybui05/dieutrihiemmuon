@@ -78,7 +78,7 @@ public class DoctorController {
         return "admin/doctor/edit";
     }
     @PostMapping("/admin/doctor/edit/{id}")
-    public String editDoctor(@PathVariable long id, @ModelAttribute("DoctorDTO") DoctorDTO doctorDTO, BindingResult result, Model model) {
+    public String editDoctor( @PathVariable long id,@Valid @ModelAttribute("DoctorDTO") DoctorDTO doctorDTO, BindingResult result, Model model) {
 
         DoctorDTO doctorDTOUserName= doctorService.findByUsername(doctorDTO.getUserName());
         DoctorDTO doctorDTOEmail= doctorService.findByEmail(doctorDTO.getEmail());

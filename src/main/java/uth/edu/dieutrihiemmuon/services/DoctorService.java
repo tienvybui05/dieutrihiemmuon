@@ -212,7 +212,6 @@ public class DoctorService implements IDoctorService{
                             Files.delete(imagePath); // xóa file ảnh thật
                         }
                     }
-                        System.out.println("0000000000000000000000000000000000000000000000000000000000000000000");
                     // Xóa khỏi DB
                     User user = doctor.getUser();
                     userRepository.delete(user);

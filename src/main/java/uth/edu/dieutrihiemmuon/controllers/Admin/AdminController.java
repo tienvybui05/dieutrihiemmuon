@@ -37,4 +37,10 @@ public class AdminController {
     public String ConfirmDoctorSchedule() {
         return "admin/ScheduleManagement/ConfirmDoctorSchedule";
     }
+
+    @GetMapping("/admin/auth/error403")
+    public String error403() {
+        return "admin/auth/error403";
+    }
+
 }

@@ -66,18 +66,21 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control"  placeholder="Họ và tên" th:field="*{fullName}">
+                                            <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Giới tính</label>
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control" placeholder="Giới tính" th:field="*{gender}">
+                                            <p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Ngày sinh</label>
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="date"  class="form-control" placeholder="Ngày sinh" th:field="*{dateOfBirth}">
+                                            <p th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Ảnh cá nhân</label>
@@ -97,12 +100,14 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control" placeholder="Password" th:field="*{passWord}">
+                                            <p th:if="${#fields.hasErrors('passWord')}" th:errors="*{passWord}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Địa chỉ</label>
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control" placeholder="Địa chỉ" th:field="*{address}">
+                                            <p th:if="${#fields.hasErrors('passWord')}" th:errors="*{passWord}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Số điện thoại</label>
@@ -123,18 +128,21 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control" placeholder="Bằng cấp" th:field="*{degree}">
+                                            <p th:if="${#fields.hasErrors('degree')}" th:errors="*{degree}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Kinh nghiệm</label>
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control" placeholder="Kinh nghiệm" th:field="*{experience}">
+                                            <p th:if="${#fields.hasErrors('experience')}" th:errors="*{experience}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Chuyên môn</label>
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control" placeholder="Chuyên môn" th:field="*{expertise}">
+                                            <p th:if="${#fields.hasErrors('expertise')}" th:errors="*{expertise}" class="text-danger"></p>
                                         </div>
                                         <div class="col-sm-12 d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary me-1 mb-1">Cập nhật</button>

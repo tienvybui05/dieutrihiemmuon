@@ -41,7 +41,7 @@ public class User {
 
     @Pattern(regexp = "\\d{10,11}", message = "Số điện thoại không hợp lệ")
     @NotEmpty(message = "Vui lòng nhập số điện thoại")
-    @Column(unique = true, nullable = false, length = 10)
+    @Column(unique = true, nullable = false, length = 15)
     private String phoneNumber;
 
     @NotEmpty(message = "Vui lòng nhập địa chỉ")

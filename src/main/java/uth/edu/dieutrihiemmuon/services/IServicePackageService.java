@@ -6,9 +6,9 @@ import java.util.List;
 public interface IServicePackageService
 {
     List<ServicePackage> getAllServicePackages();
-    ServicePackage getServicePackageById(String id);
+    ServicePackage getServicePackageById(Long id);
     void addServicePackage(ServicePackage servicePackage);
-    void updateServicePackage(ServicePackage servicePackage);
-    void deleteServicePackage(String id);
+    void updateServicePackage(Long id,ServicePackage servicePackage);
+    void deleteServicePackage(Long id);
 
 }

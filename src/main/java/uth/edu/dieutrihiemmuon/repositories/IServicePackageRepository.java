@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import uth.edu.dieutrihiemmuon.models.ServicePackage;
 
 @Repository
-public interface ServicePackageRepository extends JpaRepository<ServicePackage, Long>
+public interface IServicePackageRepository extends JpaRepository<ServicePackage, Long>
 {
     public ServicePackage findById(long id);
 }

@@ -113,8 +113,8 @@
                                 <td th:text="${customer.phoneNumber}">Số điện thoại</td>
                                 <td class="admin-hanh-dong">
                                     <a class="admin-sua" th:href="@{'/admin/customer/edit/' + ${customer.idUser}}">Sửa</a>
-                                    <a class="admin-chi-tiet" th:href="@{'/admin/customers/detail/' + ${customer.idUser}}">Chi tiết</a>
-                                    <a class="admin-xoa" th:href="@{'/admin/customers/delete/' + ${customer.idUser}}"
+                                    <a class="admin-chi-tiet" th:href="@{'/admin/customer/detail/' + ${customer.idUser}}">Chi tiết</a>
+                                    <a class="admin-xoa" th:href="@{'/admin/customer/delete/' + ${customer.idUser}}"
                                        onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
                                 </td>
                             </tr>

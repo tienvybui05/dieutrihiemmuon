@@ -29,7 +29,7 @@ public class CustomerController {
     }
 
     // xóa cus theo id
-    @GetMapping("/admin/customers/delete/{id}")
+    @GetMapping("/admin/customer/delete/{id}")
     public String deleteCustomer(@PathVariable("id") Long id) {
         customerService.deleteCustomer(id);
         return "redirect:/admin/customer/index";
@@ -56,7 +56,7 @@ public class CustomerController {
     }
 
 
-
+    // Chinh sua cus theo id
     @GetMapping("/admin/customer/edit/{id}")
     public String adminCustomerEdit(@PathVariable("id") Long id, org.springframework.ui.Model model) {
         User customer = customerService.getCustomerById(id);
@@ -80,6 +80,13 @@ public class CustomerController {
     }
 
 
+    //admin/customer
+    @GetMapping("/admin/customer/detail/{id}")
+    public String admincustomerdetail(@PathVariable("id") Long id, org.springframework.ui.Model model) {
+        User customer = customerService.getCustomerById(id);
+        model.addAttribute("customer", customer);
+        return "admin/customer/detail";
+    }
 
 
 }

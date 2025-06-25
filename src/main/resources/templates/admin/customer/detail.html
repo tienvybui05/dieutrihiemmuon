@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết bệnh nhân</title>
+
+    <link rel="stylesheet" href="/admin/css/bootstrap.css">
+    <link rel="stylesheet" href="/admin/vendors/iconly/bold.css">
+    <link rel="stylesheet" href="/admin/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/admin/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="/admin/css/app.css">
+    <link rel="stylesheet" href="/admin/vendors/simple-datatables/style.css">
+    <style>
+        .thong-tin-bac-si {
+            margin: 50px;
+            display: flex;
+            box-shadow: 5px 5px 10px 2px rgba(220, 217, 217, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            background: #ffffff;
+            border: 1px solid #435ebe;
+        }
+
+        .thong-tin-ca-nhan {
+            margin: 5px;
+            display: flex;
+            min-width: 400px;
+        }
+
+        .thong-tin-ca-nhan div {
+            margin: 3px 0;
+            padding: 0 10px 0 0;
+            width: 350px;
+        }
+
+        .info-row {
+            display: flex;
+            margin: 8px 0;
+            align-items: flex-start;
+        }
+
+        .info-row label {
+            font-weight: 600;
+            color: black;
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .info-row span {
+            flex: 1;
+            word-break: break-word;
+        }
+
+        .hinh-anh-bac-si {
+            margin: 10px 5px 5px 10px;
+        }
+
+        .hinh-anh-bac-si img {
+            margin: 5px;
+            width: 180px;
+            height: 230px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px 2px rgba(220, 217, 217, 0.5);
+            border: 1px solid #435ebe;
+        }
+
+        .quay-ve {
+            background-color: #435ebe;
+            color: white;
+            width: 100px;
+            margin: 0 auto 10px auto;
+            display: block;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .quay-ve:hover {
+            background-color: #768ad3;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--    Thêm sidebar-->
+    <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
+    <div id="main">
+        <!--        Thêm header-->
+        <div th:replace="layout/admin/header :: headerAdminFragment"></div>
+        <div class="page-heading">
+            <h3>Thông tin bệnh nhân</h3>
+        </div>
+
+        <div class="page-content">
+            <section class="section">
+                <div class="card">
+                    <div class="thong-tin-bac-si">
+                        <div class="thong-tin-ca-nhan">
+                            <div>
+                                <div class="info-row">
+                                    <label>Họ và tên:</label>
+                                    <span th:text="${customer.fullName}" ></span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Ngày sinh:</label>
+                                    <span th:text="${customer.dateOfBirth}" ></span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Username:</label>
+                                    <span th:text="${customer.userName}" ></span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Địa chỉ:</label>
+                                    <span th:text="${customer.address}" ></span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Email:</label>
+                                    <span th:text="${customer.email}" ></span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Số điện thoại:</label>
+                                    <span th:text="${customer.phoneNumber}" ></span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Giới tính:</label>
+                                    <span th:text="${customer.gender}" ></span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Vai trò:</label>
+                                    <span th:text="${customer.role}" ></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hinh-anh-bac-si">
+                            <img th:src="@{'/admin/images/faces/' + ${customer.image}}" alt="Ảnh">
+                        </div>
+                    </div>
+                    <a th:href="@{/admin/customer/index}" class="quay-ve">Quay về</a>
+                </div>
+            </section>
+        </div>
+        <!--        Thêm footer-->
+        <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
+    </div>
+</div>
+
+<script src="/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="/admin/js/bootstrap.bundle.min.js"></script>
+<script src="/admin/js/main.js"></script>
+</body>
+</html>

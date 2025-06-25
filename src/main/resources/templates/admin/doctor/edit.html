@@ -57,80 +57,84 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <form class="form form-horizontal"  th:action="@{/admin/doctor/edit/{id}(id=${DoctorDTO.getId_doctor()})}" th:object="${DoctorDTO}" enctype="multipart/form-data" method="post">
                                 <div class="form-body">
                                     <div class="row">
+                                        <input type="hidden" th:field="*{id_doctor}" />
                                         <div class="col-md-4">
                                             <label>Họ và tên</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control"  placeholder="Họ và tên">
+                                            <input type="text"  class="form-control"  placeholder="Họ và tên" th:field="*{fullName}">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Giới tính</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Giới tính">
+                                            <input type="text"  class="form-control" placeholder="Giới tính" th:field="*{gender}">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Ngày sinh</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="date"  class="form-control" placeholder="Ngày sinh">
+                                            <input type="date"  class="form-control" placeholder="Ngày sinh" th:field="*{dateOfBirth}">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Ảnh cá nhân</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="file"  class="form-control">
+                                            <input type="file"  class="form-control" th:field="*{imageFile}">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Username</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Username">
+                                            <input type="text"  class="form-control" placeholder="Username" th:field="*{userName}">
+                                            <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Password</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Password">
+                                            <input type="text"  class="form-control" placeholder="Password" th:field="*{passWord}">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Địa chỉ</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Địa chỉ">
+                                            <input type="text"  class="form-control" placeholder="Địa chỉ" th:field="*{address}">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Số điện thoại</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Số điện thoại">
+                                            <input type="text"  class="form-control" placeholder="Số điện thoại" th:field="*{phoneNumber}">
+                                            <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Email</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="email"  class="form-control" placeholder="Email">
+                                            <input type="email"  class="form-control" placeholder="Email" th:field="*{email}">
+                                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Bằng cấp</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Bằng cấp">
+                                            <input type="text"  class="form-control" placeholder="Bằng cấp" th:field="*{degree}">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Kinh nghiệm</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Kinh nghiệm">
+                                            <input type="text"  class="form-control" placeholder="Kinh nghiệm" th:field="*{experience}">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Chuyên môn</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text"  class="form-control" placeholder="Chuyên môn">
+                                            <input type="text"  class="form-control" placeholder="Chuyên môn" th:field="*{expertise}">
                                         </div>
                                         <div class="col-sm-12 d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary me-1 mb-1">Cập nhật</button>

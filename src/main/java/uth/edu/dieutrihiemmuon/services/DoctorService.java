@@ -59,7 +59,7 @@ public class DoctorService implements IDoctorService{
     public boolean addDoctor(DoctorDTO doctorDTO) {
 
         try {
-            if(!doctorDTO.getImage().isEmpty())
+            if(!doctorDTO.getImageFile().isEmpty())
             {
                 MultipartFile file = doctorDTO.getImageFile();
                 Date date = new Date();
@@ -114,14 +114,83 @@ public class DoctorService implements IDoctorService{
                 return false;
             }
         } catch (RuntimeException e) {
-           return false;
-//            throw new RuntimeException("Lỗi khi thêm bác sĩ" + e);
+              throw new RuntimeException("Lỗi khi thêm bác sĩ" + e);
         }
     }
 
     @Override
-    public Doctor updateDoctor(Doctor doctor) {
-        return null;
+    public boolean updateDoctor(DoctorDTO doctorDTO) {
+        try{
+
+            try {
+                MultipartFile file = doctorDTO.getImageFile();
+                DoctorDTO doctorFromDB = new DoctorDTO(doctorRepository.findById(doctorDTO.getId_doctor()));
+                String oldFileName = doctorFromDB.getImage(); // có thể là "default.jpg" hoặc ảnh cũ
+
+                String staticDir = new File("dieutrihiemmuon/src/main/resources/static").getAbsolutePath();
+                String uploadDir = staticDir + "/admin/images/faces";
+                Path uploadPath = Paths.get(uploadDir);
+
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+
+                if (file != null && !file.isEmpty()) {
+                    // Xóa ảnh cũ nếu khác "default.jpg"
+                    if (oldFileName != null && !oldFileName.equals("default.jpg")) {
+                        Path oldFilePath = uploadPath.resolve(oldFileName);
+                        if (Files.exists(oldFilePath)) {
+                            Files.delete(oldFilePath);
+                        }
+                    }
+
+                    // Lưu ảnh mới
+                    String originalFileName = file.getOriginalFilename();
+                    if (originalFileName == null || originalFileName.isBlank()) {
+                        originalFileName = "image.jpg";
+                    }
+                    String newFileName = System.currentTimeMillis() + "_" + originalFileName;
+                    try (InputStream inputStream = file.getInputStream()) {
+                        Files.copy(inputStream, uploadPath.resolve(newFileName), StandardCopyOption.REPLACE_EXISTING);
+                    }
+
+                    doctorDTO.setImage(newFileName); // cập nhật tên ảnh mới
+                } else {
+                    // Không có ảnh mới => giữ nguyên ảnh cũ
+                    doctorDTO.setImage(oldFileName);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Lỗi khi xử lý ảnh", e);
+            }
+            Doctor doctor =  doctorRepository.findById(doctorDTO.getId_doctor());
+            if(doctor == null)
+            {
+                return false;
+            }
+            User user = doctor.getUser();
+            user.setFullName(doctorDTO.getFullName());
+            user.setEmail(doctorDTO.getEmail());
+            user.setAddress(doctorDTO.getAddress());
+            user.setDateOfBirth(doctorDTO.getDateOfBirth());
+            user.setGender(doctorDTO.getGender());
+            user.setPhoneNumber(doctorDTO.getPhoneNumber());
+            user.setUserName(doctorDTO.getUserName());
+            user.setPassWord(doctorDTO.getPassWord());
+            user.setImage(doctorDTO.getImage());
+            doctor.setDegree(doctorDTO.getDegree());
+            doctor.setExperience(doctorDTO.getExperience());
+            doctor.setExpertise(doctorDTO.getExpertise());
+            doctor.setUser(user);
+            if(doctorRepository.save(doctor)!=null) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Lỗi khi cập nhật bác sĩ"+e);
+        }
     }
 
     @Override
@@ -132,5 +201,54 @@ public class DoctorService implements IDoctorService{
     @Override
     public List<Doctor> searchDoctor(String keyword) {
         return List.of();
+    }
+
+    @Override
+    public DoctorDTO findByUsername(String username) {
+        try{
+            User user = userRepository.findByUserName(username);
+            if(user==null)
+            {
+                return null;
+            }
+            DoctorDTO doctorDTO = new DoctorDTO(user.getDoctor());
+            return doctorDTO;
+        }catch (RuntimeException e) {
+            throw new RuntimeException("Lỗi khi tìm kiếm bằng username" + e);
+        }
+
+    }
+
+    @Override
+    public DoctorDTO findByEmail(String email) {
+        try{
+            User user = userRepository.findByEmail(email);
+            if(user==null)
+            {
+                return null;
+            }
+            DoctorDTO doctorDTO = new DoctorDTO(user.getDoctor());
+            return doctorDTO;
+        }
+        catch (RuntimeException e) {
+            throw new RuntimeException("Lỗi khi tìm kiếm bằng email"+e);
+        }
+
+    }
+
+    @Override
+    public DoctorDTO findByPhoneNumber(String phoneNumber) {
+        try{
+            User user = userRepository.findByPhoneNumber(phoneNumber);
+            if(user==null)
+            {
+                return null;
+            }
+            DoctorDTO doctorDTO = new DoctorDTO(user.getDoctor());
+            return doctorDTO;
+        }
+        catch (RuntimeException e) {
+            throw new RuntimeException("Lỗi khi tìm kiếm bằng email"+e);
+        }
     }
 }

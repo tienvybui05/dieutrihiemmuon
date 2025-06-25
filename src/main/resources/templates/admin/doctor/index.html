@@ -115,7 +115,7 @@
                                 <td th:text="${doctorDTO.experience}"></td>
                                 <td th:text="${doctorDTO.fullName}"></td>
                                 <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
+                                    <a class="admin-sua" th:href="@{/admin/doctor/edit/{id}(id=${doctorDTO.getId_doctor()})}">Sửa</a>
                                     <a class="admin-chi-tiet" th:href="@{/admin/doctor/detail/{id}(id=${doctorDTO.getId_doctor()})}">Chi tiết</a>
                                     <a class="admin-xoa" href="#">Xóa</a>
                                 </td>

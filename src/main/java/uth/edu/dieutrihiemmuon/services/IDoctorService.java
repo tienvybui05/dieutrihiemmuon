@@ -9,7 +9,10 @@ public interface IDoctorService {
     public  List<DoctorDTO> getDoctors();
     public  DoctorDTO getDoctor(long id);
     public  boolean addDoctor(DoctorDTO doctorDTO);
-    public  Doctor updateDoctor(Doctor doctor);
+    public  boolean updateDoctor(DoctorDTO doctorDTO);
     public  Doctor deleteDoctor(long id);
     public  List<Doctor> searchDoctor(String keyword);
+    public  DoctorDTO findByUsername(String username);
+    public  DoctorDTO findByEmail(String email);
+    public DoctorDTO  findByPhoneNumber(String phoneNumber);
 }

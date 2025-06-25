@@ -106,4 +106,9 @@ public class DoctorController {
         model.addAttribute("DoctorDTO", doctorDTO);
         return "admin/doctor/detail";
     }
+    @GetMapping("/admin/doctor/delete/{id}")
+    public String admindoctordelete(@PathVariable long id, Model model) {
+        doctorService.deleteDoctor(id);
+        return "redirect:/admin/doctor/index";
+    }
 }

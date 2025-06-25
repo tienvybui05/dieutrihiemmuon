@@ -9,6 +9,7 @@ import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.repositories.IDoctorRepository;
 import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
+import javax.print.Doc;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -194,8 +195,38 @@ public class DoctorService implements IDoctorService{
     }
 
     @Override
-    public Doctor deleteDoctor(long id) {
-        return null;
+    public boolean deleteDoctor(long id) {
+        try {
+            Doctor doctor = doctorRepository.findById(id);
+            if (doctor != null) {
+                doctor = doctorRepository.findById(id);
+                DoctorDTO doctorDTO = new DoctorDTO(doctor);
+                if (doctor != null) {
+                    // Xóa ảnh nếu cần
+                    String imageFileName = doctorDTO.getImage(); // ảnh trong DB
+                    if (imageFileName != null && !imageFileName.equals("default.jpg")) {
+                        String staticDir = new File("dieutrihiemmuon/src/main/resources/static").getAbsolutePath();
+                        String uploadDir = staticDir + "/admin/images/faces";
+                        Path imagePath = Paths.get(uploadDir, imageFileName);
+                        if (Files.exists(imagePath)) {
+                            Files.delete(imagePath); // xóa file ảnh thật
+                        }
+                    }
+                        System.out.println("0000000000000000000000000000000000000000000000000000000000000000000");
+                    // Xóa khỏi DB
+                    User user = doctor.getUser();
+                    userRepository.delete(user);
+                    return true;
+                }
+            }
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi xóa ảnh bác sĩ");
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi xóa bác sĩ khỏi hệ thống");
+        }
     }
 
     @Override

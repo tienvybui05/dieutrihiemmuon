@@ -1,24 +1,54 @@
 package uth.edu.dieutrihiemmuon.dto;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
+import jakarta.validation.constraints.Pattern;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.models.Doctor;
 import uth.edu.dieutrihiemmuon.models.User;
 
 public class DoctorDTO {
     private long id_doctor;
+
+    @NotEmpty(message = "Vui lòng nhập tên")
     private String fullName;
+
+    @Pattern(regexp = "^[^\\s]+$", message = "Tên đăng nhập không được chứa khoảng trắng")
+    @NotEmpty(message = "Vui lòng nhập username")
     private String userName;
+
+    @NotEmpty(message = "Vui lòng nhập passWord")
     private String passWord;
+
+    @NotEmpty(message = "Vui lòng nhập ngày sinh")
     private String dateOfBirth;
+
+    @Email(message = "Email không hợp lệ")
+    @NotEmpty(message = "Vui lòng nhập email")
     private String email;
+
     private String image = "default.jpg";
+
+    @Pattern(regexp = "\\d{10,11}", message = "Số điện thoại không hợp lệ")
+    @NotEmpty(message = "Vui lòng nhập số điện thoại")
     private String phoneNumber;
+
+    @NotEmpty(message = "Vui lòng nhập địa chỉ")
     private String address;
+
+    @NotEmpty(message = "Vui lòng giới tính")
     private String gender;
     private String role = "DOCTOR";
+
+    @NotEmpty(message = "Vui lòng nhập bằng cấp")
     private String degree;
+
+    @NotEmpty(message = "Vui lòng nhập kinh nhiệm")
     private String experience;
+
+    @NotEmpty(message = "Vui lòng nhập chuyên môn")
     private String expertise;
     private MultipartFile imageFile;
 

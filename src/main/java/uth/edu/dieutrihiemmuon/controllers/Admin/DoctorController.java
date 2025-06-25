@@ -1,5 +1,6 @@
 package uth.edu.dieutrihiemmuon.controllers.Admin;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +44,7 @@ public class DoctorController {
     }
 
     @PostMapping("/admin/doctor/create")
-    public String addDoctor(@ModelAttribute("DoctorDTO") DoctorDTO doctorDTO ,BindingResult result, Model model) {
+    public String addDoctor(@Valid @ModelAttribute("DoctorDTO") DoctorDTO doctorDTO , BindingResult result, Model model) {
 
         if (doctorService.findByUsername(doctorDTO.getUserName()) != null) {
             result.rejectValue("userName", "error.DoctorDTO", "Tên đăng nhập đã tồn tại");

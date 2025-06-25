@@ -115,9 +115,13 @@
                                 <td th:text="${doctorDTO.experience}"></td>
                                 <td th:text="${doctorDTO.fullName}"></td>
                                 <td class="admin-hanh-dong">
-                                    <a class="admin-sua" href="#">Sửa</a>
+                                    <a class="admin-sua" th:href="@{/admin/doctor/edit/{id}(id=${doctorDTO.getId_doctor()})}">Sửa</a>
                                     <a class="admin-chi-tiet" th:href="@{/admin/doctor/detail/{id}(id=${doctorDTO.getId_doctor()})}">Chi tiết</a>
-                                    <a class="admin-xoa" href="#">Xóa</a>
+                                    <a class="admin-xoa"
+                                       th:href="@{/admin/doctor/delete/{id}(id=${doctorDTO.getId_doctor()})}"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa bác sĩ này không?');">
+                                        Xóa
+                                    </a>
                                 </td>
                             </tr>
 

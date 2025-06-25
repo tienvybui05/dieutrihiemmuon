@@ -12,7 +12,7 @@ public class DoctorDTO {
     private String passWord;
     private String dateOfBirth;
     private String email;
-    private String image = "trong";
+    private String image = "default.jpg";
     private String phoneNumber;
     private String address;
     private String gender;
@@ -57,7 +57,6 @@ public class DoctorDTO {
         this.experience = experience;
         this.expertise = expertise;
     }
-
     public String getFullName() {
         return fullName;
     }

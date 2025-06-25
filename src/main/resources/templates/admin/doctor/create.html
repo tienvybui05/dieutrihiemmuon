@@ -89,6 +89,7 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control" placeholder="Username" th:field="*{userName}">
+                                            <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Password</label>
@@ -107,12 +108,14 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text"  class="form-control" placeholder="Số điện thoại" th:field="*{phoneNumber}">
+                                            <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Email</label>
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="email"  class="form-control" placeholder="Email" th:field="*{email}">
+                                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Bằng cấp</label>

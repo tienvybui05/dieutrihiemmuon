@@ -4,8 +4,7 @@ package uth.edu.dieutrihiemmuon.controllers.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import uth.edu.dieutrihiemmuon.services.DoctorService;
-import uth.edu.dieutrihiemmuon.services.EmployeeService;
+
 import uth.edu.dieutrihiemmuon.services.IEmployeeService;
 
 @Controller
@@ -24,6 +23,11 @@ public class EmployeeController {
     }
 
     // Trang tạo mới nhân viên
+    @GetMapping("/admin/employee/create")
+    public String adminEmployeeCreate() {
+        return "admin/employee/create"; // Trả về trang tạo mới nhân viên
+    }
+  
 
     // Trang xem chi tiết nhân viên
 

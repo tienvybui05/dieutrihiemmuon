@@ -1,11 +1,19 @@
 package uth.edu.dieutrihiemmuon.models;
-import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.Set;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 @Entity
@@ -15,23 +23,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idUser;
 
-    @NotEmpty(message = "Vui lòng nhập tên")
+    @NotBlank(message = "Vui lòng nhập tên")
     @Column(nullable = false, length = 50)
     private String fullName;
 
+    @NotBlank(message = "Vui lòng nhập username")
     @Pattern(regexp = "^[^\\s]+$", message = "Vui lòng nhập username")
     @Column(unique = true, nullable = false, length = 50)
     private String userName;
 
-    @NotEmpty(message = "Vui lòng nhập passWord")
+    @NotBlank(message = "Vui lòng nhập passWord")
     @Column(nullable = false, length = 100)
     private String passWord;
 
-    @NotEmpty(message = "Vui lòng nhập ngày sinh")
+    @NotBlank(message = "Vui lòng nhập ngày sinh")
     @Column(nullable = false, length = 10)
     private String dateOfBirth;
 
-    @NotEmpty(message = "Vui lòng nhập email")
+    @NotBlank(message = "Vui lòng nhập email")
     @Email(message = "Email không đúng định dạng")
     @Column(unique = true, nullable = false, length = 50)
     private String email;
@@ -40,15 +49,15 @@ public class User {
     private String image;
 
     @Pattern(regexp = "\\d{10,11}", message = "Số điện thoại không hợp lệ")
-    @NotEmpty(message = "Vui lòng nhập số điện thoại")
+    @NotBlank(message = "Vui lòng nhập số điện thoại")
     @Column(unique = true, nullable = false, length = 15)
     private String phoneNumber;
 
-    @NotEmpty(message = "Vui lòng nhập địa chỉ")
+    @NotBlank(message = "Vui lòng nhập địa chỉ")
     @Column(nullable = false, length = 100)
     private String address;
 
-    @NotEmpty(message = "Vui lòng nhập giới tinh")
+    @NotBlank(message = "Vui lòng nhập giới tính")
     @Column(nullable = false, length = 10)
     private String gender;
 

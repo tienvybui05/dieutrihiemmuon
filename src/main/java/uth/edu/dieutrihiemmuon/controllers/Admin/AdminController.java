@@ -13,10 +13,7 @@ public class AdminController {
 
 
     // employee
-    @GetMapping("/admin/employee/create")
-    public String adminemployeecreate() {
-        return "admin/employee/create";
-    }
+
     // auth
     @GetMapping("/admin/auth/login")
     public String adminauthlogin() {

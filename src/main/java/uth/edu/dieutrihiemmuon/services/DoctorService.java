@@ -1,6 +1,7 @@
 package uth.edu.dieutrihiemmuon.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
@@ -26,6 +27,9 @@ public class DoctorService implements IDoctorService{
     private IDoctorRepository doctorRepository;
     @Autowired
     private IUserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<DoctorDTO> getDoctors() {
@@ -96,7 +100,7 @@ public class DoctorService implements IDoctorService{
             user.setGender(doctorDTO.getGender());
             user.setPhoneNumber(doctorDTO.getPhoneNumber());
             user.setUserName(doctorDTO.getUserName());
-            user.setPassWord(doctorDTO.getPassWord());
+            user.setPassWord(passwordEncoder.encode(doctorDTO.getPassWord()));
             user.setRole(doctorDTO.getRole());
             user.setImage(doctorDTO.getImage());
             if(userRepository.save(user)!=null) {
@@ -177,7 +181,7 @@ public class DoctorService implements IDoctorService{
             user.setGender(doctorDTO.getGender());
             user.setPhoneNumber(doctorDTO.getPhoneNumber());
             user.setUserName(doctorDTO.getUserName());
-            user.setPassWord(doctorDTO.getPassWord());
+            user.setPassWord(passwordEncoder.encode(doctorDTO.getPassWord()));
             user.setImage(doctorDTO.getImage());
             doctor.setDegree(doctorDTO.getDegree());
             doctor.setExperience(doctorDTO.getExperience());

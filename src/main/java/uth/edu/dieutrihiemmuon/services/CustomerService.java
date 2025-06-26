@@ -1,6 +1,7 @@
 package uth.edu.dieutrihiemmuon.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
@@ -14,7 +15,8 @@ public class CustomerService implements ICustomerService{
     @Autowired
     private IUserRepository userRepository;
 
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllCustomers() {
@@ -28,6 +30,7 @@ public class CustomerService implements ICustomerService{
 
     @Override
     public void addCustomer(User customer) {
+        customer.setPassWord(passwordEncoder.encode(customer.getPassWord()));
         customer.setRole("CUSTOMER");
         userRepository.save(customer);
     }

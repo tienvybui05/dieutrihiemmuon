@@ -35,4 +35,11 @@ public class HomeController {
     public String treatmentcycledoctor() { return "customer/doctor/treatmentcycle";}
     @GetMapping("/profile")
     public String profile() { return "customer/profile";}
+
+    //Đăng nhập và đăng ký
+    @GetMapping("/login")
+    public String login(Model model) {
+//        model.addAttribute("title", "Login");
+        return "customer/auth/login";  // đúng đường dẫn tới file
+    }
 }

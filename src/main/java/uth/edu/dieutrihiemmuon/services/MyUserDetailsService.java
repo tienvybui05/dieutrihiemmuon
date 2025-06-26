@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import uth.edu.dieutrihiemmuon.config.CustomUserDetails;
 import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
@@ -25,7 +24,11 @@ public class MyUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Không tìm thấy"+username);
         }
-        return new CustomUserDetails(user);
+        return new org.springframework.security.core.userdetails.User(
+                user.getUserName(),
+                user.getPassWord(),
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+user.getRole()))
+        );
 
     }
 }

@@ -3,6 +3,7 @@ package uth.edu.dieutrihiemmuon.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,9 +21,11 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Order(1)
+    public SecurityFilterChain  adminSecurity(HttpSecurity http) throws Exception {
 
         http
+                .securityMatcher("/admin/**")
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/auth/login","/admin/customer/index","/admin/customer/create").permitAll()
                         .requestMatchers("/admin/css/**", "/admin/js/**", "/admin/images/**", "/admin/vendors/**").permitAll()

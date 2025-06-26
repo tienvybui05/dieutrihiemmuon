@@ -31,6 +31,7 @@ public class CustomerService implements ICustomerService{
     @Override
     public void addCustomer(User customer) {
         customer.setPassWord(passwordEncoder.encode(customer.getPassWord()));
+        customer.setImage("default.jpg");
         customer.setRole("CUSTOMER");
         userRepository.save(customer);
     }

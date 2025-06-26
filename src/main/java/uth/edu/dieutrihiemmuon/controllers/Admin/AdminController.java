@@ -1,18 +1,25 @@
 package uth.edu.dieutrihiemmuon.controllers.Admin;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import uth.edu.dieutrihiemmuon.config.CustomUserDetails;
+import uth.edu.dieutrihiemmuon.models.User;
+import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
 @Controller
 public class AdminController {
 
+    @Autowired
+    private IUserRepository userRepository;
+
     @GetMapping("/admin")
     public String index(Authentication authentication, Model model) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        model.addAttribute("user", userDetails);
+
+        String username = authentication.getName();
+        User user = userRepository.findByUserName(username);
+        model.addAttribute("user", user);
         return "admin/index";  // đúng đường dẫn tới file
     }
 

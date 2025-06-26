@@ -102,15 +102,17 @@
                                 <th>Ngày sinh</th>
                                 <th>Giới tính</th>
                                 <th>Số điện thoại</th>
+                                <th>Email</th>
                                 <th>Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="customer : ${customers}">
-                                <td th:text="${customer.fullName}">Tên</td>
-                                <td th:text="${customer.dateOfBirth}">Ngày sinh</td>
-                                <td th:text="${customer.gender}">Giới tính</td>
-                                <td th:text="${customer.phoneNumber}">Số điện thoại</td>
+                                <td th:text="${customer.fullName}"></td>
+                                <td th:text="${customer.dateOfBirth}"></td>
+                                <td th:text="${customer.gender}"></td>
+                                <td th:text="${customer.phoneNumber}"></td>
+                                <td th:text="${customer.email}"></td>
                                 <td class="admin-hanh-dong">
                                     <a class="admin-sua" th:href="@{'/admin/customer/edit/' + ${customer.idUser}}">Sửa</a>
                                     <a class="admin-chi-tiet" th:href="@{'/admin/customer/detail/' + ${customer.idUser}}">Chi tiết</a>

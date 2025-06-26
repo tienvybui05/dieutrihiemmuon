@@ -91,7 +91,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            <a class="admin-them" href="#">Thêm khách hàng</a>
+                            <a class="admin-them" th:href="@{'/admin/customer/create'}">Thêm khách hàng</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -106,17 +106,18 @@
                                 </thead>
                                 <tbody>
                                     <tr th:each="employee : ${employees}">
-                                        <td th:text="${employee.name}">Tên</td>
+                                        <td th:text="${employee.fullName}">Tên</td>
                                         <td th:text="${employee.dateOfBirth}">Ngày sinh</td>
                                         <td th:text="${employee.gender}">Giới tính</td>
-                                        <td th:text="${employee.phone}">Số điện thoại</td>
+                                        <td th:text="${employee.phoneNumber}">Số điện thoại</td>
                                         <td class="admin-hanh-dong">
                                             <a class="admin-sua"
-                                                th:href="@{/admin/employees/edit/{id}(id=${employee.id})}">Sửa</a>
-                                            <a class="admin-chi-tiet"
+                                                th:href="@{'/admin/employee/edit/' + ${employee.idUser}}">Sửa</a>
+
+                                            <!-- <a class="admin-chi-tiet"
                                                 th:href="@{/admin/employees/{id}(id=${employee.id})}">Chi tiết</a>
                                             <a class="admin-xoa"
-                                                th:href="@{/admin/employees/delete/{id}(id=${employee.id})}">Xóa</a>
+                                                th:href="@{/admin/employees/delete/{id}(id=${employee.id})}">Xóa</a> -->
                                         </td>
                                     </tr>
                                 </tbody>

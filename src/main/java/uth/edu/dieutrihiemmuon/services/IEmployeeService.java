@@ -1,9 +1,9 @@
 package uth.edu.dieutrihiemmuon.services;
 
 
-import uth.edu.dieutrihiemmuon.models.User;
-
 import java.util.List;
+
+import uth.edu.dieutrihiemmuon.models.User;
 
 public interface IEmployeeService {
 
@@ -12,5 +12,8 @@ public interface IEmployeeService {
     void addEmployee(User employee);
     void updateEmployee(long id, User employee);
     void deleteEmployee(long id);
+    boolean isUsernameExists(String username);
+    boolean isEmailExists(String email);
+    boolean isPhoneNumberExists(String phoneNumber);
 
 }

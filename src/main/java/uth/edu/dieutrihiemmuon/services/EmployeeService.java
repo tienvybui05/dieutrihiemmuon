@@ -1,12 +1,13 @@
 package uth.edu.dieutrihiemmuon.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import uth.edu.dieutrihiemmuon.models.User;
-import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import uth.edu.dieutrihiemmuon.models.User;
+import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
 @Service
 public class EmployeeService implements IEmployeeService{
@@ -100,4 +101,20 @@ public class EmployeeService implements IEmployeeService{
         userRepository.delete(existingEmployee);
 
     }
+
+    @Override
+    public boolean isUsernameExists(String username) {
+        return userRepository.findByUserName(username) != null;
+    }
+
+    @Override
+    public boolean isEmailExists(String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+
+    @Override
+    public boolean isPhoneNumberExists(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber) != null;
+    }
+
 }

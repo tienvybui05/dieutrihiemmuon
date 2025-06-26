@@ -59,6 +59,13 @@ xmlns:th="http://www.thymeleaf.org">
         .thong-tin .info-row label{
             color: black;
         }
+        .dang-xuat-admin button{
+            border: 1px solid #FFFFFF;
+            color: #435ebe;
+            background-color: #FFFFFF;
+            border-radius: 5px;
+            box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
@@ -73,9 +80,9 @@ xmlns:th="http://www.thymeleaf.org">
 
         <div class="page-heading"  style="display: flex; justify-content: space-between; align-items: center;">
             <h3> Trang chủ  <img th:src="@{/admin/vendors/svg-loaders/hearts.svg}" class="me-4" style="width: 3rem" alt="audio"></h3>
-           <div >
+           <div class="dang-xuat-admin">
                <form th:action="@{/admin/auth/logout}" method="post">
-                   <button type="submit">Đăng xuất</button>
+                   <button type="submit"> Logout</button>
                </form>
            </div>
 
@@ -92,28 +99,28 @@ xmlns:th="http://www.thymeleaf.org">
                                 </div>
                                 <div class="thong-tin-ca-nhan">
                                     <div class="anh-ca-nhan">
-                                        <img src="admin/images/faces/2.jpg" alt="vv">
+                                        <img th:src="@{'/admin/images/faces/' + ${user.getImage()}}" alt="Ảnh cá nhân">
                                     </div>
                                     <div class="thong-tin">
                                         <div class="info-row">
                                             <label>Họ và tên: </label>
-                                            <span>0901234567</span>
+                                            <span th:text="${user.fullName}"></span>
                                         </div>
                                         <div class="info-row">
                                             <label>Ngày sinh: </label>
-                                            <span>0901234567</span>
+                                            <span th:text="${user.phoneNumber}"></span>
                                         </div>
                                         <div class="info-row">
                                             <label>Số điện thoại: </label>
-                                            <span>0901234567</span>
+                                            <span th:text="${user.phoneNumber}"></span>
                                         </div>
                                         <div class="info-row">
                                             <label>Email: </label>
-                                            <span>0901234vvvvvvvvvvvvvvvv567</span>
+                                            <span th:text="${user.email}"></span>
                                         </div>
                                         <div class="info-row">
                                             <label>Địa chỉ: </label>
-                                            <span>090123456vvvvvvvvvvvvvvvvvvv7</span>
+                                            <span th:text="${user.address}"></span>
                                         </div>
                                     </div>
                                 </div>

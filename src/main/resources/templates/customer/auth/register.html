@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Startup - Startup Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link th:href="@{/customer/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{/customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/customer/lib/animate/animate.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/customer/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{/customer/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div th:replace="layout/customer/header :: headerFragment"></div>
+
+    <main>
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+            <div class="row py-5">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-white animated zoomIn">Đăng ký</h1>
+                    <a href="" class="h5 text-white">Trang chủ</a>
+                    <i class="far fa-circle text-white px-2"></i>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Navbar End -->
+
+
+        <!-- Full Screen Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="input-group" style="max-width: 600px;">
+                            <input type="text" class="form-control bg-transparent border-primary p-3"
+                                placeholder="Type search keyword">
+                            <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Full Screen Search End -->
+
+        <!-- Login Start -->
+        <section class="container d-flex justify-content-center align-items-center my-5">
+            <div class="card shadow rounded-4 p-4" style="min-width: 400px; max-width: 600px; width: 100%;">
+                <h3 class="text-center mb-4" style="color: #2C7BE5;">Tạo tài khoản mới</h3>
+                <form method="post" action="/register">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control rounded-3" name="fullName"
+                                placeholder="Nhập họ và tên" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control rounded-3" name="userName"
+                                placeholder="Tên đăng nhập" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Ngày sinh</label>
+                            <input type="date" class="form-control rounded-3" name="dateOfBirth" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control rounded-3" name="phoneNumber"
+                                placeholder="Ví dụ: 0912345678" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control rounded-3" name="email"
+                                placeholder="example@gmail.com" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control rounded-3" name="address"
+                                placeholder="Địa chỉ cư trú" required>
+                        </div>
+                        <!-- Mật khẩu -->
+                        <!-- Mật khẩu -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Mật khẩu</label>
+                            <div class="position-relative">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Nhập mật khẩu">
+                                <span class="position-absolute top-50 end-0 translate-middle-y me-3"
+                                    style="cursor: pointer;" onclick="togglePassword('password', 'eye1')">
+                                    <i id="eye1" class="bi bi-eye-slash"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Xác nhận mật khẩu -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Xác nhận mật khẩu</label>
+                            <div class="position-relative">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                    placeholder="Nhập lại mật khẩu">
+                                <span class="position-absolute top-50 end-0 translate-middle-y me-3"
+                                    style="cursor: pointer;" onclick="togglePassword('confirmPassword', 'eye2')">
+                                    <i id="eye2" class="bi bi-eye-slash"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-3">
+                        <button type="submit" class="btn btn-primary rounded-3 fw-bold">
+                            <i class="bi bi-check-circle me-2"></i>Đăng ký
+                        </button>
+                        <a href="/login" class="btn btn-outline-secondary rounded-3">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Đã có tài khoản? Đăng nhập
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+
+
+        <!-- Toggle Password Script -->
+        <script>
+            function togglePassword(inputId, iconId) {
+                const input = document.getElementById(inputId);
+                const icon = document.getElementById(iconId);
+
+                if (!input || !icon) return;
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    icon.classList.remove("bi-eye-slash");
+                    icon.classList.add("bi-eye");
+                } else {
+                    input.type = "password";
+                    icon.classList.remove("bi-eye");
+                    icon.classList.add("bi-eye-slash");
+                }
+            }
+        </script>
+
+
+
+
+
+    </main>
+
+
+
+
+
+
+    <!-- Footer Start -->
+    <div th:replace="layout/customer/footer :: footerFragment"></div>
+
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/customer/lib/wow/wow.min.js}"></script>
+    <script th:src="@{/customer/lib/easing/easing.min.js}"></script>
+    <script th:src="@{/customer/lib/waypoints/waypoints.min.js}"></script>
+    <script th:src="@{/customer/lib/counterup/counterup.min.js}"></script>
+    <script th:src="@{/customerlib/owlcarousel/owl.carousel.min.js}"></script>
+
+    <!-- Template Javascript -->
+    <script th:src="@{/customer/js/main.js}"></script>
+</body>
+
+</html>

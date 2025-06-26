@@ -42,4 +42,10 @@ public class HomeController {
 //        model.addAttribute("title", "Login");
         return "customer/auth/login";  // đúng đường dẫn tới file
     }
+
+    @GetMapping("/register")
+    public String register(Model model) {
+//        model.addAttribute("title", "Register");
+        return "customer/auth/register";  // đúng đường dẫn tới file
+    }
 }

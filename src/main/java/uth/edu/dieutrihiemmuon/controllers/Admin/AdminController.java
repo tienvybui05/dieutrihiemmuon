@@ -14,11 +14,6 @@ public class AdminController {
 
     // employee
 
-    // auth
-    @GetMapping("/admin/auth/login")
-    public String adminauthlogin() {
-        return "admin/auth/login";
-    }
 
     @GetMapping("admin/ScheduleManagement/DoctorScheduleManagement")
     public String ScheduleManagement() {
@@ -35,9 +30,6 @@ public class AdminController {
         return "admin/ScheduleManagement/ConfirmDoctorSchedule";
     }
 
-    @GetMapping("/admin/auth/error403")
-    public String error403() {
-        return "admin/auth/error403";
-    }
+
 
 }

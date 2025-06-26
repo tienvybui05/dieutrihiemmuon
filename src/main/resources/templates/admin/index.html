@@ -71,8 +71,14 @@ xmlns:th="http://www.thymeleaf.org">
 <!--        Thêm header-->
         <div th:replace="layout/admin/header :: headerAdminFragment"></div>
 
-        <div class="page-heading">
+        <div class="page-heading"  style="display: flex; justify-content: space-between; align-items: center;">
             <h3> Trang chủ  <img th:src="@{/admin/vendors/svg-loaders/hearts.svg}" class="me-4" style="width: 3rem" alt="audio"></h3>
+           <div >
+               <form th:action="@{/admin/auth/logout}" method="post">
+                   <button type="submit">Đăng xuất</button>
+               </form>
+           </div>
+
         </div>
         <div class="page-content">
             <section class="row">

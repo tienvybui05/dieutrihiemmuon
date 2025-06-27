@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.SessionManagementFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -47,6 +49,36 @@ public class SecurityConfig {
                 )
                 .exceptionHandling(ex -> ex
                         .accessDeniedPage("/admin/auth/error403")
+                );
+        return http.build();
+    }
+    @Bean
+    @Order(2)
+    public SecurityFilterChain customSecurity(HttpSecurity http) throws Exception {
+        http
+                .securityMatcher("/**")
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/","/login","/contact","/blog","/about").permitAll()
+                        .requestMatchers("/customer/css/**","/customer/js/**","/customer/img/**","/customer/lib/**").permitAll()
+                        .requestMatchers("/treatmentcyclecustomer"
+                                        ,"/treatmentschedulecustomer"
+                                        ,"/appointment").hasRole("CUSTOMER")
+                        .requestMatchers("/workscheduledoctor"
+                                        ,"/treatmentcycledoctor").hasRole("DOCTOR")
+                        .requestMatchers("/profile").hasAnyRole("CUSTOMER", "DOCTOR")
+                )
+                .formLogin(form -> form
+                            .loginPage("/login")
+                            .defaultSuccessUrl("/",true)
+                            .permitAll()
+                )
+                .logout( logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                        .permitAll()
+                )
+                .exceptionHandling( ex -> ex
+                        .accessDeniedPage("/auth/error403")
                 );
         return http.build();
     }

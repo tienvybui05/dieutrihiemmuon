@@ -74,7 +74,7 @@
         <section class="container d-flex justify-content-center align-items-center my-5">
             <div class="card shadow p-4" style="min-width: 400px; max-width: 500px; width: 100%;">
                 <h3 class="text-center mb-4 text-primary">Đăng nhập hệ thống</h3>
-                <form method="post" action="/login">
+                <form method="post" th:action="@{/login}">
                     <div class="form-group mb-3">
                         <label for="username" class="form-label">Tên đăng nhập</label>
                         <input type="text" class="form-control" id="username" name="username"
@@ -94,12 +94,13 @@
                         <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
                         <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
                     </div> -->
-                </form>
-                <div class="d-grid gap-2">
-                    <!-- Nút Đăng nhập -->
                     <button type="submit" class="btn btn-primary btn-lg rounded-3 fw-bold">
                         <i class="bi bi-box-arrow-in-right me-2"></i> Đăng nhập
                     </button>
+                </form>
+                <div class="d-grid gap-2">
+                    <!-- Nút Đăng nhập -->
+
 
                     <!-- Nút Đăng ký -->
                     <a href="/register" class="btn btn-outline-success btn-lg rounded-3 fw-bold">

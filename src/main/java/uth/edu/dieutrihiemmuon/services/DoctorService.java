@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
 import uth.edu.dieutrihiemmuon.models.Doctor;
+import uth.edu.dieutrihiemmuon.models.ServicePackage;
 import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.repositories.IDoctorRepository;
+import uth.edu.dieutrihiemmuon.repositories.IServicePackageRepository;
 import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
 import javax.print.Doc;
@@ -27,7 +29,8 @@ public class DoctorService implements IDoctorService{
     private IDoctorRepository doctorRepository;
     @Autowired
     private IUserRepository userRepository;
-
+    @Autowired
+    private IServicePackageRepository servicePackageRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -93,6 +96,7 @@ public class DoctorService implements IDoctorService{
 
             Doctor doctor = new Doctor();
             User user = new User();
+            ServicePackage servicePackage = servicePackageRepository.findById(doctorDTO.getIdService());
             user.setFullName(doctorDTO.getFullName());
             user.setEmail(doctorDTO.getEmail());
             user.setAddress(doctorDTO.getAddress());
@@ -108,6 +112,7 @@ public class DoctorService implements IDoctorService{
                 doctor.setExperience(doctorDTO.getExperience());
                 doctor.setExpertise(doctorDTO.getExpertise());
                 doctor.setUser(user);
+                doctor.setServicePackage(servicePackage);
                 if(doctorRepository.save(doctor)!=null) {
                     return true;
                 }
@@ -169,6 +174,7 @@ public class DoctorService implements IDoctorService{
                 throw new RuntimeException("Lỗi khi xử lý ảnh", e);
             }
             Doctor doctor =  doctorRepository.findById(doctorDTO.getId_doctor());
+            ServicePackage servicePackage = servicePackageRepository.findById(doctorDTO.getIdService());
             if(doctor == null)
             {
                 return false;
@@ -187,6 +193,7 @@ public class DoctorService implements IDoctorService{
             doctor.setExperience(doctorDTO.getExperience());
             doctor.setExpertise(doctorDTO.getExpertise());
             doctor.setUser(user);
+            doctor.setServicePackage(servicePackage);
             if(doctorRepository.save(doctor)!=null) {
                 return true;
             }

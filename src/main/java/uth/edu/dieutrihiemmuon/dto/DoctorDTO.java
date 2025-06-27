@@ -4,9 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.models.Doctor;
+import uth.edu.dieutrihiemmuon.models.ServicePackage;
 import uth.edu.dieutrihiemmuon.models.User;
 
 public class DoctorDTO {
@@ -48,6 +50,9 @@ public class DoctorDTO {
     @NotEmpty(message = "Vui lòng nhập kinh nhiệm")
     private String experience;
 
+    @NotNull(message = "Vui lòng chọn chuyên ngành")
+    private long idService;
+
     @NotEmpty(message = "Vui lòng nhập chuyên môn")
     private String expertise;
     private MultipartFile imageFile;
@@ -57,6 +62,7 @@ public class DoctorDTO {
     }
     public DoctorDTO(Doctor doctor) {
         User user = doctor.getUser();
+        ServicePackage servicePackage = doctor.getServicePackage();
         this.id_doctor = doctor.getIdDoctor();
         this.fullName = user.getFullName();
         this.userName = user.getUserName();
@@ -71,6 +77,7 @@ public class DoctorDTO {
         this.degree = doctor.getDegree();
         this.experience = doctor.getExperience();
         this.expertise = doctor.getExpertise();
+        this.idService = servicePackage.getIdService();
     }
     public DoctorDTO(String fullName, String userName, String passWord, String dateOfBirth, String email, String image, String phoneNumber, String address, String gender, String role, String degree, String experience, String expertise) {
         this.fullName = fullName;
@@ -205,5 +212,13 @@ public class DoctorDTO {
 
     public void setId_doctor(long id_doctor) {
         this.id_doctor = id_doctor;
+    }
+
+    public long getIdService() {
+        return idService;
+    }
+
+    public void setIdService(long idService) {
+        this.idService = idService;
     }
 }

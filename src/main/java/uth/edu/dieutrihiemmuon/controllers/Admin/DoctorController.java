@@ -8,9 +8,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
+import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
 import uth.edu.dieutrihiemmuon.models.Doctor;
 import uth.edu.dieutrihiemmuon.services.DoctorService;
 import uth.edu.dieutrihiemmuon.services.IDoctorService;
+import uth.edu.dieutrihiemmuon.services.IServicePackageService;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +31,9 @@ public class DoctorController {
     @Autowired
     private IDoctorService doctorService;
 
+    @Autowired
+    private IServicePackageService servicePackageService;
+
     @GetMapping("/admin/doctor/index")
     public String admindoctorindex( Model model) {
 
@@ -39,6 +44,8 @@ public class DoctorController {
     @GetMapping("/admin/doctor/create")
     public String admindoctorcreate( Model model)
     {
+           List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
+            model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
             model.addAttribute("DoctorDTO",new DoctorDTO());
             return "admin/doctor/create";
     }
@@ -57,6 +64,8 @@ public class DoctorController {
         }
         if (result.hasErrors()) {
             model.addAttribute("DoctorDTO", doctorDTO);
+            List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
+            model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
             return "admin/doctor/create";
         }
         if(doctorService.addDoctor(doctorDTO)==true)
@@ -74,6 +83,10 @@ public class DoctorController {
     @GetMapping("/admin/doctor/edit/{id}")
     public String admindoctoredit(@PathVariable long id, Model model) {
         DoctorDTO doctorDTO = doctorService.getDoctor(id);
+        ServicePackageDTO servicePackageDTO = servicePackageService.getServicePackage(doctorDTO.getIdService());
+        List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
+        model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
+        model.addAttribute("servicePackageDTOold", servicePackageDTO);
         model.addAttribute("DoctorDTO", doctorDTO);
         return "admin/doctor/edit";
     }
@@ -95,6 +108,10 @@ public class DoctorController {
 
         if (result.hasErrors()) {
             model.addAttribute("DoctorDTO", doctorDTO);
+            ServicePackageDTO servicePackageDTO = servicePackageService.getServicePackage(doctorDTO.getIdService());
+            List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
+            model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
+            model.addAttribute("servicePackageDTOold", servicePackageDTO);
             return "/admin/doctor/edit";
         }
         doctorService.updateDoctor(doctorDTO);
@@ -104,6 +121,8 @@ public class DoctorController {
     @GetMapping("/admin/doctor/detail/{id}")
     public String admindoctordetail(@PathVariable long id, Model model) {
         DoctorDTO doctorDTO = doctorService.getDoctor(id);
+        ServicePackageDTO servicePackageDTO = servicePackageService.getServicePackage(doctorDTO.getIdService());
+        model.addAttribute("nameServicePackage", servicePackageDTO.getServiceName());
         model.addAttribute("DoctorDTO", doctorDTO);
         return "admin/doctor/detail";
     }

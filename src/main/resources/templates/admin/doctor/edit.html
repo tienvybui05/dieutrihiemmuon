@@ -131,6 +131,18 @@
                                             <p th:if="${#fields.hasErrors('degree')}" th:errors="*{degree}" class="text-danger"></p>
                                         </div>
                                         <div class="col-md-4">
+                                            <label>Chuyên ngành</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <select name="idService" th:field="*{idService}" class="form-control">
+                                                <option th:each="servicePackageDTO : ${ServicePackageDTOs}"
+                                                        th:value="${servicePackageDTO.idService}"
+                                                        th:text="${servicePackageDTO.serviceName}">
+                                                </option>
+                                            </select>
+                                            <p th:if="${#fields.hasErrors('idService')}" th:errors="*{idService}" class="text-danger"></p>
+                                        </div>
+                                        <div class="col-md-4">
                                             <label>Kinh nghiệm</label>
                                         </div>
                                         <div class="col-md-8 form-group">

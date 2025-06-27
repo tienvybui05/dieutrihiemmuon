@@ -67,4 +67,16 @@ public class ServicePackageController {
         return "redirect:/admin/servicepackage/index";
 
     }
+
+    @GetMapping("/admin/servicepackage/detail/{id}")
+    public String adminservicepackagedetail(@PathVariable long id, Model model) {
+        ServicePackageDTO servicePackageDTO = servicePackageService.getServicePackage(id);
+        model.addAttribute("ServicePackageDTO", servicePackageDTO);
+        return "admin/servicepackage/detail";
+    }
+    @GetMapping("/admin/servicepackage/delete/{id}")
+    public String adminservicepackagedelete(@PathVariable long id, Model model) {
+        servicePackageService.deleteServicePackage(id);
+        return "redirect:/admin/servicepackage/index";
+    }
 }

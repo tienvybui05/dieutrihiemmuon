@@ -1,5 +1,6 @@
 package uth.edu.dieutrihiemmuon.controllers.Admin;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,5 +38,33 @@ public class ServicePackageController {
         List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
         model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
         return "admin/servicepackage/index";
+    }
+
+    @GetMapping("/admin/servicepackage/create")
+    public String adminservicepackagecreate( Model model)
+    {
+        model.addAttribute("ServicePackageDTO",new ServicePackageDTO());
+        return "admin/servicepackage/create";
+    }
+
+    @PostMapping("/admin/servicepackage/create")
+    public String addServicePackage(@Valid @ModelAttribute("ServicePackageDTO") ServicePackageDTO servicePackageDTO , BindingResult result, Model model) {
+
+        if (servicePackageService.findByServiceName(servicePackageDTO.getServiceName()) != null) {
+            result.rejectValue("serviceName", "error.ServicePackageDTO", "Tên dịch vụ đã tồn tại");
+        }
+        if (result.hasErrors()) {
+            model.addAttribute("ServicePackageDTO", servicePackageDTO);
+            return "admin/servicepackage/create";
+        }
+        if(servicePackageService.addServicePackage(servicePackageDTO)==true)
+        {
+            model.addAttribute("message","Thêm thành công!");
+        }
+        else{
+            model.addAttribute("message","Thêm không thành công!");
+        }
+        return "redirect:/admin/servicepackage/index";
+
     }
 }

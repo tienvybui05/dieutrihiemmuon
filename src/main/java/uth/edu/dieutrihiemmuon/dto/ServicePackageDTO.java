@@ -1,10 +1,8 @@
 package uth.edu.dieutrihiemmuon.dto;
 
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
 
-import jakarta.validation.constraints.Pattern;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.models.ServicePackage;
 
@@ -18,8 +16,10 @@ public class ServicePackageDTO {
     @NotBlank
     private String patientType;
     @NotBlank
+    @Min(1)
     private int numberOfTreatmentSessions;
-    @NotBlank
+    @NotNull
+    @DecimalMin("0.0")
     private double price;
 
     public ServicePackageDTO() {}

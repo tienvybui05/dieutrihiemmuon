@@ -59,7 +59,7 @@ public class SecurityConfig {
         http
                 .securityMatcher("/**")
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/login","/contact","/blog","/about","/register").permitAll()
+                        .requestMatchers("/","/login","/contact","/blog","/about","/services","/register").permitAll()
                         .requestMatchers("/customer/css/**","/customer/js/**","/customer/img/**","/customer/lib/**").permitAll()
                         .requestMatchers("/treatmentcyclecustomer"
                                         ,"/treatmentschedulecustomer"

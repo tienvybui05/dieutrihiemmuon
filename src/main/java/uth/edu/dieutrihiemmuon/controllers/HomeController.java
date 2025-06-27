@@ -1,6 +1,5 @@
 package uth.edu.dieutrihiemmuon.controllers;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.validation.Valid;
 import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
 import uth.edu.dieutrihiemmuon.services.CustomerService;
 
@@ -47,6 +48,12 @@ public class HomeController {
     @GetMapping("/profile")
     public String profile() { return "customer/profile";}
 
+    //Services
+    @GetMapping("/services")
+    public String services() {
+        return "customer/services/index";  // đúng đường dẫn tới file
+    }
+
     //Đăng nhập và đăng ký
     @GetMapping("/login")
     public String login(Model model) {
@@ -82,4 +89,6 @@ public class HomeController {
         customerService.addAccount(registerDTO);
         return "redirect:/customer/index";
     }
+
+    //
 }

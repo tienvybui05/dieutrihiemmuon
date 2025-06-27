@@ -101,12 +101,14 @@
                                 <th>STT</th>
                                 <th>Tên dịch vụ</th>
                                 <th>Mô tả</th>
+                                <th>Loại bệnh nhân</th>
                                 <th>Số buổi điều trị</th>
                                 <th>Giá dịch vụ</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="servicePackageDTO : ${ServicePackageDTOs}">
+                                <td th:text="${servicePackageDTO.idService}"></td>
                                 <td th:text="${servicePackageDTO.serviceName}"></td>
                                 <td th:text="${servicePackageDTO.serviceDescription}"></td>
                                 <td th:text="${servicePackageDTO.patientType}"></td>

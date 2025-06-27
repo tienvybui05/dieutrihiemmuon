@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Mazer Admin Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/admin/css/bootstrap.css}">
+
+  <link rel="stylesheet" th:href="@{/admin/vendors/iconly/bold.css}">
+
+  <link rel="stylesheet" th:href="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+  <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap-icons/bootstrap-icons.css}">
+  <link rel="stylesheet" th:href="@{/admin/css/app.css}">
+  <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
+  <style>
+    .can-giua-form{
+      margin: 0 auto;
+      width: 70%;
+    }
+    .quay-ve{
+      margin: 0 4px 4px 0;
+      background-color: #00d676;
+      color: white;
+    }
+
+    .quay-ve:hover {
+      background-color: #05a8a2;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+<div id="app">
+  <!--    Thêm sidebar-->
+  <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
+
+  <div id="main">
+    <!--        Thêm header-->
+    <div th:replace="layout/admin/header :: headerAdminFragment"></div>
+
+    <div class="page-heading">
+      <h3>Chỉnh sửa thông tin dịch vụ</h3>
+    </div>
+    <div class="page-content">
+      <div class="col-md-6 col-12 can-giua-form">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Nhập thông tin mới</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <form class="form form-horizontal"  th:action="@{/admin/servicepackage/edit/{id}(id=${ServicePackageDTO.getIdService()})}" th:object="${ServicePackageDTO}" enctype="multipart/form-data" method="post">
+                <div class="form-body">
+                  <div class="row">
+                    <input type="hidden" th:field="*{idService}" />
+                    <div class="col-md-4">
+                      <label>Tên dịch vụ</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                      <input type="text"  class="form-control"  placeholder="Tên dịch vụ" th:field="*{serviceName}">
+                      <p th:if="${#fields.hasErrors('serviceName')}" th:errors="*{serviceName}" class="text-danger"></p>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Mô tả</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                      <input type="text"  class="form-control" placeholder="Mô tả" th:field="*{serviceDescription}">
+                      <p th:if="${#fields.hasErrors('serviceDescription')}" th:errors="*{serviceDescription}" class="text-danger"></p>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Loại bệnh nhân</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                      <input type="text"  class="form-control" placeholder="Loại bệnh nhân" th:field="*{patientType}">
+                      <p th:if="${#fields.hasErrors('patientType')}" th:errors="*{patientType}" class="text-danger"></p>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Số buổi điều trị</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                      <input type="text"  class="form-control" placeholder="Số buổi điều trị" th:field="*{numberOfTreatmentSessions}">
+                      <p th:if="${#fields.hasErrors('numberOfTreatmentSessions')}" th:errors="*{numberOfTreatmentSessions}" class="text-danger"></p>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Giá tiền</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                      <input type="text"  class="form-control" placeholder="Giá tiền" th:field="*{price}">
+                      <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></p>
+                    </div>
+                    <div class="col-sm-12 d-flex justify-content-end">
+                      <button type="submit" class="btn btn-primary me-1 mb-1">Cập nhật</button>
+                      <button type="reset"
+                              class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                      <a th:href="@{/admin/servicepackage/index}" class="btn  quay-ve">Quay về</a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--        Thêm footer-->
+    <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
+
+  </div>
+</div>
+<script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/admin/js/pages/dashboard.js}"></script>
+
+<script th:src="@{/admin/js/main.js}"></script>
+</body>
+
+</html>

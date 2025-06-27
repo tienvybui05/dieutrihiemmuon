@@ -79,4 +79,25 @@ public class ServicePackageController {
         servicePackageService.deleteServicePackage(id);
         return "redirect:/admin/servicepackage/index";
     }
+
+    @GetMapping("/admin/servicepackage/edit/{id}")
+    public String adminservicepackageedit(@PathVariable long id, Model model) {
+        ServicePackageDTO servicePackageDTO = servicePackageService.getServicePackage(id);
+        model.addAttribute("ServicePackageDTO", servicePackageDTO);
+        return "admin/servicepackage/edit";
+    }
+    @PostMapping("/admin/servicepackage/edit/{id}")
+    public String editServicePackage( @PathVariable long id,@Valid @ModelAttribute("ServicePackageDTO") ServicePackageDTO servicePackageDTO, BindingResult result, Model model) {
+
+        ServicePackageDTO servicePackageDTOServiceName= servicePackageService.findByServiceName(servicePackageDTO.getServiceName());
+        if (servicePackageDTOServiceName != null && servicePackageDTOServiceName.getIdService() != id) {
+            result.rejectValue("serviceName", "error.servicePackageDTO", "Tên dịch vụ đã tồn tại");
+        }
+        if (result.hasErrors()) {
+            model.addAttribute("ServicePackageDTO", servicePackageDTO);
+            return "/admin/servicepackage/edit";
+        }
+        servicePackageService.updateServicePackage(servicePackageDTO);
+        return "redirect:/admin/servicepackage/index";
+    }
 }

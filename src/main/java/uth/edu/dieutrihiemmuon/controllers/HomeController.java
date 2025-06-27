@@ -10,18 +10,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
 import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
+import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
 import uth.edu.dieutrihiemmuon.services.CustomerService;
+import uth.edu.dieutrihiemmuon.services.ServicePackageService;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private ServicePackageService servicePackageService;
 
-
+//    @GetMapping("/")
+//    public String index() {
+//        return "customer/index";  // đúng đường dẫn tới file
+//    }
     @GetMapping("/")
-    public String index() {
-        return "customer/index";  // đúng đường dẫn tới file
+    public String adminservicepackageindex( Model model) {
+
+        List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
+        model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
+        return "customer/index";
     }
     @GetMapping("/about")
     public String about() {

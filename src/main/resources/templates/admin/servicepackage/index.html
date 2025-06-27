@@ -106,19 +106,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="doctorDTO : ${DoctorDTOs}">
-                                <td th:text="${doctorDTO.fullName}"></td>
-                                <td th:text="${doctorDTO.phoneNumber}"></td>
-                                <td th:text="${doctorDTO.dateOfBirth}"></td>
-                                <td th:text="${doctorDTO.email}"></td>
-                                <td th:text="${doctorDTO.experience}"></td>
-                                <td th:text="${doctorDTO.fullName}"></td>
+                            <tr th:each="servicePackageDTO : ${ServicePackageDTOs}">
+                                <td th:text="${servicePackageDTO.serviceName}"></td>
+                                <td th:text="${servicePackageDTO.serviceDescription}"></td>
+                                <td th:text="${servicePackageDTO.patientType}"></td>
+                                <td th:text="${servicePackageDTO.numberOfTreatmentSessions}"></td>
+                                <td th:text="${servicePackageDTO.price}"></td>
                                 <td class="admin-hanh-dong">
-                                    <a class="admin-sua" th:href="@{/admin/doctor/edit/{id}(id=${doctorDTO.getId_doctor()})}">Sửa</a>
-                                    <a class="admin-chi-tiet" th:href="@{/admin/doctor/detail/{id}(id=${doctorDTO.getId_doctor()})}">Chi tiết</a>
+                                    <a class="admin-sua" th:href="@{/admin/servicepackage/edit/{id}(id=${servicePackageDTO.getIdService()})}">Sửa</a>
+                                    <a class="admin-chi-tiet" th:href="@{/admin/servicepackage/detail/{id}(id=${servicePackageDTO.getIdService()})}">Chi tiết</a>
                                     <a class="admin-xoa"
-                                       th:href="@{/admin/doctor/delete/{id}(id=${doctorDTO.getId_doctor()})}"
-                                       onclick="return confirm('Bạn có chắc chắn muốn xóa bác sĩ này không?');">
+                                       th:href="@{/admin/servicepackage/delete/{id}(id=${servicePackageDTO.getIdService()})}"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa dịch vụ này không?');">
                                         Xóa
                                     </a>
                                 </td>

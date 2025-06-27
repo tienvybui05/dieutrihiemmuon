@@ -15,7 +15,7 @@ public class ServicePackageDTO {
     private String serviceDescription;
     @NotBlank
     private String patientType;
-    @NotBlank
+    @NotNull
     @Min(1)
     private int numberOfTreatmentSessions;
     @NotNull

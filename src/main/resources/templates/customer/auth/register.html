@@ -73,66 +73,81 @@
         <!-- Login Start -->
         <section class="container d-flex justify-content-center align-items-center my-5">
             <div class="card shadow rounded-4 p-4" style="min-width: 400px; max-width: 600px; width: 100%;">
-                <h3 class="text-center mb-4" style="color: #2C7BE5;">Tạo tài khoản mới</h3>
-                <form method="post" action="/register">
+                <h3 class="text-center mb-4" style="color: #2C7BE5;">Đăng ký</h3>
+                <form method="post" th:action="@{/register}" th:object="${RegisterDTO}">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Họ và tên</label>
-                            <input type="text" class="form-control rounded-3" name="fullName"
-                                placeholder="Nhập họ và tên" required>
+                            <input type="text" th:field="*{fullName}" class="form-control rounded-3" name="fullName"
+                                placeholder="Nhập họ và tên" required >
+                            <div class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Tên đăng nhập</label>
-                            <input type="text" class="form-control rounded-3" name="userName"
-                                placeholder="Tên đăng nhập" required>
-                        </div>
+
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Ngày sinh</label>
-                            <input type="date" class="form-control rounded-3" name="dateOfBirth" required>
+                            <input type="date" th:field="*{dateOfBirth}" class="form-control rounded-3" name="dateOfBirth" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Số điện thoại</label>
-                            <input type="text" class="form-control rounded-3" name="phoneNumber"
-                                placeholder="Ví dụ: 0912345678" required>
+                            <label class="form-label">Giới tính</label>
+                            <select name="gender" th:field="*{gender}" class="form-control rounded-3" style="background-color: #FFFFFF">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                            <div class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control rounded-3" name="email"
-                                placeholder="example@gmail.com" required>
+                            <input type="email" th:field="*{email}" class="form-control rounded-3" name="email"
+                                   placeholder="example@gmail.com" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Địa chỉ</label>
-                            <input type="text" class="form-control rounded-3" name="address"
-                                placeholder="Địa chỉ cư trú" required>
+                            <label class="form-label">Tên đăng nhập</label>
+                            <input type="text" th:field="*{userName}" class="form-control rounded-3" name="userName"
+                                   placeholder="Tên đăng nhập" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input type="text" th:field="*{phoneNumber}" class="form-control rounded-3" name="phoneNumber"
+                                   placeholder="Ví dụ: 0912345678" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
                         </div>
                         <!-- Mật khẩu -->
                         <!-- Mật khẩu -->
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Mật khẩu</label>
                             <div class="position-relative">
-                                <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Nhập mật khẩu">
+                                <input type="password" th:field="*{passWord}" class="form-control" id="password" name="password"
+                                       placeholder="Nhập mật khẩu">
+                                <div class="text-danger" th:if="${#fields.hasErrors('passWord')}" th:errors="*{passWord}"></div>
                                 <span class="position-absolute top-50 end-0 translate-middle-y me-3"
-                                    style="cursor: pointer;" onclick="togglePassword('password', 'eye1')">
-                                    <i id="eye1" class="bi bi-eye-slash"></i>
-                                </span>
+                                      style="cursor: pointer;" onclick="togglePassword('password', 'eye1')">
+                                        <i id="eye1" class="bi bi-eye-slash"></i>
+                                    </span>
                             </div>
                         </div>
-
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Địa chỉ</label>
+                            <input type="text" th:field="*{address}" class="form-control rounded-3" name="address"
+                                   placeholder="Địa chỉ cư trú" required>
+                        </div>
                         <!-- Xác nhận mật khẩu -->
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Xác nhận mật khẩu</label>
                             <div class="position-relative">
                                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                                    placeholder="Nhập lại mật khẩu">
+                                       placeholder="Nhập lại mật khẩu" th:field="*{confirmPassword}">
+                                <div class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
                                 <span class="position-absolute top-50 end-0 translate-middle-y me-3"
-                                    style="cursor: pointer;" onclick="togglePassword('confirmPassword', 'eye2')">
-                                    <i id="eye2" class="bi bi-eye-slash"></i>
-                                </span>
+                                      style="cursor: pointer;" onclick="togglePassword('confirmPassword', 'eye2')">
+                                        <i id="eye2" class="bi bi-eye-slash"></i>
+                                    </span>
                             </div>
+                            <div id="passwordError" class="text-danger mt-1" style="font-size: 0.875rem;"></div> <!-- Thông báo lỗi -->
                         </div>
                     </div>
-
                     <div class="d-grid gap-2 mt-3">
                         <button type="submit" class="btn btn-primary rounded-3 fw-bold">
                             <i class="bi bi-check-circle me-2"></i>Đăng ký
@@ -165,6 +180,31 @@
                     icon.classList.add("bi-eye-slash");
                 }
             }
+
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const errorDiv = document.getElementById('passwordError');
+
+            confirmPasswordInput.addEventListener('input', function () {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                if (confirmPassword && password !== confirmPassword) {
+                    errorDiv.textContent = "Mật khẩu không khớp.";
+                } else {
+                    errorDiv.textContent = "";
+                }
+            });
+
+            document.querySelector('form').addEventListener('submit', function (e) {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                if (password !== confirmPassword) {
+                    e.preventDefault();
+                    errorDiv.textContent = "Mật khẩu và xác nhận mật khẩu không khớp!";
+                }
+            });
         </script>
 
 

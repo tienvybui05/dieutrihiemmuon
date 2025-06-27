@@ -1,6 +1,7 @@
 package uth.edu.dieutrihiemmuon.services;
 
 
+import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
 import uth.edu.dieutrihiemmuon.models.User;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface ICustomerService {
     boolean isUsernameExists(String username);
     boolean isEmailExists(String email);
     boolean isPhoneNumberExists(String phoneNumber);
+    public boolean addAccount(RegisterDTO registerDTO);
 }

@@ -3,6 +3,7 @@ package uth.edu.dieutrihiemmuon.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
 import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
@@ -64,6 +65,27 @@ public class CustomerService implements ICustomerService{
     public void deleteCustomer(Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
+        }
+    }
+    @Override
+    public boolean addAccount(RegisterDTO registerDTO) {
+        try {
+            User user = new User();
+            user.setFullName(registerDTO.getFullName());
+            user.setAddress(registerDTO.getAddress());
+            user.setPhoneNumber(registerDTO.getPhoneNumber());
+            user.setPassWord(passwordEncoder.encode(registerDTO.getPassWord()));
+            user.setUserName(registerDTO.getUserName());
+            user.setEmail(registerDTO.getEmail());
+            user.setDateOfBirth(registerDTO.getDateOfBirth());
+            user.setGender(registerDTO.getGender());
+            user.setImage("default.jpg");
+            user.setRole("CUSTOMER");
+            userRepository.save(user);
+            return true;
+        } catch (Exception e) {
+            System.err.println("Lỗi khi thêm tài khoản: "+ e);
+            return false;
         }
     }
 }

@@ -18,4 +18,5 @@ public interface ICustomerService {
     boolean isEmailExists(String email);
     boolean isPhoneNumberExists(String phoneNumber);
     public boolean addAccount(RegisterDTO registerDTO);
+    public User findByUsername(String username);
 }

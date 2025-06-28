@@ -23,7 +23,7 @@ public class TreatmentSession {
     private String treatmentStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_treatmentCycle")
+    @JoinColumn(name = "id_treatment_cycle")
     private TreatmentCycle treatmentCycle;
 
     public TreatmentSession() {

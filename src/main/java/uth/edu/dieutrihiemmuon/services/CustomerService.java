@@ -88,4 +88,9 @@ public class CustomerService implements ICustomerService{
             return false;
         }
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUserName(username);
+    }
 }

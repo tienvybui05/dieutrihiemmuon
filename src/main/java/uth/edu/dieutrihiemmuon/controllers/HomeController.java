@@ -1,5 +1,6 @@
 package uth.edu.dieutrihiemmuon.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -11,13 +12,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
 import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
 import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
+import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.services.CustomerService;
 import uth.edu.dieutrihiemmuon.services.DoctorService;
 import uth.edu.dieutrihiemmuon.services.ServicePackageService;
+import uth.edu.dieutrihiemmuon.services.TreatmentCycleService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -29,6 +34,8 @@ public class HomeController {
     private ServicePackageService servicePackageService;
     @Autowired
     private DoctorService doctorService;
+    @Autowired
+    private TreatmentCycleService treatmentCycleService;
 
 //    @GetMapping("/")
 //    public String index() {
@@ -49,8 +56,9 @@ public class HomeController {
     @GetMapping("/contact")
     public String contact(){ return "customer/contact";}
 
-    @GetMapping("/appointment")
-    public String appointment() { return "customer/appointment";}
+//    @GetMapping("/appointment")
+//    public String appointment() { return "redirect:/";}
+
     @GetMapping("/appointment/{id}")
     public String appointment(@PathVariable("id") Long id, Model model) {
         ServicePackageDTO servicePackage = servicePackageService.getServicePackage(id);
@@ -59,6 +67,30 @@ public class HomeController {
         model.addAttribute("doctors", doctors);
         return "customer/appointment";
     }
+    @PostMapping("/appointment/{id}")
+    public String handleAppointmentSubmit(HttpServletRequest request,
+                                          RedirectAttributes redirectAttributes,
+                                          Authentication authentication,
+                                          @PathVariable("id") Long id) {
+        Long serviceId = Long.parseLong(request.getParameter("serviceId")); // hoặc dùng lại `id` luôn nếu chắc chắn
+        Long doctorId = Long.parseLong(request.getParameter("doctorId"));
+        LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
+
+        String username = authentication.getName();
+        User user = customerService.findByUsername(username);
+
+        boolean success = treatmentCycleService.addAppointment(serviceId, doctorId, startDate, user.getIdUser());
+
+        if (success) {
+            redirectAttributes.addFlashAttribute("message", "Đặt lịch khám thành công!");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Đặt lịch thất bại.");
+        }
+
+        return "redirect:payment";
+    }
+
+
 
 
     @GetMapping("/history")

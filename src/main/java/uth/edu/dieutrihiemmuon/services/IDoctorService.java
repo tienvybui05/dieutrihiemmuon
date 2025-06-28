@@ -15,4 +15,5 @@ public interface IDoctorService {
     public  DoctorDTO findByUsername(String username);
     public  DoctorDTO findByEmail(String email);
     public DoctorDTO  findByPhoneNumber(String phoneNumber);
+    public List<DoctorDTO> getDoctorsByServiceId(long id);
 }

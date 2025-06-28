@@ -23,6 +23,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class DoctorService implements IDoctorService{
     @Autowired
@@ -291,5 +293,11 @@ public class DoctorService implements IDoctorService{
         catch (RuntimeException e) {
             throw new RuntimeException("Lỗi khi tìm kiếm bằng email"+e);
         }
+    }
+
+    @Override
+    public List<DoctorDTO> getDoctorsByServiceId(long id) {
+        List<Doctor> doctors = doctorRepository.findByServicePackage_IdService(id);
+        return doctors.stream().map(DoctorDTO::new).collect(Collectors.toList());
     }
 }

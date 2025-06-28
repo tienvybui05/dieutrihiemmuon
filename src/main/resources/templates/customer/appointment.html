@@ -178,27 +178,24 @@
             <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
                 <form method="post" action="#">
                     <div class="row g-3">
-                        <!-- Chọn bác sĩ -->
-                        <div class="col-12">
-                            <label class="form-label fw-bold">Chọn bác sĩ</label>
-                            <select class="form-select border-0 bg-light px-4" name="doctorId" style="height: 55px;" required>
-                                <option disabled selected>-- Chọn bác sĩ --</option>
-                                <option value="1">Bác sĩ Trần Văn A</option>
-                                <option value="2">Bác sĩ Nguyễn Thị B</option>
-                                <option value="3">Bác sĩ Lê Văn C</option>
-                            </select>
-                        </div>
 
                         <!-- Chọn dịch vụ khám -->
                         <div class="col-12">
                             <label class="form-label fw-bold">Chọn dịch vụ khám</label>
                             <select class="form-select border-0 bg-light px-4" name="serviceId" style="height: 55px;" required>
-                                <option disabled selected>-- Chọn dịch vụ --</option>
-                                <option value="101">Khám tổng quát</option>
-                                <option value="102">Khám chuyên khoa</option>
-                                <option value="103">Xét nghiệm máu</option>
+                                <option th:value="${servicePackageDTO.idService}" th:text="${servicePackageDTO.serviceName}"></option>
                             </select>
                         </div>
+
+                        <!-- Chọn bác sĩ -->
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Chọn bác sĩ</label>
+                            <select class="form-select border-0 bg-light px-4" name="doctorId" style="height: 55px;" required>
+                                <option disabled selected>-- Chọn bác sĩ --</option>
+                                <option th:each="s : ${doctors}" th:value="${s.id_doctor}" th:text="${s.fullName}"></option>
+                            </select>
+                        </div>
+
 
                         <!-- Ngày khám mong muốn -->
                         <div class="col-12">

@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
+import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
 import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
 import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
 import uth.edu.dieutrihiemmuon.services.CustomerService;
+import uth.edu.dieutrihiemmuon.services.DoctorService;
 import uth.edu.dieutrihiemmuon.services.ServicePackageService;
 
 import java.util.List;
@@ -24,6 +26,8 @@ public class HomeController {
     private CustomerService customerService;
     @Autowired
     private ServicePackageService servicePackageService;
+    @Autowired
+    private DoctorService doctorService;
 
 //    @GetMapping("/")
 //    public String index() {
@@ -31,7 +35,6 @@ public class HomeController {
 //    }
     @GetMapping("/")
     public String adminservicepackageindex( Model model) {
-
         List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
         model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
         return "customer/index";
@@ -51,6 +54,8 @@ public class HomeController {
     public String appointment(@PathVariable("id") Long id, Model model) {
         ServicePackageDTO servicePackage = servicePackageService.getServicePackage(id);
         model.addAttribute("servicePackageDTO", servicePackage);
+        List<DoctorDTO> doctors = doctorService.getDoctorsByServiceId(id);
+        model.addAttribute("doctors", doctors);
         return "customer/appointment";
     }
 

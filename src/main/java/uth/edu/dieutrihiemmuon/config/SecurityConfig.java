@@ -63,7 +63,7 @@ public class SecurityConfig {
                         .requestMatchers("/customer/css/**","/customer/js/**","/customer/img/**","/customer/lib/**").permitAll()
                         .requestMatchers("/treatmentcyclecustomer"
                                         ,"/treatmentschedulecustomer"
-                                        ,"/appointment").hasRole("CUSTOMER")
+                                        ,"/appointment/**").hasRole("CUSTOMER")
                         .requestMatchers("/workscheduledoctor"
                                         ,"/treatmentcycledoctor").hasRole("DOCTOR")
                         .requestMatchers("/profile").hasAnyRole("CUSTOMER", "DOCTOR")

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
@@ -43,8 +44,17 @@ public class HomeController {
     public String blog(){ return "customer/blog";}
     @GetMapping("/contact")
     public String contact(){ return "customer/contact";}
+
     @GetMapping("/appointment")
     public String appointment() { return "customer/appointment";}
+    @GetMapping("/appointment/{id}")
+    public String appointment(@PathVariable("id") Long id, Model model) {
+        ServicePackageDTO servicePackage = servicePackageService.getServicePackage(id);
+        model.addAttribute("servicePackageDTO", servicePackage);
+        return "customer/appointment";
+    }
+
+
     @GetMapping("/history")
     public String history() { return "customer/history";}
     @GetMapping("/payment")

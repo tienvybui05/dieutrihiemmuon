@@ -299,7 +299,7 @@
                                 <strong>Mô tả dịch vụ:</strong>
                                 <p th:text="${servicePackageDTO.serviceDescription}">Mô tả chi tiết về dịch vụ điều trị.</p>
                             </div>
-                            <a class="btn btn-primary py-2 px-4 mt-4" th:href="@{'/appointment' + ${servicePackageDTO.idService}}">Đăng ký ngay</a>
+                            <a class="btn btn-primary py-2 px-4 mt-4" th:href="@{'/appointment/' + ${servicePackageDTO.idService}}">Đăng ký ngay</a>
                         </div>
                     </div>
                 </div>

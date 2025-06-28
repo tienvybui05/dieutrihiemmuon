@@ -1,6 +1,7 @@
 package uth.edu.dieutrihiemmuon.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -83,8 +84,12 @@ public class HomeController {
 
     //Đăng nhập và đăng ký
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Authentication authentication) {
 //        model.addAttribute("title", "Login");
+        if (authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String)) {
+            return "redirect:/";
+        }
         return "customer/auth/login";  // đúng đường dẫn tới file
     }
 
@@ -114,8 +119,11 @@ public class HomeController {
             return "customer/auth/register";
         }
         customerService.addAccount(registerDTO);
-        return "redirect:/customer/index";
+        return "redirect:/";
     }
-
+    @GetMapping("/customer/auth/error403")
+    public String customerError403() {
+        return "customer/auth/error403";
+    }
     //
 }

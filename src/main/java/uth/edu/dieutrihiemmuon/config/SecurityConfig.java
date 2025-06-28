@@ -31,6 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/auth/login").permitAll()
                         .requestMatchers("/admin/css/**", "/admin/js/**", "/admin/images/**", "/admin/vendors/**").permitAll()
+                        .requestMatchers("/admin/auth/error403").permitAll()
                         .requestMatchers("/admin/employee/index",
                                 "/admin/employee/create",
                                 "/admin/employee/edit",
@@ -55,12 +56,13 @@ public class SecurityConfig {
     }
     @Bean
     @Order(2)
-    public SecurityFilterChain customSecurity(HttpSecurity http) throws Exception {
+    public SecurityFilterChain customerSecurity(HttpSecurity http) throws Exception {
         http
                 .securityMatcher("/**")
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/","/login","/contact","/blog","/about","/services","/register").permitAll()
                         .requestMatchers("/customer/css/**","/customer/js/**","/customer/img/**","/customer/lib/**").permitAll()
+                        .requestMatchers("/customer/auth/error403").permitAll()
                         .requestMatchers("/treatmentcyclecustomer"
                                         ,"/treatmentschedulecustomer"
                                         ,"/appointment/**").hasRole("CUSTOMER")
@@ -79,7 +81,7 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .exceptionHandling( ex -> ex
-                        .accessDeniedPage("/auth/error403")
+                        .accessDeniedPage("/customer/auth/error403")
                 );
         return http.build();
     }

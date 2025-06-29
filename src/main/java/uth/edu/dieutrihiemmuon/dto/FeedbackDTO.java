@@ -1,34 +1,38 @@
-package uth.edu.dieutrihiemmuon.models;
+package uth.edu.dieutrihiemmuon.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.*;
+
+import org.springframework.web.multipart.MultipartFile;
+import uth.edu.dieutrihiemmuon.models.Feedback;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name ="feedbacks")
-public class Feedback {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class FeedbackDTO {
     private long idFeedback;
 
-    @Column(nullable = false)
+    @NotBlank
     private String reviewText;
-
-    @Column(nullable = false)
-    private Integer rating;
-
-    @Column(nullable = false, length = 10)
+    @NotNull
+    @Min(1)
+    @Max(5)
+    private int rating;
+    @NotEmpty
     private LocalDate reviewDate;
 
-    @OneToOne
-    @JoinColumn(name = "id_treatmentCycle", nullable = false, unique = true)
-    private TreatmentCycle fb_treatmentCycle;
-    public Feedback() {
+    public FeedbackDTO() {}
+
+    public FeedbackDTO(Feedback feedback) {
+        this.idFeedback = feedback.getIdFeedback();
+        this.reviewText = feedback.getReviewText();
+        this.rating = feedback.getRating();
+        this.reviewDate = feedback.getReviewDate();
     }
 
-    public Feedback( int rating, String reviewText, LocalDate reviewDate) {
-        this.rating = rating;
+    public FeedbackDTO(long idFeedback, String reviewText, int rating, LocalDate reviewDate) {
+        this.idFeedback = idFeedback;
         this.reviewText = reviewText;
+        this.rating = rating;
         this.reviewDate = reviewDate;
     }
 
@@ -63,5 +67,4 @@ public class Feedback {
     public void setReviewDate(LocalDate reviewDate) {
         this.reviewDate = reviewDate;
     }
-
 }

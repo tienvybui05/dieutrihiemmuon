@@ -69,26 +69,58 @@ public class HomeController {
     }
     @PostMapping("/appointment/{id}")
     public String handleAppointmentSubmit(HttpServletRequest request,
-                                          RedirectAttributes redirectAttributes,
+                                          Model model,
                                           Authentication authentication,
                                           @PathVariable("id") Long id) {
-        Long serviceId = Long.parseLong(request.getParameter("serviceId")); // hoặc dùng lại `id` luôn nếu chắc chắn
+        Long serviceId = Long.parseLong(request.getParameter("serviceId"));
         Long doctorId = Long.parseLong(request.getParameter("doctorId"));
-        LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
+        String startDateStr = request.getParameter("startDate");
 
+        boolean hasError = false;
+
+        LocalDate startDate = null;
+        try {
+            startDate = LocalDate.parse(startDateStr);
+
+            if (startDate.isBefore(LocalDate.now())) {
+                model.addAttribute("startDateError", "Ngày bắt đầu phải từ hôm nay trở đi.");
+                hasError = true;
+            }
+        } catch (Exception e) {
+            model.addAttribute("startDateError", "Vui lòng chọn ngày khám hợp lệ.");
+            hasError = true;
+        }
+
+        // Nếu có lỗi, load lại form
+        if (hasError) {
+            ServicePackageDTO servicePackage = servicePackageService.getServicePackage(id);
+            List<DoctorDTO> doctors = doctorService.getDoctorsByServiceId(id);
+            model.addAttribute("servicePackageDTO", servicePackage);
+            model.addAttribute("doctors", doctors);
+            return "customer/appointment";
+        }
+
+        // Xử lý nếu không có lỗi
         String username = authentication.getName();
         User user = customerService.findByUsername(username);
 
         boolean success = treatmentCycleService.addAppointment(serviceId, doctorId, startDate, user.getIdUser());
 
+        ServicePackageDTO servicePackage = servicePackageService.getServicePackage(id);
+        List<DoctorDTO> doctors = doctorService.getDoctorsByServiceId(id);
+        model.addAttribute("servicePackageDTO", servicePackage);
+        model.addAttribute("doctors", doctors);
+
         if (success) {
-            redirectAttributes.addFlashAttribute("message", "Đặt lịch khám thành công!");
+            model.addAttribute("showPaymentModal", true);
         } else {
-            redirectAttributes.addFlashAttribute("error", "Đặt lịch thất bại.");
+            model.addAttribute("error", "Đặt lịch thất bại.");
         }
 
-        return "redirect:payment";
+        return "customer/appointment";
     }
+
+
 
 
 

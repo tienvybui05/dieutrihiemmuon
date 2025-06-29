@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
 import uth.edu.dieutrihiemmuon.models.*;
+import uth.edu.dieutrihiemmuon.repositories.IServicePackageRepository;
 import uth.edu.dieutrihiemmuon.repositories.ITreatmentCycleRepository;
 
 import java.time.LocalDate;
@@ -12,6 +13,9 @@ import java.time.LocalDate;
 public class TreatmentCycleService implements  ITreatmentCycleService {
     @Autowired
     private ITreatmentCycleRepository treatmentCycleRepository;
+
+    @Autowired
+    private IServicePackageRepository servicePackageRepository;
 
     // implementation
     @Override
@@ -26,7 +30,7 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
 
             dto.setServiceBookingDate(LocalDate.now());
             dto.setExecutionStatus("Chưa thực hiện");
-            dto.setPaymentStatus("Chưa thanh toán");
+            dto.setPaymentStatus("Đã thanh toán");
             dto.setConfirmationStatus("Đang chờ xác nhận");
             dto.setGeneralNotes(null);
 
@@ -52,14 +56,23 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
             user.setIdUser(dto.getUserId());
             treatmentCycle.setUserTreatmentCycle(user);
 
-            TreatmentSession session = new TreatmentSession();
-            session.setTreatmentTime(1);
-            session.setTreatmentStatus("Chưa hoàn thành");
-            session.setNote(null);
-            session.setTreatmentDay(null);
-            session.setTreatmentCycle(treatmentCycle);
+            // lay so buoi cua dich vu
+            ServicePackage servicePackage = servicePackageRepository.findById(dto.getServiceId()).orElse(null);
+            if (service == null) return false;
 
-            treatmentCycle.getTreatmentSessions().add(session);
+            int numberOfSessions = servicePackage.getNumberOfTreatmentSessions();
+
+            // ✅ Tạo n TreatmentSession
+            for (int i = 1; i <= numberOfSessions; i++) {
+                TreatmentSession session = new TreatmentSession();
+                session.setTreatmentTime(i);
+                session.setTreatmentStatus("Chưa hoàn thành");
+                session.setNote(null);
+                session.setTreatmentDay(null);
+                session.setTreatmentCycle(treatmentCycle);
+
+                treatmentCycle.getTreatmentSessions().add(session);
+            }
 
             treatmentCycleRepository.save(treatmentCycle);
 

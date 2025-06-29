@@ -14,8 +14,6 @@ public class TreatmentCycleDTO {
     // Các thông tin được truyền từ form
     private Long serviceId;
     private Long doctorId;
-    @FutureOrPresent(message = "Ngày bắt đầu phải từ hôm nay trở đi")
-    @NotEmpty(message = "Vui lòng chọn ngày khám")
     private LocalDate startDate;
 
 

@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface IFeedbackRepository extends JpaRepository<Feedback, Long>
 {
     public Feedback findById(long id);
-    Optional<Feedback> findByReviewDate(LocalDate reviewDate);
+    List<Feedback> findByReviewDate(LocalDate reviewDate);
     List<Feedback> findByRating(Integer rating);
     List<Feedback> findByReviewDateAndRating(LocalDate reviewDate, Integer rating);
 }

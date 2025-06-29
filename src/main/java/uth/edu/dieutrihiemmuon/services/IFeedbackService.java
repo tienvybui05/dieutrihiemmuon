@@ -15,7 +15,7 @@ public interface IFeedbackService {
     public  boolean addFeedback(FeedbackDTO feedbackDTO);
     public  boolean updateFeedback(FeedbackDTO feedbackDTO);
     public  boolean deleteFeedback(long id);
-    public  Optional<Feedback> findByReviewDate(LocalDate reviewDate);
-    public  List<Feedback> findByRating(Integer rating);
-    public  List<Feedback> findByReviewDateAndRating(LocalDate reviewDate, Integer rating);
+    public  List<FeedbackDTO> findByReviewDate(LocalDate reviewDate);
+    public  List<FeedbackDTO> findByRating(Integer rating);
+    public  List<FeedbackDTO> findByReviewDateAndRating(LocalDate reviewDate, Integer rating);
 }

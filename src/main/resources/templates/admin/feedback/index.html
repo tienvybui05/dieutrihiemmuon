@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/admin/css/bootstrap.css}">
+
+    <link rel="stylesheet" th:href="@{/admin/vendors/iconly/bold.css}">
+
+    <link rel="stylesheet" th:href="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap-icons/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/admin/css/app.css}">
+    <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
+    <link rel="stylesheet"  th:href="@{/admin/vendors/simple-datatables/style.css}">
+    <style>
+        .admin-them {
+            display: inline-block;
+            background-color: #435ebe;
+            color: white;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .admin-them:hover {
+            background-color: #435ebe;
+        }
+
+        .admin-hanh-dong a {
+            display: inline-block;
+            padding: 5px 8px;
+            margin: 4px 1px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+
+        .admin-sua {
+            background-color: #00c3b7;
+
+        }
+
+        .admin-sua:hover {
+            background-color: #94dcc2;
+        }
+
+        .admin-chi-tiet {
+            background-color: #b700c1;
+
+        }
+
+        .admin-chi-tiet:hover {
+            background-color: #c0f8cf;
+        }
+
+        .admin-xoa {
+            background-color: #f33643;
+
+        }
+
+        .admin-xoa:hover {
+            background-color: #f6c9cc;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <!--    Thêm sidebar-->
+    <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
+
+    <div id="main">
+        <!--        Thêm header-->
+        <div th:replace="layout/admin/header :: headerAdminFragment"></div>
+
+        <div class="page-heading">
+            <h3>Quản lý Feedback</h3>
+        </div>
+        <div class="page-content">
+            <section class="section">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="admin-them" th:href="@{/admin/feedback/create}">Thêm đánh giá</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Khách hàng đánh giá</th>
+                                <th>Gói dịch vụ</th>
+                                <th>Nội dung đánh giá</th>
+                                <th>Ngày đánh giá</th>
+                                <th>Số sao</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="feedbackDTO : ${FeedbackDTOs}">
+                                <td th:text="${feedbackDTO.idFeedback}"></td>
+<!--                                 khách hàng đáng giá-->
+<!--                                 gói dịch vụ được đánh giá-->
+                                <td th:text="${feedbackDTO.reviewText}"></td>
+                                <td th:text="${feedbackDTO.reviewDate}"></td>
+                                <td th:text="${feedbackDTO.rating}"></td>
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-sua" th:href="@{/admin/feedback/edit/{id}(id=${feedbackDTO.getIdFeedback()})}">Sửa</a>
+                                    <a class="admin-chi-tiet" th:href="@{/admin/feedback/detail/{id}(id=${feedbackDTO.getIdFeedback()})}">Chi tiết</a>
+                                    <a class="admin-xoa"
+                                       th:href="@{/admin/feedback/delete/{id}(id=${feedbackDTO.getIdFeedback()})}"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa dịch vụ này không?');">
+                                        Xóa
+                                    </a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+
+        <!--        Thêm footer-->
+        <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
+
+    </div>
+</div>
+
+{% block js %}
+<script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
+<script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}
+<script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/admin/js/pages/dashboard.js}"></script>
+
+<script th:src="@{/admin/js/main.js}"></script>
+</body>
+
+</html>

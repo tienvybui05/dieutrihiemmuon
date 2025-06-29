@@ -68,6 +68,7 @@ public class SecurityConfig {
                         .requestMatchers("/workscheduledoctor"
                                         ,"/treatmentcycledoctor").hasRole("DOCTOR")
                         .requestMatchers("/profile").hasAnyRole("CUSTOMER", "DOCTOR")
+                        .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
                             .loginPage("/login")

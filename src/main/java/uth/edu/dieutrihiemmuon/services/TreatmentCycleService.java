@@ -3,11 +3,15 @@ package uth.edu.dieutrihiemmuon.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
+
+import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.*;
 import uth.edu.dieutrihiemmuon.repositories.IServicePackageRepository;
 import uth.edu.dieutrihiemmuon.repositories.ITreatmentCycleRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TreatmentCycleService implements  ITreatmentCycleService {
@@ -83,6 +87,34 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
         }
     }
 
+    @Override
+    public List<WorkscheduledoctorDTO> getWorkscheduledoctor() {
+        try{
+            List<TreatmentCycle> treatmentCycles = treatmentCycleRepository.findAll();
+            List<WorkscheduledoctorDTO> wsd = new ArrayList<WorkscheduledoctorDTO>();
+            for(TreatmentCycle treatmentCycle : treatmentCycles) {
+                WorkscheduledoctorDTO workscheduledoctorDTO = new WorkscheduledoctorDTO(treatmentCycle);
+                wsd.add(workscheduledoctorDTO);
+            }
+            return  wsd;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean updateGeneralNotes(long id, String notes) {
+        try {
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            treatmentCycle.setGeneralNotes(notes);
+            treatmentCycleRepository.save(treatmentCycle);
+            return true;
+        }
+       catch (Exception e) {
+           System.out.println("Lỗi khi ghi chú" + e);
+           return false;
+       }
+    }
 
 
 }

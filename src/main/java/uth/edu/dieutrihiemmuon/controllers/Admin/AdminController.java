@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import uth.edu.dieutrihiemmuon.dto.UserDTO;
 import uth.edu.dieutrihiemmuon.models.User;
-import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 import uth.edu.dieutrihiemmuon.services.IUserService;
 
 @Controller

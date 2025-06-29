@@ -6,16 +6,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
 import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
 import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
+
+import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.services.CustomerService;
 import uth.edu.dieutrihiemmuon.services.DoctorService;
@@ -134,7 +133,17 @@ public class HomeController {
     @GetMapping("/treatmentschedulecustomer")
     public String treatmentschedulecustomer() { return "customer/treatmentschedule";}
     @GetMapping("/workscheduledoctor")
-    public String workscheduledoctor() { return "customer/doctor/workschedule";}
+    public String workscheduledoctor(Model model) {
+        List<WorkscheduledoctorDTO> wsd = treatmentCycleService.getWorkscheduledoctor();
+        model.addAttribute("scheduleList", wsd);
+        return "customer/doctor/workschedule";
+    }
+    @PostMapping("/saveGeneralNotes")
+    public String saveGeneralNotes(@RequestParam Long id, @RequestParam String note) {
+        treatmentCycleService.updateGeneralNotes(id, note);
+        return "redirect:/workscheduledoctor";
+
+    }
     @GetMapping("/treatmentcycledoctor")
     public String treatmentcycledoctor() { return "customer/doctor/treatmentcycle";}
     @GetMapping("/profile")

@@ -1,11 +1,14 @@
 package uth.edu.dieutrihiemmuon.dto;
 
 import jakarta.persistence.Column;
+import uth.edu.dieutrihiemmuon.models.TreatmentCycle;
+import uth.edu.dieutrihiemmuon.models.TreatmentSession;
 
 import java.time.LocalDate;
 
 public class TreatmentSessionDoctorDTO {
 
+    private long idTreatmentCycle;
     private long idTreatmentTimes;
 
     private int treatmentTime;
@@ -16,6 +19,25 @@ public class TreatmentSessionDoctorDTO {
 
     private String treatmentStatus;
 
+    public TreatmentSessionDoctorDTO() {}
+    public TreatmentSessionDoctorDTO(TreatmentSession treatmentSession)
+    {
+        TreatmentCycle treatmentCycle = treatmentSession.getTreatmentCycle();
+        this.idTreatmentCycle = treatmentCycle.getIdTreatmentCycle();
+        this.idTreatmentTimes = treatmentSession.getIdTreatmentTimes();
+        this.treatmentTime = treatmentSession.getTreatmentTime();
+        this.treatmentDay = treatmentSession.getTreatmentDay();
+        this.note = treatmentSession.getNote();
+        this.treatmentStatus = treatmentSession.getTreatmentStatus();
+    }
+
+    public long getIdTreatmentCycle() {
+        return idTreatmentCycle;
+    }
+
+    public void setIdTreatmentCycle(long idTreatmentCycle) {
+        this.idTreatmentCycle = idTreatmentCycle;
+    }
 
     public long getIdTreatmentTimes() {
         return idTreatmentTimes;

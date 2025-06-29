@@ -10,16 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
-import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
-import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
+import uth.edu.dieutrihiemmuon.dto.*;
 
-import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.User;
-import uth.edu.dieutrihiemmuon.services.CustomerService;
-import uth.edu.dieutrihiemmuon.services.DoctorService;
-import uth.edu.dieutrihiemmuon.services.ServicePackageService;
-import uth.edu.dieutrihiemmuon.services.TreatmentCycleService;
+import uth.edu.dieutrihiemmuon.services.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -36,6 +30,8 @@ public class HomeController {
     @Autowired
     private TreatmentCycleService treatmentCycleService;
 
+    @Autowired
+    private ITreatmentSessionService treatmentSessionService;
 //    @GetMapping("/")
 //    public String index() {
 //        return "customer/index";  // đúng đường dẫn tới file
@@ -133,8 +129,11 @@ public class HomeController {
     @GetMapping("/treatmentschedulecustomer")
     public String treatmentschedulecustomer() { return "customer/treatmentschedule";}
     @GetMapping("/workscheduledoctor")
-    public String workscheduledoctor(Model model) {
-        List<WorkscheduledoctorDTO> wsd = treatmentCycleService.getWorkscheduledoctor();
+    public String workscheduledoctor(Model model,Authentication authentication ) {
+        String username = authentication.getName();
+        User user = customerService.findByUsername(username);
+        long idDoctor = user.getDoctor().getIdDoctor();
+        List<WorkscheduledoctorDTO> wsd = treatmentCycleService.getWorkscheduledoctor(idDoctor);
         model.addAttribute("scheduleList", wsd);
         return "customer/doctor/workschedule";
     }
@@ -144,8 +143,13 @@ public class HomeController {
         return "redirect:/workscheduledoctor";
 
     }
-    @GetMapping("/treatmentcycledoctor")
-    public String treatmentcycledoctor() { return "customer/doctor/treatmentcycle";}
+
+    @GetMapping("/treatmentcycledoctor/{id}")
+    public String treatmentcycledoctor(@PathVariable long id,Model model) {
+        List<TreatmentSessionDoctorDTO> tsd = treatmentSessionService.getTreatmentSessions(id);
+        model.addAttribute("sessionList", tsd);
+        return "customer/doctor/treatmentcycle";
+    }
     @GetMapping("/profile")
     public String profile() { return "customer/profile";}
 

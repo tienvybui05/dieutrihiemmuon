@@ -208,7 +208,7 @@
                 </td>
                 <td th:text="${wsd.generalNotes}"></td>
                 <td>
-                    <a href="#">Xem</a>
+                    <a th:href="@{/treatmentcycledoctor/{id}(id=${wsd.getIdSchedule()})}">Xem</a>
                 </td>
                 <td>
                     <button type="button"

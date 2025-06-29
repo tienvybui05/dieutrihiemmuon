@@ -8,6 +8,7 @@ import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.*;
 import uth.edu.dieutrihiemmuon.repositories.IServicePackageRepository;
 import uth.edu.dieutrihiemmuon.repositories.ITreatmentCycleRepository;
+import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
     @Autowired
     private IServicePackageRepository servicePackageRepository;
 
+    @Autowired
+    private IUserRepository userRepository;
     // implementation
     @Override
     public boolean addAppointment(Long serviceId, Long doctorId, LocalDate startDate, Long userId) {
@@ -88,9 +91,10 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
     }
 
     @Override
-    public List<WorkscheduledoctorDTO> getWorkscheduledoctor() {
+    public List<WorkscheduledoctorDTO> getWorkscheduledoctor(long id) {
         try{
-            List<TreatmentCycle> treatmentCycles = treatmentCycleRepository.findAll();
+
+            List<TreatmentCycle> treatmentCycles = treatmentCycleRepository.findByDoctorTreatmentCycle_IdDoctor(id);
             List<WorkscheduledoctorDTO> wsd = new ArrayList<WorkscheduledoctorDTO>();
             for(TreatmentCycle treatmentCycle : treatmentCycles) {
                 WorkscheduledoctorDTO workscheduledoctorDTO = new WorkscheduledoctorDTO(treatmentCycle);

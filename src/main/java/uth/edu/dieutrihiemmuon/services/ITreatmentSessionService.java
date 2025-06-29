@@ -6,5 +6,5 @@ import uth.edu.dieutrihiemmuon.models.TreatmentSession;
 import java.util.List;
 
 public interface ITreatmentSessionService {
-    public List<TreatmentSessionDoctorDTO> getTreatmentSessions();
+    public List<TreatmentSessionDoctorDTO> getTreatmentSessions(long id);
 }

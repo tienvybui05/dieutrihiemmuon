@@ -5,22 +5,23 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import uth.edu.dieutrihiemmuon.dto.UserDTO;
 import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
+import uth.edu.dieutrihiemmuon.services.IUserService;
 
 @Controller
 public class AdminController {
 
     @Autowired
-    private IUserRepository userRepository;
+    private IUserService userService;
 
     @GetMapping("/admin")
     public String index(Authentication authentication, Model model) {
-
         String username = authentication.getName();
-        User user = userRepository.findByUserName(username);
-        model.addAttribute("user", user);
-        return "admin/index";  // đúng đường dẫn tới file
+        UserDTO userDTO = userService.getUserByUserName(username);
+        model.addAttribute("user", userDTO);
+        return "admin/index";
     }
 
 

@@ -35,8 +35,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/employee/index",
                                 "/admin/employee/create",
                                 "/admin/employee/edit",
-                                "/admin/employee/delete",
-                                "/admin/servicepackage/**").hasRole("ADMIN")
+                                "/admin/employee/delete").hasRole("ADMIN")
                         .anyRequest().hasAnyRole("ADMIN","EMPLOYEE")
                 )
                 .formLogin(form -> form

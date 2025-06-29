@@ -38,4 +38,22 @@ public class TreatmentSessionService implements ITreatmentSessionService {
             return Collections.emptyList();
         }
     }
+
+    @Override
+    public boolean updateTreatmentSessionDTO(TreatmentSessionDoctorDTO dto) {
+        try {
+            TreatmentSession treatmentSession = treatmentSessionRepository.findById(dto.getIdTreatmentTimes()).orElse(null);
+            if (treatmentSession == null) {
+                return false;
+            }
+            treatmentSession.setTreatmentDay(dto.getTreatmentDay());
+            treatmentSession.setNote(dto.getNote());
+            treatmentSession.setTreatmentStatus(dto.getTreatmentStatus());
+            treatmentSessionRepository.save(treatmentSession);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Lỗi khi update buổi điều trị"+e);
+            return false;
+        }
+    }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ITreatmentSessionService {
     public List<TreatmentSessionDoctorDTO> getTreatmentSessions(long id);
+    public boolean updateTreatmentSessionDTO( TreatmentSessionDoctorDTO dto);
 }

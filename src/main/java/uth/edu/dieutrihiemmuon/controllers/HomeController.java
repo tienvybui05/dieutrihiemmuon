@@ -22,13 +22,13 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private CustomerService customerService;
+    private ICustomerService customerService;
     @Autowired
-    private ServicePackageService servicePackageService;
+    private IServicePackageService servicePackageService;
     @Autowired
-    private DoctorService doctorService;
+    private IDoctorService doctorService;
     @Autowired
-    private TreatmentCycleService treatmentCycleService;
+    private ITreatmentCycleService treatmentCycleService;
 
     @Autowired
     private ITreatmentSessionService treatmentSessionService;
@@ -147,8 +147,19 @@ public class HomeController {
     @GetMapping("/treatmentcycledoctor/{id}")
     public String treatmentcycledoctor(@PathVariable long id,Model model) {
         List<TreatmentSessionDoctorDTO> tsd = treatmentSessionService.getTreatmentSessions(id);
+        TreatmentSessionDoctorDTO treatmentSessionDoctorDTO = new TreatmentSessionDoctorDTO();
+        model.addAttribute("treatmentSession", treatmentSessionDoctorDTO);
         model.addAttribute("sessionList", tsd);
         return "customer/doctor/treatmentcycle";
+    }
+
+    @PostMapping("/treatmentcycledoctor")
+    public String treatmentcycledoctorUpdate(@ModelAttribute("treatmentSession") TreatmentSessionDoctorDTO treatmentSessionDoctorDTO
+            , Model model) {
+        treatmentSessionService.updateTreatmentSessionDTO(treatmentSessionDoctorDTO);
+
+        return "redirect:/treatmentcycledoctor/" + treatmentSessionDoctorDTO.getIdTreatmentCycle();
+
     }
     @GetMapping("/profile")
     public String profile() { return "customer/profile";}

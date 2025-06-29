@@ -190,7 +190,15 @@
 
                 <tr th:each="buoi : ${sessionList}">
                     <td><div class="check-buoi-dieu-tri">
-                        <input type="radio" name="chon-buoi-dieu-tri"/>
+                        <input type="radio"
+                               th:data-id = "${buoi.idTreatmentTimes}"
+                               th:data-idLich = "${buoi.idTreatmentCycle}"
+                               th:data-buoi="${buoi.treatmentTime}"
+                               th:data-ngay="${buoi.treatmentDay}"
+                               th:data-ghichu="${buoi.note}"
+                               th:data-trangthai="${buoi.treatmentStatus}"
+                               name="chon-buoi-dieu-tri"
+                                onclick="fillForm(this)"/>
                     </div>
                     </td>
                     <td th:text="${buoi.treatmentTime}"></td>
@@ -201,16 +209,19 @@
             </table>
         </div>
         <div class="cap-nhat-buoi-dieu-tri">
-            <form action="" method="post">
-                <span>Buổi điều trị: <span class="buoi">1</span></span>
+            <form th:action="@{/treatmentcycledoctor}" th:object="${treatmentSession}" method="post">
+                <input type="hidden" th:field="*{idTreatmentTimes}"  name="idTreatmentTimes"/>
+                <input type="hidden" th:field="*{idTreatmentCycle}" name="idTreatmentCycle"/>
+                <span>Buổi điều trị: <span id="treatmentTimeDisplay" class="buoi"></span></span>
+
                 <span>Ngày điều trị</span>
-                <input type="date">
+                <input type="date" name="treatmentDay" th:field="*{treatmentDay}">
                 <span>Ghi chú:</span>
-                <input type="text">
+                <input type="text" name="note" th:field="*{note}">
                 <span>Trạng thái:</span>
-                <select name="trangthai">
-                    <option value="dahoanthanh">Đã hoàn thành</option>
-                    <option value="chuahoanthanh">Chưa hoàn thành</option>
+                <select  name="treatmentStatus" th:field="*{treatmentStatus}" :>
+                    <option value="Đã thực hiện">Đã thực hiện</option>
+                    <option value="Chưa thực hiện">Chưa thực hiện</option>
                 </select>
                 <button type="submit">Cập nhật</button>
             </form>
@@ -230,7 +241,23 @@
 <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top">
     <i class="bi bi-arrow-up"></i>
 </a>
+<script>
+    function fillForm(radio){
+        const idTreatmentTimes = radio.getAttribute('data-id');
+        const idTreatmentCycle = radio.getAttribute('data-idLich');
+        const treatmentTime = radio.getAttribute('data-buoi');
+        const treatmentDay = radio.getAttribute('data-ngay');
+        const note = radio.getAttribute('data-ghichu');
+        const treatmentStatus = radio.getAttribute('data-trangthai');
 
+        document.querySelector('input[name="idTreatmentTimes"]').value = idTreatmentTimes;
+        document.querySelector('input[name="idTreatmentCycle"]').value = idTreatmentCycle;
+        document.getElementById('treatmentTimeDisplay').textContent = treatmentTime;
+        document.querySelector('input[name="treatmentDay"]').value = treatmentDay;
+        document.querySelector('input[name="note"]').value = note;
+        document.querySelector('select[name="treatmentStatus"]').value = treatmentStatus;
+    }
+</script>
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -91,146 +91,27 @@
         <div class="page-content">
             <section class="section">
                 <div class="card">
-                    <div class="card-header">
-                        <a class="admin-them" href="#">Thêm bác sĩ</a>
-                    </div>
                     <div class="card-body">
                         <table class="table table-striped" id="table1">
                             <thead>
                             <tr>
                                 <th>Tên</th>
                                 <th>Số điện thoại</th>
+                                <th>Ngày sinh</th>
                                 <th>Email</th>
+                                <th>Kinh nghiệm</th>
                                 <th>Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
+                            <tr th:each="doctorDTO : ${DoctorDTOs}">
+                                <td th:text="${doctorDTO.fullName}"></td>
+                                <td th:text="${doctorDTO.phoneNumber}"></td>
+                                <td th:text="${doctorDTO.dateOfBirth}"></td>
+                                <td th:text="${doctorDTO.email}"></td>
+                                <td th:text="${doctorDTO.experience}"></td>
                                 <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hẻ</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hẻ</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hẻ</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Đạt</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Đinh Quốc Hẻ</td>
-                                <td>076 4820 8838</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Chi tiết</a>
+                                    <a class="admin-chi-tiet" th:href="@{/admin/ScheduleManagement/ConfirmDoctorSchedule/{id}(id=${doctorDTO.getId_doctor()})}">Xem lịch chi tiết</a>
                                 </td>
                             </tr>
                             </tbody>

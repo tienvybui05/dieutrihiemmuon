@@ -54,12 +54,9 @@
                     <div class="card-header bg-light d-flex justify-content-between align-items-center">
                         <h5 class="mb-0 text-primary fw-bold">Lịch làm việc bác sĩ</h5>
                         <div class="text-end">
-        <span class="fw-bold text-dark me-3">
-            <i class="bi bi-person-badge text-primary"></i> Bác sĩ: <span class="text-primary">Bùi Tiến Vỹ</span>
-        </span>
-                            <span class="fw-bold text-dark">
-            <i class="bi bi-person text-success"></i> Bệnh nhân: <span class="text-success">Nguyễn Văn A</span>
-        </span>
+                                                <span class="fw-bold text-dark">
+                                <i class="bi bi-person text-success"></i> Bệnh nhân: <span class="text-success" th:text="${nameCustomer}">Nguyễn Văn A</span>
+                            </span>
                         </div>
                     </div>
 
@@ -67,38 +64,18 @@
                         <table class="table table-striped" id="table1">
                             <thead>
                             <tr>
-                                <th>Ngày</th>
-                                <th>Dịch vụ</th>
-                                <th>Mã DV</th>
                                 <th>Buổi</th>
+                                <th>Ngày</th>
                                 <th>Ghi chú</th>
                                 <th>Trạng thái</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Thứ 2 - 24/03/2025</td>
-                                <td>Khám tổng quát</td>
-                                <td>011111</td>
-                                <td>1</td>
-                                <td>Mang theo sổ khám</td>
-                                <td class="trang-thai">Hoàn thành</td>
-                            </tr>
-                            <tr>
-                                <td>Thứ 3 - 25/03/2025</td>
-                                <td>Tiêm nội tiết</td>
-                                <td>022222</td>
-                                <td>2</td>
-                                <td>Không ăn sáng</td>
-                                <td class="trang-thai">Chưa thực hiện</td>
-                            </tr>
-                            <tr>
-                                <td>Thứ 5 - 27/03/2025</td>
-                                <td>Tiêm nội tiết</td>
-                                <td>022222</td>
-                                <td>2</td>
-                                <td>Ăn sáng</td>
-                                <td class="trang-thai">Chưa thực hiện</td>
+                            <tr th:each="buoi : ${sessionList}">
+                                <td th:text="${buoi.treatmentTime}"></td>
+                                <td th:text="${buoi.treatmentDay}"></td>
+                                <td th:text="${buoi.note}"></td>
+                                <td th:text="${buoi.treatmentStatus}"></td>
                             </tr>
                             </tbody>
                         </table>

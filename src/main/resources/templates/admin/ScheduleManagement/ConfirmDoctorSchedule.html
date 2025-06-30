@@ -69,9 +69,7 @@
                                 <th>Dịch vụ</th>
                                 <th>Giá</th>
                                 <th>Ngày đặt</th>
-                                <th>Ngày bắt đầu</th>
                                 <th>Xác nhận</th>
-                                <th>Thanh toán</th>
                                 <th>Thực hiện</th>
                                 <th>Ghi chú</th>
                                 <th>Chu kỳ</th>
@@ -79,106 +77,32 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Nguyễn Văn A</td>
-                                <td>Tư vấn nội tiết</td>
-                                <td>1.200.000đ</td>
-                                <td>20/06/2025</td>
-                                <td>22/06/2025</td>
-                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                                <td>Đang thực hiện</td>
-                                <td>Ổn định</td>
+                            <tr th:each="wsd : ${scheduleList}">
+                                <td th:text="${wsd.nameCustomer}"></td>
+                                <td  th:text="${wsd.nameService}"></td>
+                                <td  th:text="${wsd.price}"></td>
+                                <td  th:text="${wsd.serviceBookingDate}"></td>
+                                <td class="trang-thai-xac-nhan"
+                                    th:text="${wsd.confirmationStatus}"
+                                    th:classappend="${wsd.confirmationStatus == 'Đã xác nhận'} ? ' text-success' : ' text-danger'">
+                                </td>
+                                <td class="trang-thai-hoan-thanh"
+                                    th:text="${wsd.executionStatus}"
+                                    th:classappend="${wsd.executionStatus == 'Đã thực hiện'} ? ' text-success' : ' text-danger'">
+                                </td>
+                                <td th:text="${wsd.generalNotes}"></td>
                                 <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xem</a>
+                                    <a class="admin-chi-tiet" th:href="@{/admin/ScheduleManagement/DetailDoctorScheduleManagement/{id}(id=${wsd.getIdSchedule()})}">Xem</a>
                                 </td>
                                 <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nguyễn Văn A</td>
-                                <td>Tư vấn nội tiết</td>
-                                <td>1.200.000đ</td>
-                                <td>20/06/2025</td>
-                                <td>22/06/2025</td>
-                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                                <td>Đang thực hiện</td>
-                                <td>Ổn định</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xem</a>
-                                </td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nguyễn Văn A</td>
-                                <td>Tư vấn nội tiết</td>
-                                <td>1.200.000đ</td>
-                                <td>20/06/2025</td>
-                                <td>22/06/2025</td>
-                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                                <td>Đang thực hiện</td>
-                                <td>Ổn định</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xem</a>
-                                </td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nguyễn Văn A</td>
-                                <td>Tư vấn nội tiết</td>
-                                <td>1.200.000đ</td>
-                                <td>20/06/2025</td>
-                                <td>22/06/2025</td>
-                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                                <td>Đang thực hiện</td>
-                                <td>Ổn định</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xem</a>
-                                </td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nguyễn Văn A</td>
-                                <td>Tư vấn nội tiết</td>
-                                <td>1.200.000đ</td>
-                                <td>20/06/2025</td>
-                                <td>22/06/2025</td>
-                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                                <td>Đang thực hiện</td>
-                                <td>Ổn định</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xem</a>
-                                </td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nguyễn Văn A</td>
-                                <td>Tư vấn nội tiết</td>
-                                <td>1.200.000đ</td>
-                                <td>20/06/2025</td>
-                                <td>22/06/2025</td>
-                                <td class="trang-thai-xac-nhan">Đã xác nhận</td>
-                                <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-                                <td>Đang thực hiện</td>
-                                <td>Ổn định</td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xem</a>
-                                </td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-chi-tiet" href="#">Xác nhận</a>
+                                    <form th:action="@{/admin/ScheduleManagement/ConfirmDoctorSchedule/{id}(id=${wsd.getIdSchedule()})}" method="post">
+                                        <input type="hidden" name="doctorId" th:value="${wsd.getIdDoctor()}" />
+                                        <button type="submit"
+                                                class="btn btn-sm btn-outline-success"
+                                                th:disabled="${wsd.confirmationStatus == 'Đã xác nhận'}">
+                                            Xác nhận
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             </tbody>

@@ -11,6 +11,7 @@ public interface ITreatmentCycleService {
     public List<WorkscheduledoctorDTO> getWorkscheduledoctor(long id);
     public boolean updateGeneralNotes(long id ,String notes);
     public List<WorkscheduledoctorDTO> getTreatmentScheduleCustomer(long id);
-
+    public String getNameCustomerToTreatmentCycle(long id);
+    public boolean updateConfirmationStatus(long id);
 }
 

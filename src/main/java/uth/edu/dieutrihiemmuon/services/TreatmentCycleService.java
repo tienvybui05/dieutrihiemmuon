@@ -140,4 +140,24 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
        }
    }
 
+    @Override
+    public String getNameCustomerToTreatmentCycle(long id) {
+        TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+        return treatmentCycle.getUserTreatmentCycle().getFullName();
+    }
+
+    @Override
+    public boolean updateConfirmationStatus(long id) {
+        try {
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            treatmentCycle.setConfirmationStatus("Đã xác nhận");
+            treatmentCycle.setExecutionStatus("Đang thực hiện");
+            treatmentCycleRepository.save(treatmentCycle);
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println("Lỗi" + e);
+            return false;
+        }
+    }
 }

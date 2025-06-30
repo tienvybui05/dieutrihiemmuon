@@ -9,8 +9,10 @@ import uth.edu.dieutrihiemmuon.models.User;
 import java.time.LocalDate;
 
 public class WorkscheduledoctorDTO {
+    private long idCustomer;
    private long idDoctor;
    private long idSchedule;
+   private String NameDoctor;
    private String NameCustomer;
    private String NameService;
    private double price;
@@ -24,10 +26,13 @@ public class WorkscheduledoctorDTO {
      public WorkscheduledoctorDTO(TreatmentCycle treatmentCycle)
      {
          Doctor doctor=  treatmentCycle.getDoctorTreatmentCycle();
+         User doctorUser = doctor.getUser();
          ServicePackage servicePackage =  treatmentCycle.getServiceTreatmentCycle();
          User user =  treatmentCycle.getUserTreatmentCycle();
+         this.idCustomer = user.getIdUser();
          this.idDoctor = doctor.getIdDoctor();
          this.idSchedule = treatmentCycle.getIdTreatmentCycle();
+         this.NameDoctor = doctorUser.getFullName();
          this.NameCustomer = user.getFullName();
          this.NameService = servicePackage.getServiceName();
          this.price = servicePackage.getPrice();
@@ -44,6 +49,23 @@ public class WorkscheduledoctorDTO {
          }
 
      }
+
+    public long getIdCustomer() {
+        return idCustomer;
+    }
+
+    public void setIdCustomer(long idCustomer) {
+        this.idCustomer = idCustomer;
+    }
+
+    public String getNameDoctor() {
+        return NameDoctor;
+    }
+
+    public void setNameDoctor(String nameDoctor) {
+        NameDoctor = nameDoctor;
+    }
+
     public long getIdDoctor() {
         return idDoctor;
     }

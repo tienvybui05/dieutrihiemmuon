@@ -10,6 +10,7 @@ public interface ITreatmentCycleService {
     boolean addAppointment(Long serviceId, Long doctorId, LocalDate startDate, Long userId);
     public List<WorkscheduledoctorDTO> getWorkscheduledoctor(long id);
     public boolean updateGeneralNotes(long id ,String notes);
+    public List<WorkscheduledoctorDTO> getTreatmentScheduleCustomer(long id);
 
 }
 

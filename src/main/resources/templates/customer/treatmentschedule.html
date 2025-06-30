@@ -153,143 +153,20 @@
         <th>Dịch vụ</th>
         <th>Giá</th>
         <th>Ngày đặt dịch vụ</th>
-        <th>Ngày bắt đầu</th>
         <th>Xác nhận</th>
-        <th>Thanh toán</th>
         <th>Thực hiện</th>
         <th>Ghi chú tổng quan</th>
         <th>Chu kì điều trị</th>
         <th>Hành động</th>
       </tr>
-      <tr>
-        <td>111111111111</td>
-        <td>1111111111111</td>
-        <td>11111111</td>
-        <td>11111111111</td>
-        <td>11111111111</td>
-        <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
-        <td class="trang-thai-thanh-toan">Đã thanh toán</td>
-        <td>1111111111</td>
-        <td>1111111111</td>
-        <td>
-          <a href="#">Xem</a>
-        </td>
-        <td>
-          <button type="button">Xử lý sau</button>
-        </td>
-      </tr>
-      <tr>
-        <td>111111111111</td>
-        <td>1111111111111</td>
-        <td>11111111</td>
-        <td>11111111111</td>
-        <td>11111111111</td>
-        <td class ="trang-thai-xac-nhan">Chưa xác nhận</td>
-        <td class ="trang-thai-thanh-toan">Chưa thanh toán</td>
-        <td>1111111111</td>
-        <td>1111111111</td>
-        <td>
-          <a href="#">Xem</a>
-        </td>
-        <td>
-          <button type="button">Xử lý sau</button>
-        </td>
-      </tr>
-      <tr>
-        <td>111111111111</td>
-        <td>1111111111111</td>
-        <td>11111111</td>
-        <td>11111111111</td>
-        <td>11111111111</td>
-        <td class ="trang-thai-xac-nhan">Chưa xác nhận</td>
-        <td class ="trang-thai-thanh-toan" >Chưa thanh toán</td>
-        <td>1111111111</td>
-        <td>1111111111</td>
-        <td>
-          <a href="#">Xem</a>
-        </td>
-        <td>
-          <button type="button">Xử lý sau</button>
-        </td>
-      </tr>
-      <tr>
-        <td>111111111111</td>
-        <td>1111111111111</td>
-        <td>11111111</td>
-        <td>11111111111</td>
-        <td>11111111111</td>
-        <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
-        <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
-        <td>1111111111</td>
-        <td>1111111111</td>
-        <td>
-          <a href="#">Xem</a>
-        </td>
-        <td>
-          <button type="button">Xử lý sau</button>
-        </td>
-      </tr>
-      <tr>
-        <td>111111111111</td>
-        <td>1111111111111</td>
-        <td>11111111</td>
-        <td>11111111111</td>
-        <td>11111111111</td>
-        <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
-        <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
-        <td>1111111111</td>
-        <td>1111111111</td>
-        <td>
-          <a href="#">Xem</a>
-        </td>
-        <td>
-          <button type="button">Xử lý sau</button>
-        </td>
-      </tr>
-      <tr>
-        <td>111111111111</td>
-        <td>1111111111111</td>
-        <td>11111111</td>
-        <td>11111111111</td>
-        <td>11111111111</td>
-        <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
-        <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
-        <td>1111111111</td>
-        <td>1111111111</td>
-        <td>
-          <a href="#">Xem</a>
-        </td>
-        <td>
-          <button type="button">Xử lý sau</button>
-        </td>
-      </tr>
-      <tr>
-        <td>111111111111</td>
-        <td>1111111111111</td>
-        <td>11111111</td>
-        <td>11111111111</td>
-        <td>11111111111</td>
-        <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
-        <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
-        <td>1111111111</td>
-        <td>1111111111</td>
-        <td>
-          <a href="#">Xem</a>
-        </td>
-        <td>
-          <button type="button">Xử lý sau</button>
-        </td>
-      </tr>
-      <tr>
-        <td>111111111111</td>
-        <td>1111111111111</td>
-        <td>11111111</td>
-        <td>11111111111</td>
-        <td>11111111111</td>
-        <td class ="trang-thai-xac-nhan">Đã xác nhận</td>
-        <td class ="trang-thai-thanh-toan">Đã thanh toán</td>
-        <td>1111111111</td>
-        <td>1111111111</td>
+      <tr th:each=" cycle : ${scheduleList}">
+        <td th:text="${cycle.nameDoctor}"></td>
+        <td th:text="${cycle.nameService}"></td>
+        <td th:text="${cycle.price}"></td>
+        <td th:text="${cycle.serviceBookingDate}"></td>
+        <td class ="trang-thai-xac-nhan" th:text="${cycle.confirmationStatus}">Đã xác nhận</td>
+        <td th:text="${cycle.executionStatus}"></td>
+        <td th:text="${cycle.generalNotes}"></td>
         <td>
           <a href="#">Xem</a>
         </td>
@@ -299,9 +176,6 @@
       </tr>
     </table>
 
-  </div>
-  <div class="quay-ve-lịch-lam">
-    <a href="#">Quay về</a>
   </div>
   <!-- Navbar & Carousel End -->
 </main>

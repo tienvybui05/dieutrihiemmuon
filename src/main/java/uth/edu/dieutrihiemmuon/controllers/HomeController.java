@@ -127,7 +127,14 @@ public class HomeController {
     @GetMapping("/treatmentcyclecustomer")
     public String treatmentcyclecustomer() { return "customer/treatmentcycle";}
     @GetMapping("/treatmentschedulecustomer")
-    public String treatmentschedulecustomer() { return "customer/treatmentschedule";}
+    public String treatmentschedulecustomer(Model model,Authentication authentication) {
+
+        String username = authentication.getName();
+        User user = customerService.findByUsername(username);
+        List<WorkscheduledoctorDTO> wsd = treatmentCycleService.getTreatmentScheduleCustomer(user.getIdUser());
+        model.addAttribute("scheduleList", wsd);
+        return "customer/treatmentschedule";
+    }
     @GetMapping("/workscheduledoctor")
     public String workscheduledoctor(Model model,Authentication authentication ) {
         String username = authentication.getName();

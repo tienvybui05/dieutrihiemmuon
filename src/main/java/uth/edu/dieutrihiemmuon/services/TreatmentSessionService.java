@@ -43,6 +43,8 @@ public class TreatmentSessionService implements ITreatmentSessionService {
     public boolean updateTreatmentSessionDTO(TreatmentSessionDoctorDTO dto) {
         try {
             TreatmentSession treatmentSession = treatmentSessionRepository.findById(dto.getIdTreatmentTimes()).orElse(null);
+            long id = treatmentSession.getTreatmentCycle().getIdTreatmentCycle();
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
             if (treatmentSession == null) {
                 return false;
             }
@@ -50,6 +52,20 @@ public class TreatmentSessionService implements ITreatmentSessionService {
             treatmentSession.setNote(dto.getNote());
             treatmentSession.setTreatmentStatus(dto.getTreatmentStatus());
             treatmentSessionRepository.save(treatmentSession);
+            List<TreatmentSession> treatmentSessions = treatmentSessionRepository.findByTreatmentCycle_idTreatmentCycle(id);
+            boolean check = true;
+            for(TreatmentSession treatmentSession2 : treatmentSessions) {
+                if(treatmentSession2.getTreatmentStatus().equals("Chưa thực hiện")){
+                    check = false;
+                }
+            }
+            if(check) {
+                treatmentCycle.setExecutionStatus("Đã thực hiện");
+            }
+            else {
+                treatmentCycle.setExecutionStatus("Chưa thực hiện");
+            }
+            treatmentCycleRepository.save(treatmentCycle);
             return true;
         } catch (Exception e) {
             System.out.println("Lỗi khi update buổi điều trị"+e);

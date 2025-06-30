@@ -72,10 +72,16 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
             // ✅ Tạo n TreatmentSession
             for (int i = 1; i <= numberOfSessions; i++) {
                 TreatmentSession session = new TreatmentSession();
+                if(i==1)
+                {
+                    session.setTreatmentDay(treatmentCycle.getStartDate());
+                }
+                else{
+                    session.setTreatmentDay(null);
+                }
                 session.setTreatmentTime(i);
-                session.setTreatmentStatus("Chưa hoàn thành");
+                session.setTreatmentStatus("Chưa thực hiện");
                 session.setNote(null);
-                session.setTreatmentDay(null);
                 session.setTreatmentCycle(treatmentCycle);
 
                 treatmentCycle.getTreatmentSessions().add(session);
@@ -119,6 +125,19 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
            return false;
        }
     }
+   public List<WorkscheduledoctorDTO> getTreatmentScheduleCustomer(long id){
+       try{
+           List<TreatmentCycle>  treatmentCycles= treatmentCycleRepository.findByUserTreatmentCycle_idUser(id);
+           List<WorkscheduledoctorDTO> workscheduledoctorDTOS = new ArrayList<WorkscheduledoctorDTO>();
+           for(TreatmentCycle treatmentCycle : treatmentCycles) {
+               WorkscheduledoctorDTO wsd = new WorkscheduledoctorDTO(treatmentCycle);
+               workscheduledoctorDTOS.add(wsd);
+           }
 
+           return workscheduledoctorDTOS;
+       } catch (Exception e) {
+           throw new RuntimeException("Lỗi khi lấy danh sách đi khám" + e);
+       }
+   }
 
 }

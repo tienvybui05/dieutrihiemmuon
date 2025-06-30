@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ITreatmentCycleRepository extends JpaRepository<TreatmentCycle,Long> {
     List<TreatmentCycle> findByDoctorTreatmentCycle_IdDoctor(Long idDoctor);
+    List<TreatmentCycle> findByUserTreatmentCycle_idUser(long idUser);
 }

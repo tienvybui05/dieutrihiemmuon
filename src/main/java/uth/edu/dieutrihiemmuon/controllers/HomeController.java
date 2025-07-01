@@ -124,8 +124,6 @@ public class HomeController {
     public String history() { return "customer/history";}
     @GetMapping("/payment")
     public String payment() { return "customer/payment";}
-    @GetMapping("/treatmentcyclecustomer")
-    public String treatmentcyclecustomer() { return "customer/treatmentcycle";}
     @GetMapping("/treatmentschedulecustomer")
     public String treatmentschedulecustomer(Model model,Authentication authentication) {
 
@@ -134,6 +132,19 @@ public class HomeController {
         List<WorkscheduledoctorDTO> wsd = treatmentCycleService.getTreatmentScheduleCustomer(user.getIdUser());
         model.addAttribute("scheduleList", wsd);
         return "customer/treatmentschedule";
+    }
+    @GetMapping("/treatmentcyclecustomer/{id}")
+    public String treatmentcyclecustomer(@PathVariable long id,Model model) {
+        List<TreatmentSessionDoctorDTO> tsd = treatmentSessionService.getTreatmentSessions(id);
+        TreatmentSessionDoctorDTO treatmentSessionDoctorDTO = new TreatmentSessionDoctorDTO();
+        model.addAttribute("sessionList", tsd);
+        return "customer/treatmentcycle";
+
+    }
+    @PostMapping("/cancelSchedule")
+    public String cancelSchedule(@RequestParam("id") Long id) {
+        treatmentCycleService.deleteTreatmentCycle(id);
+        return "redirect:/treatmentschedulecustomer";
     }
     @GetMapping("/workscheduledoctor")
     public String workscheduledoctor(Model model,Authentication authentication ) {

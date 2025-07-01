@@ -160,4 +160,17 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
             return false;
         }
     }
+
+    @Override
+    public boolean deleteTreatmentCycle(long id) {
+        try {
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            treatmentCycleRepository.delete(treatmentCycle);
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println("Hủy lịch không thành công"+e);
+            return false;
+        }
+    }
 }

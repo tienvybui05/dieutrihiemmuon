@@ -91,10 +91,13 @@
     }
 
     .bang-lich-lam a:hover {
-      background-color: #0b5ed7; /* Màu xanh hover đậm hơn */
+      background-color: #01cdb6; /* Màu xanh hover đậm hơn */
       text-decoration: none;
     }
-
+    .hanh-dong{
+      display: flex;
+      justify-content: center;
+    }
     .bang-lich-lam button {
       background-color:#06A3DA; /* Bootstrap success green */
       color: white;
@@ -109,6 +112,23 @@
 
     .bang-lich-lam button:hover {
       background-color: #01cdb6;
+    }
+    .form-huy-lich button{
+      margin-left: 5px;
+      background-color: #ffffff; /* Bootstrap success green */
+      color: red;
+      border: none;
+      padding: 6px 14px;
+      font-size: 13px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid red;
+    }
+    .form-huy-lich button:hover{
+      background-color: red;
+      color: #FFFFFF;
     }
     .quay-ve-lịch-lam {
       text-align: center;
@@ -157,21 +177,30 @@
         <th>Thực hiện</th>
         <th>Ghi chú tổng quan</th>
         <th>Chu kì điều trị</th>
-        <th>Hành động</th>
+        <th></th>
       </tr>
       <tr th:each=" cycle : ${scheduleList}">
         <td th:text="${cycle.nameDoctor}"></td>
         <td th:text="${cycle.nameService}"></td>
         <td th:text="${cycle.price}"></td>
         <td th:text="${cycle.serviceBookingDate}"></td>
-        <td class ="trang-thai-xac-nhan" th:text="${cycle.confirmationStatus}">Đã xác nhận</td>
-        <td th:text="${cycle.executionStatus}"></td>
+        <td class ="trang-thai-xac-nhan"
+            th:text="${cycle.confirmationStatus}"
+            th:classappend="${cycle.confirmationStatus == 'Đã xác nhận'} ? ' text-success' : ' text-danger'"></td>
+        <td class="trang-thai-hoan-thanh"
+            th:text="${cycle.executionStatus}"
+            th:classappend="${cycle.executionStatus == 'Đã thực hiện'} ? ' text-success' : ' text-danger'">
+        </td>
         <td th:text="${cycle.generalNotes}"></td>
         <td>
-          <a href="#">Xem</a>
+          <a th:href="@{/treatmentcyclecustomer/{id}(id=${cycle.getIdSchedule()})}">Xem</a>
         </td>
-        <td>
-          <button type="button">Xử lý sau</button>
+        <td class="hanh-dong">
+<!--          <button type="button">Xử lý sau</button>-->
+          <form class="form-huy-lich" th:action="@{/cancelSchedule}" method="post" th:if="${cycle.confirmationStatus == 'Đang chờ xác nhận'}">
+            <input type="hidden" name="id" th:value="${cycle.getIdSchedule()}" />
+            <button type="submit">Hủy</button>
+          </form>
         </td>
       </tr>
     </table>

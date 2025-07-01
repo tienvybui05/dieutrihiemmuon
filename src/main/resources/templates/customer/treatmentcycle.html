@@ -9,7 +9,7 @@
     <meta name="description" content="Free HTML Templates">
 
     <!-- Favicon -->
-    <link th:href="@{customer/img/favicon.ico}" rel="icon">
+    <link th:href="@{/customer/img/favicon.ico}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,14 +22,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link th:href="@{customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
-    <link th:href="@{customer/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/customer/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/customer/lib/animate/animate.min.css}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link th:href="@{customer/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/customer/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link th:href="@{customer/css/style.css}" rel="stylesheet">
+    <link th:href="@{/customer/css/style.css}" rel="stylesheet">
     <style>
         .chu-ki-dieu-tri {
             width: 100%;
@@ -109,83 +109,17 @@
                     <th>Trạng thái</th>
                 </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri">Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri">Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>1111111111</td>
-                    <td>aaaaa</td>
-                    <td class="trang-thai-buoi-dieu-tri" >Hoàn thành</td>
+                <tr th:each="buoi :${sessionList}">
+                    <td th:text="${buoi.treatmentTime}"></td>
+                    <td th:text="${buoi.treatmentDay}"></td>
+                    <td th:text="${buoi.note}"></td>
+                    <td class="trang-thai-buoi-dieu-tri" th:text="${buoi.treatmentStatus}"></td>
                 </tr>
             </table>
         </div>
     </div>
     <div class="quay-ve-lịch-lam">
-        <a href="#">Quay về</a>
+        <a th:href="@{/treatmentschedulecustomer}">Quay về</a>
     </div>
     <!-- Navbar & Carousel End -->
 </main>
@@ -201,14 +135,14 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script th:src="@{customer/lib/wow/wow.min.js}"></script>
-<script th:src="@{customer/lib/easing/easing.min.js}"></script>
-<script th:src="@{customer/lib/waypoints/waypoints.min.js}"></script>
-<script th:src="@{customer/lib/counterup/counterup.min.js}"></script>
-<script th:src="@{customer/lib/owlcarousel/owl.carousel.min.js}"></script>
+<script th:src="@{/customer/lib/wow/wow.min.js}"></script>
+<script th:src="@{/customer/lib/easing/easing.min.js}"></script>
+<script th:src="@{/customer/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/customer/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{/customer/lib/owlcarousel/owl.carousel.min.js}"></script>
 
 <!-- Template Javascript -->
-<script th:src="@{customer/js/main.js}"></script>
+<script th:src="@{/customer/js/main.js}"></script>
 
 </body>
 </html>

@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uth.edu.dieutrihiemmuon.dto.CheckScheduleDTO;
 import uth.edu.dieutrihiemmuon.dto.TreatmentSessionDoctorDTO;
 import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.User;
@@ -24,8 +25,38 @@ public class DoctorScheduleController {
     @Autowired
     private ITreatmentCycleService treatmentCycleService;
 
+    @GetMapping("/workscheduledoctor")
+    public String workscheduleFilter(
+            @RequestParam(value = "filter", required = false, defaultValue = "all") String filter,
+            Model model,
+            Authentication authentication) {
+
+        String username = authentication.getName();
+        User user = customerService.findByUsername(username);
+        long idDoctor = user.getDoctor().getIdDoctor();
+
+        List<WorkscheduledoctorDTO> wsd;
+
+        if ("today".equalsIgnoreCase(filter)) {
+            wsd = treatmentCycleService.getTreatmentCycleToDay(idDoctor);
+        } else {
+            wsd = treatmentCycleService.getWorkscheduledoctor(idDoctor);
+        }
+        CheckScheduleDTO numberSchedule = treatmentCycleService.NumberOfExecutedAndUnexecutedSeriesInTheDay(idDoctor);
+        model.addAttribute("numberSchedule",numberSchedule);
+        model.addAttribute("scheduleList", wsd);
+        model.addAttribute("currentFilter", filter);
+        return "customer/doctor/workschedule";
+    }
+    @PostMapping("/saveGeneralNotes")
+    public String saveGeneralNotes(@RequestParam Long id, @RequestParam String note) {
+        treatmentCycleService.updateGeneralNotes(id, note);
+        return "redirect:/workscheduledoctor";
+
+    }
+
     @GetMapping("/treatmentcycledoctor/{id}")
-    public String treatmentcycledoctor(@PathVariable long id, Model model) {
+    public String treatmentcycledoctor(@PathVariable long id,Model model) {
         List<TreatmentSessionDoctorDTO> tsd = treatmentSessionService.getTreatmentSessions(id);
         TreatmentSessionDoctorDTO treatmentSessionDoctorDTO = new TreatmentSessionDoctorDTO();
         model.addAttribute("treatmentSession", treatmentSessionDoctorDTO);
@@ -39,22 +70,6 @@ public class DoctorScheduleController {
         treatmentSessionService.updateTreatmentSessionDTO(treatmentSessionDoctorDTO);
 
         return "redirect:/treatmentcycledoctor/" + treatmentSessionDoctorDTO.getIdTreatmentCycle();
-
-    }
-
-    @GetMapping("/workscheduledoctor")
-    public String workscheduledoctor(Model model, Authentication authentication ) {
-        String username = authentication.getName();
-        User user = customerService.findByUsername(username);
-        long idDoctor = user.getDoctor().getIdDoctor();
-        List<WorkscheduledoctorDTO> wsd = treatmentCycleService.getWorkscheduledoctor(idDoctor);
-        model.addAttribute("scheduleList", wsd);
-        return "customer/doctor/workschedule";
-    }
-    @PostMapping("/saveGeneralNotes")
-    public String saveGeneralNotes(@RequestParam Long id, @RequestParam String note) {
-        treatmentCycleService.updateGeneralNotes(id, note);
-        return "redirect:/workscheduledoctor";
 
     }
 

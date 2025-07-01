@@ -2,12 +2,14 @@ package uth.edu.dieutrihiemmuon.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uth.edu.dieutrihiemmuon.dto.CheckScheduleDTO;
 import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
 
 import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.*;
 import uth.edu.dieutrihiemmuon.repositories.IServicePackageRepository;
 import uth.edu.dieutrihiemmuon.repositories.ITreatmentCycleRepository;
+import uth.edu.dieutrihiemmuon.repositories.ITreatmentSessionRepository;
 import uth.edu.dieutrihiemmuon.repositories.IUserRepository;
 
 import java.time.LocalDate;
@@ -24,6 +26,8 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
 
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private ITreatmentSessionRepository sessionRepository;
     // implementation
     @Override
     public boolean addAppointment(Long serviceId, Long doctorId, LocalDate startDate, Long userId) {
@@ -172,5 +176,56 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
             System.out.println("Hủy lịch không thành công"+e);
             return false;
         }
+    }
+    @Override
+    public List<WorkscheduledoctorDTO> getTreatmentCycleToDay(long idDoctor) {
+        LocalDate today = LocalDate.now();
+
+        List<TreatmentCycle> treatmentCycles = treatmentCycleRepository.findByDoctorTreatmentCycle_IdDoctor(idDoctor);
+        List<WorkscheduledoctorDTO> wsd = new ArrayList<>();
+
+        for (TreatmentCycle treatmentCycle : treatmentCycles) {
+            List<TreatmentSession> treatmentSessions =
+                    sessionRepository.findByTreatmentCycle_idTreatmentCycle(treatmentCycle.getIdTreatmentCycle());
+
+            boolean hasTodaySession = false;
+
+            for (TreatmentSession session : treatmentSessions) {
+                if (session.getTreatmentDay() != null
+                        && session.getTreatmentDay().equals(today)) {
+                    hasTodaySession = true;
+                    break;
+                }
+            }
+
+            if (hasTodaySession) {
+                wsd.add(new WorkscheduledoctorDTO(treatmentCycle));
+            }
+        }
+
+        return wsd;
+    }
+
+    @Override
+    public CheckScheduleDTO NumberOfExecutedAndUnexecutedSeriesInTheDay(long id) {
+        int daThucHien = 0;
+        int lichTrongNgay = 0;
+        LocalDate today = LocalDate.now();
+
+        List<TreatmentCycle> treatmentCycles = treatmentCycleRepository.findByDoctorTreatmentCycle_IdDoctor(id);
+        for (TreatmentCycle treatmentCycle : treatmentCycles) {
+            List<TreatmentSession> treatmentSessions =
+                    sessionRepository.findByTreatmentCycle_idTreatmentCycle(treatmentCycle.getIdTreatmentCycle());
+            for (TreatmentSession session : treatmentSessions) {
+                if (session.getTreatmentDay() != null && session.getTreatmentDay().equals(today)) {
+                    lichTrongNgay++;
+                    if ("Đã thực hiện".equals(session.getTreatmentStatus())) {
+                        daThucHien++;
+                    }
+                }
+            }
+        }
+        CheckScheduleDTO checkScheduleDTO = new CheckScheduleDTO(lichTrongNgay-daThucHien,daThucHien,lichTrongNgay);
+        return checkScheduleDTO;
     }
 }

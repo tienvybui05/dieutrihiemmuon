@@ -14,7 +14,7 @@ import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
 import uth.edu.dieutrihiemmuon.services.ICustomerService;
 
 @Controller
-public class AuthController {
+public class CustomerAuthController {
     @Autowired
     private ICustomerService customerService;
 

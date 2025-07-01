@@ -1,5 +1,6 @@
 package uth.edu.dieutrihiemmuon.services;
 
+import uth.edu.dieutrihiemmuon.dto.CheckScheduleDTO;
 import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
 import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 
@@ -14,5 +15,7 @@ public interface ITreatmentCycleService {
     public String getNameCustomerToTreatmentCycle(long id);
     public boolean updateConfirmationStatus(long id);
     public boolean deleteTreatmentCycle(long id);
+    public List<WorkscheduledoctorDTO> getTreatmentCycleToDay(long id);
+    public CheckScheduleDTO NumberOfExecutedAndUnexecutedSeriesInTheDay(long id);
 }
 

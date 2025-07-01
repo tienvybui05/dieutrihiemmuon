@@ -12,7 +12,7 @@ import uth.edu.dieutrihiemmuon.services.IServicePackageService;
 import java.util.List;
 
 @Controller
-public class CustomerController {
+public class HomeCustomerController {
     @Autowired
     private ICustomerService customerService;
 

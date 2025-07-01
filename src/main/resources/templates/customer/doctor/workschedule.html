@@ -158,6 +158,64 @@
         .no-scroll {
             overflow: hidden;
         }
+        .tim-kiem-theo-ngay{
+            margin-bottom: 10px;
+
+        }
+        .loc-va-thong-tin{
+            display: flex;
+            justify-content: space-between;
+        }
+        .loc form select{
+            background-color:white; /* Bootstrap success green */
+            color: #06A3DA;
+            border: none;
+            padding: 8px 14px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            border: 1px solid #06A3DA;
+        }
+        .loc form select option{
+            background-color:white; /* Bootstrap success green */
+            color: #06A3DA;
+            border: none;
+            padding: 8px 14px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            border: 1px solid #06A3DA;
+        }
+        .loc form select option:hover{
+            background-color:#06A3DA;
+            color: white;
+        }
+        .loc form button{
+            background-color:#06A3DA; /* Bootstrap success green */
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .loc form button:hover{
+            background-color: #01cdb6;
+        }
+        .loc-va-thong-tin .thong-tin-lich-hom-nay{
+            margin-right: 30px;
+            padding: 0 10px;
+        }
+
     </style>
 
 </head>
@@ -180,8 +238,37 @@
     </div>
 
     <div class="lich-lam-viec-bac-si">
+        <div class="loc-va-thong-tin">
+            <div class="loc">
+                <form th:action="@{/workscheduledoctor}" method="get">
+                    <select name="filter">
+                        <option value="all" th:selected="${currentFilter == 'all'}">Hiện tất cả lịch</option>
+                        <option value="today" th:selected="${currentFilter == 'today'}">Lịch khám hôm nay</option>
+                    </select>
+                    <button type="submit">Tìm</button>
+                </form>
+            </div>
+            <div class="thong-tin-lich-hom-nay">
+                <label>Lịch khám hôm nay</label>
+                <ul>
+                    <li><div class="info-row">
+                        <label>Số lịch khám:</label>
+                        <span th:text="${numberSchedule.numberOfCalendarsPerDay}"></span>
+                    </div></li>
+                    <li><div class="info-row">
+                        <label>Số đã thực hiện:</label>
+                        <span th:text="${numberSchedule.done}"></span>
+                    </div></li>
+                    <li><div class="info-row">
+                        <label>Số chưa thực hiện:</label>
+                        <span th:text="${numberSchedule.notYetImplemented}"></span>
+                    </div></li>
+                </ul>
+            </div>
+        </div>
         <table class="bang-lich-lam">
             <tr>
+                <th>Mã lịch</th>
                 <th>Khách hàng</th>
                 <th>Dịch vụ</th>
                 <th>Giá</th>
@@ -193,6 +280,7 @@
                 <th></th>
             </tr>
             <tr th:each="wsd : ${scheduleList}">
+                <td th:text="${wsd.idSchedule}"></td>
                 <td th:text="${wsd.nameCustomer}"></td>
                 <td  th:text="${wsd.nameService}"></td>
                 <td  th:text="${wsd.price}"></td>

@@ -4,7 +4,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.dieutrihiemmuon.dto.FeedbackDTO;
-import uth.edu.dieutrihiemmuon.models.Feedback;
+import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
+import uth.edu.dieutrihiemmuon.models.*;
 import uth.edu.dieutrihiemmuon.repositories.IFeedbackRepository;
 
 import java.time.LocalDate;
@@ -46,8 +47,8 @@ public class FeedbackService implements IFeedbackService {
     }
 
     @Override
-    public boolean addFeedback(FeedbackDTO feedbackDTO) {
-        try {
+    public boolean addFeedback(Long serviceId,Long userId, String reviewText,Integer rating) {
+       /* try {
             Feedback feedback = new Feedback();
             feedback.setReviewText(feedbackDTO.getReviewText());
             feedback.setReviewDate(feedbackDTO.getReviewDate());
@@ -58,6 +59,34 @@ public class FeedbackService implements IFeedbackService {
             return true;
         } catch (RuntimeException e) {
             throw new RuntimeException("Lỗi khi thêm đánh giá: " + e.getMessage(), e);
+        }*/
+        try {
+            // Gan data vao DTO
+            FeedbackDTO feedbackDTO = new FeedbackDTO();
+            feedbackDTO.setServiceId(serviceId);
+            feedbackDTO.setUserId(userId);
+            feedbackDTO.setReviewText(reviewText);
+            feedbackDTO.setReviewDate(LocalDate.now());
+
+            // Chuyen data tu DTO -> Entity
+            Feedback feedback = new Feedback();
+
+            feedback.setReviewText(feedbackDTO.getReviewText());
+            feedback.setRating(feedbackDTO.getRating());
+            feedback.setReviewDate(feedbackDTO.getReviewDate());
+
+            ServicePackage service = new ServicePackage();
+            service.setIdService(feedbackDTO.getServiceId());
+            feedback.setServiceFeedback(service);
+
+            User user = new User();
+            user.setIdUser(feedbackDTO.getUserId());
+            feedback.setUserFeedback(user);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

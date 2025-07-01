@@ -1,9 +1,6 @@
 package uth.edu.dieutrihiemmuon.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
-
-import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.models.ServicePackage;
 
 public class ServicePackageDTO {

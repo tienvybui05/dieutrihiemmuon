@@ -32,7 +32,7 @@ public class FeedbackController {
         return "admin/feedback/create";
     }
 
-    @PostMapping("/admin/feedback/create")
+    /*@PostMapping("/admin/feedback/create")
     public String addFeedback(@Valid @ModelAttribute("FeedbackDTO") FeedbackDTO feedbackDTO , BindingResult result, Model model) {
 
         if (result.hasErrors()) {
@@ -48,7 +48,7 @@ public class FeedbackController {
         }
         return "redirect:/admin/feedback/index";
 
-    }
+    }*/
 
     @GetMapping("/admin/feedback/detail/{id}")
     public String adminfeedbackdetail(@PathVariable long id, Model model) {

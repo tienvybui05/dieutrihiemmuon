@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface IFeedbackService {
     public List<FeedbackDTO> getFeedbacks();
     public  FeedbackDTO getFeedback(long id);
-    public  boolean addFeedback(FeedbackDTO feedbackDTO);
+    public  boolean addFeedback(Long serviceId,Long userId, String reviewText,Integer rating);
     public  boolean updateFeedback(FeedbackDTO feedbackDTO);
     public  boolean deleteFeedback(long id);
     public  List<FeedbackDTO> findByReviewDate(LocalDate reviewDate);

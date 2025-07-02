@@ -9,7 +9,7 @@ import uth.edu.dieutrihiemmuon.dto.FeedbackDTO;
 import uth.edu.dieutrihiemmuon.services.FeedbackService;
 import java.util.List;
 
-@Controller
+@Controller("adminFeedbackController")
 public class FeedbackController {
     private final FeedbackService feedbackService;
 

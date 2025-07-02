@@ -47,26 +47,16 @@ public class FeedbackService implements IFeedbackService {
     }
 
     @Override
-    public boolean addFeedback(Long serviceId,Long userId, String reviewText,Integer rating) {
-       /* try {
-            Feedback feedback = new Feedback();
-            feedback.setReviewText(feedbackDTO.getReviewText());
-            feedback.setReviewDate(feedbackDTO.getReviewDate());
-            feedback.setRating(feedbackDTO.getRating());
+    public boolean addFeedback(Long serviceId,Long userId, Long treatmentCycleId, String reviewText,Integer rating) {
 
-            feedbackRepository.save(feedback);
-
-            return true;
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Lỗi khi thêm đánh giá: " + e.getMessage(), e);
-        }*/
-        try {
             // Gan data vao DTO
             FeedbackDTO feedbackDTO = new FeedbackDTO();
             feedbackDTO.setServiceId(serviceId);
             feedbackDTO.setUserId(userId);
+            feedbackDTO.setTreatmentCycleId(treatmentCycleId);
             feedbackDTO.setReviewText(reviewText);
             feedbackDTO.setReviewDate(LocalDate.now());
+            feedbackDTO.setRating(rating);
 
             // Chuyen data tu DTO -> Entity
             Feedback feedback = new Feedback();
@@ -83,11 +73,17 @@ public class FeedbackService implements IFeedbackService {
             user.setIdUser(feedbackDTO.getUserId());
             feedback.setUserFeedback(user);
 
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+        if (feedbackDTO.getTreatmentCycleId() != null) {
+            TreatmentCycle treatmentCycle = new TreatmentCycle();
+            treatmentCycle.setIdTreatmentCycle(feedbackDTO.getTreatmentCycleId());
+            feedback.setTreatmentCycleFeedback(treatmentCycle);
         }
+
+
+        feedbackRepository.save(feedback);
+
+            return true;
+
     }
 
 

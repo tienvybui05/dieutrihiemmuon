@@ -21,8 +21,8 @@ public class Feedback {
     private LocalDate reviewDate;
 
     @OneToOne
-    @JoinColumn(name = "id_treatmentCycle", nullable = false, unique = true)
-    private TreatmentCycle fb_treatmentCycle;
+    @JoinColumn(name = "id_treatmentCycle",nullable = true, unique = true)
+    private TreatmentCycle treatmentCycleFeedback;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_service")
@@ -86,4 +86,11 @@ public class Feedback {
     public void setServiceFeedback(ServicePackage serviceFeedback) {
         this.serviceFeedback = serviceFeedback;
     }
+
+    public TreatmentCycle getTreatmentCycleFeedback() {
+        return treatmentCycleFeedback;
+    }
+
+    public void setTreatmentCycleFeedback(TreatmentCycle treatmentCycleFeedback) { this.treatmentCycleFeedback = treatmentCycleFeedback; }
 }
+

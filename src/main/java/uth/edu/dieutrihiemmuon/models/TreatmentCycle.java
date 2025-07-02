@@ -46,7 +46,7 @@ public class TreatmentCycle {
     @OneToMany(mappedBy = "treatmentCycle",cascade = CascadeType.ALL)
     Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
 
-    @OneToOne(mappedBy = "fb_treatmentCycle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "treatmentCycleFeedback", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Feedback feedback;
 
     public TreatmentCycle() {

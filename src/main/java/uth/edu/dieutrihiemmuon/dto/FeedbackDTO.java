@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.models.Feedback;
+import uth.edu.dieutrihiemmuon.models.TreatmentCycle;
 
 import java.time.LocalDate;
 
@@ -23,6 +24,7 @@ public class FeedbackDTO {
     // Gán tự động trong controller/service
     private Long userId;
     private LocalDate reviewDate;
+    private Long treatmentCycleId;
 
 
     public FeedbackDTO() {}
@@ -31,13 +33,15 @@ public class FeedbackDTO {
         this.idFeedback = feedback.getIdFeedback();
         this.serviceId = feedback.getServiceFeedback().getIdService();
         this.userId = feedback.getUserFeedback().getIdUser();
+        this.treatmentCycleId = feedback.getTreatmentCycleFeedback().getIdTreatmentCycle();
         this.reviewText = feedback.getReviewText();
         this.rating = feedback.getRating();
         this.reviewDate = feedback.getReviewDate();
     }
-    public FeedbackDTO(Long idFeedback,Long serviceId,Long userID, String reviewText,Integer rating,LocalDate reviewDate) {
+    public FeedbackDTO(Long idFeedback,Long serviceId,Long userID, Long treatmentCycleId, String reviewText,Integer rating,LocalDate reviewDate) {
         this.idFeedback = idFeedback;
         this.serviceId = serviceId;
+        this.treatmentCycleId = treatmentCycleId;
         this.userId = userID;
         this.reviewText = reviewText;
         this.rating = rating;
@@ -55,6 +59,8 @@ public class FeedbackDTO {
     public Long getUserId() {
         return userId;
     }
+
+    public Long getTreatmentCycleId() {return treatmentCycleId; }
 
     public String getReviewText() {
         return reviewText;
@@ -79,6 +85,8 @@ public class FeedbackDTO {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    public void setTreatmentCycleId(Long treatmentCycleId) { this.treatmentCycleId = treatmentCycleId; }
 
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;

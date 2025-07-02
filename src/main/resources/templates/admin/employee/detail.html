@@ -104,43 +104,43 @@
                                 <div>
                                     <div class="info-row">
                                         <label>Họ và tên:</label>
-                                        <span th:text="${customer.fullName}"></span>
+                                        <span th:text="${employee.fullName}"></span>
                                     </div>
                                     <div class="info-row">
                                         <label>Ngày sinh:</label>
-                                        <span th:text="${customer.dateOfBirth}"></span>
+                                        <span th:text="${employee.dateOfBirth}"></span>
                                     </div>
                                     <div class="info-row">
                                         <label>Username:</label>
-                                        <span th:text="${customer.userName}"></span>
+                                        <span th:text="${employee.userName}"></span>
                                     </div>
                                     <div class="info-row">
                                         <label>Địa chỉ:</label>
-                                        <span th:text="${customer.address}"></span>
+                                        <span th:text="${employee.address}"></span>
                                     </div>
                                     <div class="info-row">
                                         <label>Email:</label>
-                                        <span th:text="${customer.email}"></span>
+                                        <span th:text="${employee.email}"></span>
                                     </div>
                                     <div class="info-row">
                                         <label>Số điện thoại:</label>
-                                        <span th:text="${customer.phoneNumber}"></span>
+                                        <span th:text="${employee.phoneNumber}"></span>
                                     </div>
                                     <div class="info-row">
                                         <label>Giới tính:</label>
-                                        <span th:text="${customer.gender}"></span>
+                                        <span th:text="${employee.gender}"></span>
                                     </div>
                                     <div class="info-row">
                                         <label>Vai trò:</label>
-                                        <span th:text="${customer.role}"></span>
+                                        <span th:text="${employee.role}"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="hinh-anh-bac-si">
-                                <img th:src="@{'/admin/images/faces/' + ${customer.image}}" alt="Ảnh">
+                                <img th:src="@{'/admin/images/faces/' + ${employee.image}}" alt="Ảnh">
                             </div>
                         </div>
-                        <a th:href="@{/admin/customer/index}" class="quay-ve">Quay về</a>
+                        <a th:href="@{/admin/employee/index}" class="quay-ve">Quay về</a>
                     </div>
                 </section>
             </div>

@@ -91,7 +91,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            <a class="admin-them" th:href="@{'/admin/customer/create'}">Thêm khách hàng</a>
+                            <a class="admin-them" th:href="@{'/admin/employee/create'}">Thêm nhân viên</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -114,10 +114,12 @@
                                             <a class="admin-sua"
                                                 th:href="@{'/admin/employee/edit/' + ${employee.idUser}}">Sửa</a>
 
-                                            <!-- <a class="admin-chi-tiet"
-                                                th:href="@{/admin/employees/{id}(id=${employee.id})}">Chi tiết</a>
+                                            <a class="admin-chi-tiet"
+                                                th:href="@{'/admin/employee/detail/' + ${employee.idUser}}">Chi tiết</a>
+
                                             <a class="admin-xoa"
-                                                th:href="@{/admin/employees/delete/{id}(id=${employee.id})}">Xóa</a> -->
+                                                th:href="@{'/admin/employee/delete/' + ${employee.idUser}}"
+                                                onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -134,14 +136,12 @@
         </div>
     </div>
 
-    {% block js %}
     <script th:src="@{/admin/vendors/simple-datatables/simple-datatables.js}"></script>
     <script>
         // Simple Datatable
         let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
     </script>
-    {% endblock %}
     <script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
     <script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
 

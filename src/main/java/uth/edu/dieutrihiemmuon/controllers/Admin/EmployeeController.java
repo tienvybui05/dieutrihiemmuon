@@ -58,6 +58,55 @@ public class EmployeeController {
         return "admin/employee/edit"; // Trả về trang chỉnh sửa nhân viên
     }
 
+    @PostMapping("/admin/employee/edit/{id}")
+    public String updateEmployee(
+            @PathVariable("id") Long id,
+            @ModelAttribute("employee") @Valid User updatedEmployee,
+            BindingResult result,
+            Model model) {
+
+        User existingEmployee = employeeService.getEmployeeById(id);
+
+        // Nếu không tồn tại thì trả về
+        if (existingEmployee == null) {
+            model.addAttribute("error", "Không tìm thấy người dùng");
+            return "admin/employee/edit";
+        }
+
+        // Kiểm tra trùng username (loại trừ bản ghi hiện tại)
+        if (!updatedEmployee.getUserName().equals(existingEmployee.getUserName()) &&
+                employeeService.isUsernameExists(updatedEmployee.getUserName())) {
+            result.rejectValue("userName", "error.employee", "Tên đăng nhập đã tồn tại");
+        }
+
+        // Kiểm tra trùng email
+        if (!updatedEmployee.getEmail().equals(existingEmployee.getEmail()) &&
+                employeeService.isEmailExists(updatedEmployee.getEmail())) {
+            result.rejectValue("email", "error.employee", "Email đã tồn tại");
+        }
+
+        // Kiểm tra trùng SĐT
+        if (!updatedEmployee.getPhoneNumber().equals(existingEmployee.getPhoneNumber()) &&
+                employeeService.isPhoneNumberExists(updatedEmployee.getPhoneNumber())) {
+            result.rejectValue("phoneNumber", "error.employee", "Số điện thoại đã tồn tại");
+        }
+
+        // Nếu có lỗi thì quay lại form
+        if (result.hasErrors()) {
+            return "admin/employee/edit";
+        }
+
+        // Gán lại role và id cũ
+        updatedEmployee.setRole(existingEmployee.getRole());
+        updatedEmployee.setIdUser(existingEmployee.getIdUser());
+
+        // Cập nhật thông tin
+        employeeService.updateEmployee(id, updatedEmployee);
+
+        return "redirect:/admin/employee/index";
+    }
+
+
 
 @PostMapping("/admin/employee/create")
     public String adminemployeeAdd(
@@ -89,5 +138,19 @@ public class EmployeeController {
         return "redirect:/admin/employee/index";
     }
 
+    // Trang xem chi tiết nhân viên
+        @GetMapping("/admin/employee/detail/{id}")
+        public String adminEmployeeDetail(@PathVariable("id") Long id, Model model) {
+            User employee = employeeService.getEmployeeById(id);
+            model.addAttribute("employee", employee);
+            return "admin/employee/detail";
+        }
+
+         // xóa cus theo id
+    @GetMapping("/admin/employee/delete/{id}")
+    public String deleteEmployee(@PathVariable("id") Long id) {
+        employeeService.deleteEmployee(id);
+        return "redirect:/admin/employee/index";
+    }
 
 }

@@ -169,6 +169,7 @@
   <div class="lich-lam-viec-bac-si">
     <table class="bang-lich-lam">
       <tr>
+        <th>Mã lịch</th>
         <th>Bác sĩ</th>
         <th>Dịch vụ</th>
         <th>Giá</th>
@@ -180,6 +181,7 @@
         <th></th>
       </tr>
       <tr th:each=" cycle : ${scheduleList}">
+        <td th:text="${cycle.idSchedule}"></td>
         <td th:text="${cycle.nameDoctor}"></td>
         <td th:text="${cycle.nameService}"></td>
         <td th:text="${cycle.price}"></td>
@@ -196,6 +198,10 @@
           <a th:href="@{/treatmentcyclecustomer/{id}(id=${cycle.getIdSchedule()})}">Xem</a>
         </td>
         <td class="hanh-dong">
+          <form class="form-huy-lich" th:action="@{/feedback/{id}(id=${cycle.getIdSchedule()})}" method="post" th:if="${cycle.executionStatus == 'Đã thực hiện'}">
+            <input type="hidden" name="id" th:value="${cycle.getIdSchedule()}" />
+            <button type="submit">Đánh giá</button>
+          </form>
 <!--          <button type="button">Xử lý sau</button>-->
           <form class="form-huy-lich" th:action="@{/cancelSchedule}" method="post" th:if="${cycle.confirmationStatus == 'Đang chờ xác nhận'}">
             <input type="hidden" name="id" th:value="${cycle.getIdSchedule()}" />

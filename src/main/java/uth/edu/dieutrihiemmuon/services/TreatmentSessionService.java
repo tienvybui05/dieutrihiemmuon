@@ -54,16 +54,26 @@ public class TreatmentSessionService implements ITreatmentSessionService {
             treatmentSessionRepository.save(treatmentSession);
             List<TreatmentSession> treatmentSessions = treatmentSessionRepository.findByTreatmentCycle_idTreatmentCycle(id);
             boolean check = true;
+            int checkSession = 0;
             for(TreatmentSession treatmentSession2 : treatmentSessions) {
                 if(treatmentSession2.getTreatmentStatus().equals("Chưa thực hiện")){
                     check = false;
+                }
+                else{
+                    checkSession++;
                 }
             }
             if(check) {
                 treatmentCycle.setExecutionStatus("Đã thực hiện");
             }
             else {
-                treatmentCycle.setExecutionStatus("Chưa thực hiện");
+                if(checkSession >0)
+                {
+                    treatmentCycle.setExecutionStatus("Đang thực hiện");
+                }
+                else {
+                    treatmentCycle.setExecutionStatus("Chưa thực hiện");
+                }
             }
             treatmentCycleRepository.save(treatmentCycle);
             return true;

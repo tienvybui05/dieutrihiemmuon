@@ -155,7 +155,7 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
         try {
             TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
             treatmentCycle.setConfirmationStatus("Đã xác nhận");
-            treatmentCycle.setExecutionStatus("Đang thực hiện");
+//            treatmentCycle.setExecutionStatus("Đang thực hiện");
             treatmentCycleRepository.save(treatmentCycle);
             return true;
         }

@@ -14,9 +14,9 @@ public class FeedbackDTO {
 
     // Các thông tin được truyền từ form
     private Long serviceId;
-    @NotBlank
+    @NotBlank(message = "Vui lòng nhập nội dung")
     private String reviewText;
-    @NotNull
+    @NotNull(message = "Vui lòng đánh giá số sao")
     @Min(1)
     @Max(5)
     private int rating;

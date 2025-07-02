@@ -6,16 +6,16 @@ import uth.edu.dieutrihiemmuon.models.ServicePackage;
 public class ServicePackageDTO {
     private long idService;
 
-    @NotBlank
+    @NotBlank(message = "Vui lòng nhập tên dịch vụ")
     private String serviceName;
-    @NotBlank
+    @NotBlank(message = "Vui lòng nhập mô tả")
     private String serviceDescription;
-    @NotBlank
+    @NotBlank(message = "Vui lòng nhập loại bệnh nhân")
     private String patientType;
-    @NotNull
+    @NotNull(message = "Số buổi điều trị không được nhỏ hơn 1")
     @Min(1)
     private int numberOfTreatmentSessions;
-    @NotNull
+    @NotNull(message = "Giá tiền không được nhỏ hơn 0")
     @DecimalMin("0.0")
     private double price;
 

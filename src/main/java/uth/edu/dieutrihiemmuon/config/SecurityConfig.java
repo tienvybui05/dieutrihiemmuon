@@ -64,6 +64,7 @@ public class SecurityConfig {
                         .requestMatchers("/customer/auth/error403").permitAll()
                         .requestMatchers("/treatmentcyclecustomer"
                                         ,"/treatmentschedulecustomer"
+                                        ,"/appointmentnoid"
                                         ,"/appointment/**").hasRole("CUSTOMER")
                         .requestMatchers("/workscheduledoctor"
                                         ,"/treatmentcycledoctor").hasRole("DOCTOR")

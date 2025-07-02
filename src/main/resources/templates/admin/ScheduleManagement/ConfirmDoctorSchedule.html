@@ -80,7 +80,7 @@
                             <tr th:each="wsd : ${scheduleList}">
                                 <td th:text="${wsd.nameCustomer}"></td>
                                 <td  th:text="${wsd.nameService}"></td>
-                                <td  th:text="${wsd.price}"></td>
+                                <td  th:text="${#numbers.formatDecimal(wsd.price, 0, 'POINT', 0, 'POINT')}"></td>
                                 <td  th:text="${wsd.serviceBookingDate}"></td>
                                 <td class="trang-thai-xac-nhan"
                                     th:text="${wsd.confirmationStatus}"

@@ -62,7 +62,7 @@
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Công Nghệ Hỗ Trợ Sinh Sản
                                 Tiên Tiến</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Hiếm Muộn Không Còn Là Nỗi Lo</h1>
-                            <a href="#.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Đăng Ký
+                            <a href="/appointmentnoid" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Đăng Ký
                                 Khám</a>
                             <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Liên Hệ
                                 Chuyên Gia</a>
@@ -277,17 +277,14 @@
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
                     <div class="testimonial-item bg-light my-4" th:each="servicePackageDTO : ${ServicePackageDTOs}">
                         <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1" th:text="${servicePackageDTO.serviceName}">Tên dịch vụ</h4>
+                            <h5 class="text-primary mb-1" th:text="${servicePackageDTO.serviceName}"><b>Tên dịch vụ</b></h5>
                             <small class="text-uppercase" th:text="${servicePackageDTO.patientType}">Loại bệnh nhân</small>
                         </div>
                         <div class="p-5 pt-0">
-                            <h1 class="display-5 mb-3">
-                                <span th:text="${(servicePackageDTO.price % 1 == 0)
-                                                ? T(java.lang.Math).round(servicePackageDTO.price)
-                                                : #numbers.formatDecimal(servicePackageDTO.price, 1, 'COMMA', 2, 'POINT')}">
-                                </span>
-                                <small class="align-top" style="font-size: 22px; line-height: 45px;">Đ</small>
-                                <small class="align-bottom" style="font-size: 16px; line-height: 40px;"> /gói</small>
+                            <h1 class="display-5 mb-3" >
+                                <span th:text="${#numbers.formatDecimal(servicePackageDTO.price, 0, 'POINT', 0, 'POINT')} "></span>
+                                <small class="align-top" style="font-size: 22px; line-height: 45px; ">Đ</small>
+                                <small class="align-bottom" style="font-size: 16px; line-height: 40px; "> /gói</small>
                             </h1>
 
                             <div class="mb-3">

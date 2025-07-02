@@ -213,9 +213,7 @@
                         <div class="col-12">
                             <label class="form-label fw-bold">Giá khám dịch vụ</label>
                             <input type="text" class="form-control border-0 bg-light px-4" style="height: 55px;" readonly
-                                   th:value="${(servicePackageDTO.price % 1 == 0)
-                        ? T(java.lang.Math).round(servicePackageDTO.price) + ' đ /gói'
-                        : #numbers.formatDecimal(servicePackageDTO.price, 1, 'COMMA', 2, 'POINT') + ' đ /gói'}" />
+                                   th:value="${#numbers.formatDecimal(servicePackageDTO.price, 0, 'POINT', 0, 'POINT') + ' đ /gói'}" />
                         </div>
 
 

@@ -228,4 +228,34 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
         CheckScheduleDTO checkScheduleDTO = new CheckScheduleDTO(lichTrongNgay-daThucHien,daThucHien,lichTrongNgay);
         return checkScheduleDTO;
     }
+
+    @Override
+    public double revenue() {
+        List<TreatmentCycle> treatmentCycles = treatmentCycleRepository.findAll();
+        double sum = 0;
+        for (TreatmentCycle treatmentCycle : treatmentCycles) {
+            if(treatmentCycle.getConfirmationStatus().equals("Đã xác nhận"))
+            {
+                sum += treatmentCycle.getServiceTreatmentCycle().getPrice();
+            }
+        }
+        return sum;
+    }
+
+    @Override
+    public long numberOfSchedulesToDayALL() {
+        long count = 0;
+        LocalDate today = LocalDate.now();
+        List<TreatmentCycle> treatmentCycles = treatmentCycleRepository.findAll();
+        for (TreatmentCycle treatmentCycle : treatmentCycles) {
+            List<TreatmentSession> treatmentSessions = sessionRepository.findByTreatmentCycle_idTreatmentCycle(treatmentCycle.getIdTreatmentCycle());
+            for (TreatmentSession session : treatmentSessions) {
+                if (session.getTreatmentDay() != null && session.getTreatmentDay().equals(today)) {
+                    count++;
+                    break;
+                }
+            }
+        }
+        return count;
+    }
 }

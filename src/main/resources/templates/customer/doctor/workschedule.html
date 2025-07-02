@@ -36,7 +36,11 @@
             background-color: #ffffff;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        .table-wrapper{
+            overflow-y: scroll;
+            scrollbar-color: #06A3DA white;
+            height: 400px
+        }
         .bang-lich-lam {
             width: 100%;
             border-collapse: collapse;
@@ -212,10 +216,14 @@
             background-color: #01cdb6;
         }
         .loc-va-thong-tin .thong-tin-lich-hom-nay{
-            margin-right: 30px;
             padding: 0 10px;
         }
-
+        .loc-va-thong-tin .thong-tin-lich-hom-nay li{
+            color: #06A3DA ;
+        }
+        .loc-va-thong-tin .thong-tin-lich-hom-nay .info-row span{
+            color: red;
+        }
     </style>
 
 </head>
@@ -239,6 +247,23 @@
 
     <div class="lich-lam-viec-bac-si">
         <div class="loc-va-thong-tin">
+            <div class="thong-tin-lich-hom-nay">
+                <label style="color: #fa0000">Lịch khám hôm nay</label>
+                <ul>
+                    <li><div class="info-row">
+                        <label >Số lịch khám:</label>
+                        <span th:text="${numberSchedule.numberOfCalendarsPerDay}"></span>
+                    </div></li>
+                    <li><div class="info-row">
+                        <label >Số lịch đã thực hiện:</label>
+                        <span th:text="${numberSchedule.done}"></span>
+                    </div></li>
+                    <li><div class="info-row">
+                        <label >Số lịch chưa thực hiện:</label>
+                        <span th:text="${numberSchedule.notYetImplemented}"></span>
+                    </div></li>
+                </ul>
+            </div>
             <div class="loc">
                 <form th:action="@{/workscheduledoctor}" method="get">
                     <select name="filter">
@@ -248,78 +273,63 @@
                     <button type="submit">Tìm</button>
                 </form>
             </div>
-            <div class="thong-tin-lich-hom-nay">
-                <label>Lịch khám hôm nay</label>
-                <ul>
-                    <li><div class="info-row">
-                        <label>Số lịch khám:</label>
-                        <span th:text="${numberSchedule.numberOfCalendarsPerDay}"></span>
-                    </div></li>
-                    <li><div class="info-row">
-                        <label>Số đã thực hiện:</label>
-                        <span th:text="${numberSchedule.done}"></span>
-                    </div></li>
-                    <li><div class="info-row">
-                        <label>Số chưa thực hiện:</label>
-                        <span th:text="${numberSchedule.notYetImplemented}"></span>
-                    </div></li>
-                </ul>
-            </div>
         </div>
-        <table class="bang-lich-lam">
-            <tr>
-                <th>Mã lịch</th>
-                <th>Khách hàng</th>
-                <th>Dịch vụ</th>
-                <th>Giá</th>
-                <th>Ngày đặt dịch vụ</th>
-                <th>Xác nhận</th>
-                <th>Thực hiện</th>
-                <th>Ghi chú tổng quan</th>
-                <th>Chu kì điều trị</th>
-                <th></th>
-            </tr>
-            <tr th:each="wsd : ${scheduleList}">
-                <td th:text="${wsd.idSchedule}"></td>
-                <td th:text="${wsd.nameCustomer}"></td>
-                <td  th:text="${wsd.nameService}"></td>
-                <td  th:text="${wsd.price}"></td>
-                <td  th:text="${wsd.serviceBookingDate}"></td>
-                <td class="trang-thai-xac-nhan"
-                    th:text="${wsd.confirmationStatus}"
-                    th:classappend="${wsd.confirmationStatus == 'Đã xác nhận'} ? ' text-success' : ' text-danger'">
-                </td>
+        <div class="table-wrapper" >
+            <table class="bang-lich-lam">
+                <tr>
+                    <th>Mã lịch</th>
+                    <th>Khách hàng</th>
+                    <th>Dịch vụ</th>
+                    <th>Giá</th>
+                    <th>Ngày đặt dịch vụ</th>
+                    <th>Xác nhận</th>
+                    <th>Thực hiện</th>
+                    <th>Ghi chú tổng quan</th>
+                    <th>Chu kì điều trị</th>
+                    <th></th>
+                </tr>
+                <tr th:each="wsd : ${scheduleList}">
+                    <td th:text="${wsd.idSchedule}"></td>
+                    <td th:text="${wsd.nameCustomer}"></td>
+                    <td  th:text="${wsd.nameService}"></td>
+                    <td  th:text="${wsd.price}"></td>
+                    <td  th:text="${wsd.serviceBookingDate}"></td>
+                    <td class="trang-thai-xac-nhan"
+                        th:text="${wsd.confirmationStatus}"
+                        th:classappend="${wsd.confirmationStatus == 'Đã xác nhận'} ? ' text-success' : ' text-danger'">
+                    </td>
 
-                <td class="trang-thai-hoan-thanh"
-                    th:text="${wsd.executionStatus}"
-                    th:classappend="${wsd.executionStatus == 'Đã thực hiện'} ? ' text-success' : ' text-danger'">
-                </td>
-                <td th:text="${wsd.generalNotes}"></td>
-                <td>
-                    <a th:href="@{/treatmentcycledoctor/{id}(id=${wsd.getIdSchedule()})}">Xem</a>
-                </td>
-                <td>
-                    <button type="button"
-                            th:attr="onclick='showNoteForm(&quot;noteForm_' + ${wsd.idSchedule} + '&quot;)'">
-                        Ghi chú
-                    </button>
-                    <div th:attr="id='noteForm_' + ${wsd.idSchedule}"
-                         class="note-popup">
-                        <form method="post" th:action="@{/saveGeneralNotes}">
-                            <input type="hidden" name="id" th:value="${wsd.idSchedule}" />
-                            <label>Ghi chú tổng quan:</label><br>
-                            <textarea name="note" rows="4" cols="30"></textarea><br><br>
-                            <button type="submit">Lưu</button>
-                            <button type="button"
-                                    th:attr="onclick='hideNoteForm(&quot;noteForm_' + ${wsd.idSchedule} + '&quot;)'">
-                                Đóng
-                            </button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
+                    <td class="trang-thai-hoan-thanh"
+                        th:text="${wsd.executionStatus}"
+                        th:classappend="${wsd.executionStatus == 'Đã thực hiện'} ? ' text-success' : ' text-danger'">
+                    </td>
+                    <td th:text="${wsd.generalNotes}"></td>
+                    <td>
+                        <a th:href="@{/treatmentcycledoctor/{id}(id=${wsd.getIdSchedule()})}">Xem</a>
+                    </td>
+                    <td>
+                        <button type="button"
+                                th:attr="onclick='showNoteForm(&quot;noteForm_' + ${wsd.idSchedule} + '&quot;)'">
+                            Ghi chú
+                        </button>
+                        <div th:attr="id='noteForm_' + ${wsd.idSchedule}"
+                             class="note-popup">
+                            <form method="post" th:action="@{/saveGeneralNotes}">
+                                <input type="hidden" name="id" th:value="${wsd.idSchedule}" />
+                                <label>Ghi chú tổng quan:</label><br>
+                                <textarea name="note" rows="4" cols="30"></textarea><br><br>
+                                <button type="submit">Lưu</button>
+                                <button type="button"
+                                        th:attr="onclick='hideNoteForm(&quot;noteForm_' + ${wsd.idSchedule} + '&quot;)'">
+                                    Đóng
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
 
-        </table>
+            </table>
+        </div>
 
     </div>
     <!-- Navbar & Carousel End -->

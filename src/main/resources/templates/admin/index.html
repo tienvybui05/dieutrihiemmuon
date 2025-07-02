@@ -140,7 +140,7 @@ xmlns:th="http://www.thymeleaf.org">
                                         </div>
                                         <div class="col-md-8">
                                             <h6 class="text-muted font-semibold">Khách hàng</h6>
-                                            <h6 class="font-extrabold mb-0">112.000</h6>
+                                            <h6 class="font-extrabold mb-0" th:text="${countCustomer}"></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@ xmlns:th="http://www.thymeleaf.org">
                                         </div>
                                         <div class="col-md-8">
                                             <h6 class="text-muted font-semibold">Bác sĩ</h6>
-                                            <h6 class="font-extrabold mb-0">183.000</h6>
+                                            <h6 class="font-extrabold mb-0" th:text="${countDoctor}"></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -174,7 +174,7 @@ xmlns:th="http://www.thymeleaf.org">
                                         </div>
                                         <div class="col-md-8">
                                             <h6 class="text-muted font-semibold">Dịch vụ</h6>
-                                            <h6 class="font-extrabold mb-0">80.000</h6>
+                                            <h6 class="font-extrabold mb-0" th:text="${countservice}"></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -186,12 +186,12 @@ xmlns:th="http://www.thymeleaf.org">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="stats-icon red">
-                                                <i class="iconly-boldGraph"></i>
+                                                <i class="iconly-boldCalendar"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Doanh thu</h6>
-                                            <h6 class="font-extrabold mb-0">112</h6>
+                                            <h6 class="text-muted font-semibold">Lịch hôm nay</h6>
+                                            <h6 class="font-extrabold mb-0" th:text="${countSchedule}"></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -329,12 +329,12 @@ xmlns:th="http://www.thymeleaf.org">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon red">
-                                            <i class="iconly-boldCalendar"></i>
+                                            <i class="iconly-boldGraph"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Lịch hẹn hôm nay</h6>
-                                        <h6 class="font-extrabold mb-0" style="color: #f4002d">6</h6>
+                                        <h6 class="text-muted font-semibold">Doanh thu</h6>
+                                        <h6 class="font-extrabold mb-0" style="color: #f4002d"  th:text="${#numbers.formatDecimal(revenue, 0, 'POINT', 0, 'POINT')} + 'đ' "></h6>
                                     </div>
                                 </div>
                             </div>

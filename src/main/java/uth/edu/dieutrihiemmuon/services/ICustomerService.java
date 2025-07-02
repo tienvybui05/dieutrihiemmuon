@@ -19,4 +19,5 @@ public interface ICustomerService {
     boolean isPhoneNumberExists(String phoneNumber);
     public boolean addAccount(RegisterDTO registerDTO);
     public User findByUsername(String username);
+    public long countCustomers();
 }

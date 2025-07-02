@@ -93,4 +93,10 @@ public class CustomerService implements ICustomerService{
     public User findByUsername(String username) {
         return userRepository.findByUserName(username);
     }
+
+    @Override
+    public long countCustomers() {
+        long count = userRepository.countByRole("CUSTOMER");
+        return count;
+    }
 }

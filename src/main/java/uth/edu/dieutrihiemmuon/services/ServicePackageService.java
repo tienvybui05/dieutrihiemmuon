@@ -121,6 +121,12 @@ public class ServicePackageService implements IServicePackageService
         return null;
     }
 
+    @Override
+    public long countServicePackage() {
+        long count = servicePackageRepository.count();
+        return count;
+    }
+
     /*@Autowired
     private IServicePackageRepository servicePackageRepository;
 

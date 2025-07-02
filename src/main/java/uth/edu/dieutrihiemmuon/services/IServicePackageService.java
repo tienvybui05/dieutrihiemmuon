@@ -13,4 +13,5 @@ public interface IServicePackageService
     public  boolean deleteServicePackage(long id);
     public  List<ServicePackage> searchServicePackage(String keyword);
     public  ServicePackageDTO findByServiceName(String serviceName);
+    public  long countServicePackage();
 }

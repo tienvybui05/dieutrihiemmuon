@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
-import uth.edu.dieutrihiemmuon.dto.TreatmentSessionDoctorDTO;
-import uth.edu.dieutrihiemmuon.dto.UserDTO;
-import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
+import uth.edu.dieutrihiemmuon.dto.*;
 import uth.edu.dieutrihiemmuon.models.TreatmentCycle;
 import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.services.*;
@@ -36,20 +33,29 @@ public class AdminController {
     @Autowired
     private ITreatmentSessionService treatmentSessionService;
 
+    @Autowired
+    private IDoctorService docService;
+
+    @Autowired
+    private IServicePackageService servicePackageService;
+
     @GetMapping("/admin")
     public String index(Authentication authentication, Model model) {
         String username = authentication.getName();
         UserDTO userDTO = userService.getUserByUserName(username);
+        long countCustomer =customerService.countCustomers();
+        long countDoctor =doctorService.countDoctors();
+        long countservice = servicePackageService.countServicePackage();
+        double centralRevenue = treatmentCycleService.revenue();
+        long countSchedule = treatmentCycleService.numberOfSchedulesToDayALL();
+        model.addAttribute("countSchedule", countSchedule);
+        model.addAttribute("revenue",centralRevenue);
+        model.addAttribute("countservice", countservice);
+        model.addAttribute("countDoctor",countDoctor);
+        model.addAttribute("countCustomer",countCustomer);
         model.addAttribute("user", userDTO);
         return "admin/index";
     }
-
-
-
-
-
-
-
 
 
 }

@@ -16,4 +16,5 @@ public interface IDoctorService {
     public  DoctorDTO findByEmail(String email);
     public DoctorDTO  findByPhoneNumber(String phoneNumber);
     public List<DoctorDTO> getDoctorsByServiceId(long id);
+    public long countDoctors();
 }

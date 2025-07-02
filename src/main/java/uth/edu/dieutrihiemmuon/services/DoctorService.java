@@ -300,4 +300,10 @@ public class DoctorService implements IDoctorService{
         List<Doctor> doctors = doctorRepository.findByServicePackage_IdService(id);
         return doctors.stream().map(DoctorDTO::new).collect(Collectors.toList());
     }
+
+    @Override
+    public long countDoctors() {
+        long count = doctorRepository.count();
+        return count;
+    }
 }

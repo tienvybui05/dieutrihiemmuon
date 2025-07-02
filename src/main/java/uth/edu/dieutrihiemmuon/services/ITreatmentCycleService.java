@@ -17,5 +17,7 @@ public interface ITreatmentCycleService {
     public boolean deleteTreatmentCycle(long id);
     public List<WorkscheduledoctorDTO> getTreatmentCycleToDay(long id);
     public CheckScheduleDTO NumberOfExecutedAndUnexecutedSeriesInTheDay(long id);
+    public double revenue();
+    public long numberOfSchedulesToDayALL();
 }
 

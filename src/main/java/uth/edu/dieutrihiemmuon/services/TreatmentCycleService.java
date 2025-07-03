@@ -3,6 +3,7 @@ package uth.edu.dieutrihiemmuon.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.dieutrihiemmuon.dto.CheckScheduleDTO;
+import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
 import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
 
 import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
@@ -29,6 +30,24 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
     @Autowired
     private ITreatmentSessionRepository sessionRepository;
     // implementation
+
+    @Override
+    public TreatmentCycleDTO getTreatmentCycle(long id) {
+        try {
+            TreatmentCycle treatmentCycle =  treatmentCycleRepository.findById(id);
+            if(treatmentCycle != null)
+            {
+                TreatmentCycleDTO treatmentCycleDTO = new TreatmentCycleDTO(treatmentCycle);
+                return treatmentCycleDTO;
+            }else {
+                return null;
+            }
+        }catch (Exception e) {
+            System.out.println("Lỗi");
+            return null;
+        }
+    }
+
     @Override
     public boolean addAppointment(Long serviceId, Long doctorId, LocalDate startDate, Long userId) {
         try {
@@ -119,7 +138,7 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
     @Override
     public boolean updateGeneralNotes(long id, String notes) {
         try {
-            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id);
             treatmentCycle.setGeneralNotes(notes);
             treatmentCycleRepository.save(treatmentCycle);
             return true;
@@ -146,14 +165,14 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
 
     @Override
     public String getNameCustomerToTreatmentCycle(long id) {
-        TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+        TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id);
         return treatmentCycle.getUserTreatmentCycle().getFullName();
     }
 
     @Override
     public boolean updateConfirmationStatus(long id) {
         try {
-            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id);
             treatmentCycle.setConfirmationStatus("Đã xác nhận");
 //            treatmentCycle.setExecutionStatus("Đang thực hiện");
             treatmentCycleRepository.save(treatmentCycle);
@@ -168,7 +187,7 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
     @Override
     public boolean deleteTreatmentCycle(long id) {
         try {
-            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id);
             treatmentCycleRepository.delete(treatmentCycle);
             return true;
         }
@@ -245,7 +264,7 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
     @Override
     public boolean cancelConfirmationStatus(long id) {
         try {
-            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id);
             treatmentCycle.setConfirmationStatus("Đang chờ xác nhận");
             treatmentCycleRepository.save(treatmentCycle);
             return true;

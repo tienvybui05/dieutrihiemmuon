@@ -1,33 +1,4 @@
 
-<!--        <div class="row g-5" style="margin-top: 20px">-->
-
-<!--            <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">-->
-<!--                <form method="post" th:object="${feedbackDTO}" th:action="@{'/feedback/' + ${servicePackageDTO.idService}}">-->
-<!--                    <div class="row g-3">-->
-<!--                        &lt;!&ndash; Tên gói dịch vụ được đánh giá &ndash;&gt;-->
-<!--                        <div class="col-12">-->
-<!--                            <label class="form-label fw-bold">Gói dịch vụ</label>-->
-
-<!--                            &lt;!&ndash; Hiển thị tên dịch vụ &ndash;&gt;-->
-<!--                            <input type="text"-->
-<!--                                   class="form-control border-0 bg-light px-4"-->
-<!--                                   style="height: 55px;" readonly-->
-<!--                                   th:value="${servicePackageDTO.serviceName}" />-->
-
-<!--                            &lt;!&ndash; Ẩn id nhưng vẫn gửi lên server &ndash;&gt;-->
-<!--                            <input type="hidden" name="serviceId" th:value="${servicePackageDTO.idService}" />-->
-<!--                        </div>-->
-<!--                        <div class="col-12">-->
-<!--                            <label> Nội dung đánh giá</label>-->
-<!--                            <textarea id="reviewText"-->
-<!--                                      name="reviewText"-->
-<!--                                      class="form-control border-0 bg-light px-4 py-3"-->
-<!--                                      style="height: 150px;"-->
-<!--                                      placeholder="Nhập nội dung phản hồi của bạn..."-->
-<!--                                      th:field="*{reviewText}"></textarea>-->
-<!--                            <p th:if="${#fields.hasErrors('reviewText')}" th:errors="*{reviewText}" class="text-danger"></p>-->
-<!--                        </div>-->
-<!--&lt;!&ndash;                &ndash;&gt;-->
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
@@ -223,7 +194,7 @@
         <div class="row g-5" style="margin-top: 20px">
 
             <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
-                <form method="post" th:action="@{/feedback/{id}(id=${servicePackageDTO.idService})}" th:object="${FeedbackDTO}">
+                <form method="post" th:action="@{/feedback/{id}(id=${treatmentCycleDTO.treatmentCycleId})}" th:object="${FeedbackDTO}">
                     <div class="row g-3">
                         <!-- Gói dịch vụ được đánh giá -->
                         <div class="col-12">
@@ -236,7 +207,7 @@
                                    th:value="${servicePackageDTO.serviceName}" />
 
                             <!-- Ẩn id nhưng vẫn gửi lên server -->
-                            <input type="hidden" name="serviceId" th:value="${servicePackageDTO.idService}" />
+                            <input type="hidden" name="serviceId" th:value="${treatmentCycleDTO.treatmentCycleId}" />
                         </div>
                         <!-- Nhúng FontAwesome  -->
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

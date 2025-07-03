@@ -38,8 +38,11 @@ public class FeedbackController {
 
     @GetMapping("/feedback/{id}")
     public String feedback(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("FeedbackDTO",new FeedbackDTO());
-        ServicePackageDTO servicePackage = servicePackageService.getServicePackage(id);
+        model.addAttribute("FeedbackDTO", new FeedbackDTO());
+
+        TreatmentCycleDTO treatmentCycle = treatmentCycleService.getTreatmentCycle(id);
+        model.addAttribute("treatmentCycleDTO", treatmentCycle);
+        ServicePackageDTO servicePackage = servicePackageService.getServicePackage(treatmentCycle.getServiceId());
         model.addAttribute("servicePackageDTO", servicePackage);
         return "customer/feedback";
     }
@@ -51,7 +54,9 @@ public class FeedbackController {
                                        Model model,
                                        Authentication authentication) {
 
-        // Lấy lại thông tin gói dịch vụ
+        TreatmentCycleDTO treatmentCycle = treatmentCycleService.getTreatmentCycle(id);
+        model.addAttribute("treatmentCycleDTO", treatmentCycle);
+
         ServicePackageDTO servicePackage = servicePackageService.getServicePackage(id);
         model.addAttribute("servicePackageDTO", servicePackage);
 

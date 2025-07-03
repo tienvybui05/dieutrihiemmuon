@@ -283,11 +283,11 @@
             <td class="hanh-dong">
               <form class="form-danh-gia"
                     th:action="@{/feedback/{id}(id=${cycle.getIdSchedule()})}"
-                    method="post"
+                    method="get"
                     th:if="${cycle.executionStatus == 'Đã thực hiện'}">
-                <input type="hidden" name="id" th:value="${cycle.getIdSchedule()}" />
                 <button type="submit">Đánh giá</button>
               </form>
+
               <form class="form-huy-lich"
                     th:action="@{/cancelSchedule}"
                     method="post"

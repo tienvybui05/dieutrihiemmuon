@@ -11,6 +11,7 @@ import uth.edu.dieutrihiemmuon.models.ServicePackage;
 import java.time.LocalDate;
 
 public class TreatmentCycleDTO {
+    private Long treatmentCycleId;
     // Các thông tin được truyền từ form
     private Long serviceId;
     private Long doctorId;
@@ -29,6 +30,7 @@ public class TreatmentCycleDTO {
     public TreatmentCycleDTO() {
     }
     public TreatmentCycleDTO(TreatmentCycle treatmentCycle) {
+        this.treatmentCycleId = treatmentCycle.getIdTreatmentCycle();
         this.serviceId = treatmentCycle.getServiceTreatmentCycle().getIdService();
         this.doctorId = treatmentCycle.getDoctorTreatmentCycle().getIdDoctor();
         this.startDate = treatmentCycle.getStartDate();
@@ -40,7 +42,8 @@ public class TreatmentCycleDTO {
         this.generalNotes = treatmentCycle.getGeneralNotes();
     }
 
-    public TreatmentCycleDTO(Long serviceId, Long doctorId, LocalDate startDate, Long userId, LocalDate serviceBookingDate, String executionStatus, String paymentStatus, String confirmationStatus, String generalNotes) {
+    public TreatmentCycleDTO(Long treatmentCycleId,Long serviceId, Long doctorId, LocalDate startDate, Long userId, LocalDate serviceBookingDate, String executionStatus, String paymentStatus, String confirmationStatus, String generalNotes) {
+        this.treatmentCycleId = treatmentCycleId;
         this.serviceId = serviceId;
         this.doctorId = doctorId;
         this.startDate = startDate;
@@ -51,6 +54,12 @@ public class TreatmentCycleDTO {
         this.confirmationStatus = confirmationStatus;
         this.generalNotes = generalNotes;
     }
+
+    public Long getTreatmentCycleId() {
+        return treatmentCycleId;
+    }
+
+    public void setTreatmentCycleId(Long treatmentCycleId) {this.treatmentCycleId = treatmentCycleId;}
 
     public Long getServiceId() {
         return serviceId;

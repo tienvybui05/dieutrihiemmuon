@@ -32,14 +32,52 @@
     <link th:href="@{customer/css/style.css}" rel="stylesheet">
     <style>
         .lich-lam-viec-bac-si {
-            padding: 30px;
+            padding: 5px 30px;
             background-color: #ffffff;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
-        .table-wrapper{
-            overflow-y: scroll;
-            scrollbar-color: #06A3DA white;
-            height: 400px
+        .table-wrapper {
+            width: 100%;
+            overflow-x: hidden; /* Không cho cuộn ngang */
+            box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .scroll-container {
+            max-height: 450px; /* Chiều cao cuộn dọc */
+            overflow-y: auto;
+            overflow-x: hidden; /* Ngăn cuộn ngang */
+        }
+
+        .bang-lich-lam {
+            table-layout: fixed;  /* Bắt buộc để cột không co giãn lung tung */
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bang-lich-lam th,
+        .bang-lich-lam td {
+            padding: 8px;
+            border: 1px solid #06A3DA;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+        .scroll-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background: white; /* Màu nền thanh cuộn */
+            border-radius: 10px;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb {
+            background-color: #06A3DA; /* Màu nút kéo */
+            border-radius: 10px;
+            border: 2px solid #FFFFFF; /* Viền tạo hiệu ứng padding */
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background-color: #06A3DA; /* Màu khi hover */
         }
         .bang-lich-lam {
             width: 100%;
@@ -274,8 +312,9 @@
                 </form>
             </div>
         </div>
-        <div class="table-wrapper" >
+        <div class="table-wrapper">
             <table class="bang-lich-lam">
+                <thead>
                 <tr>
                     <th>Mã lịch</th>
                     <th>Khách hàng</th>
@@ -288,47 +327,52 @@
                     <th>Chu kì điều trị</th>
                     <th></th>
                 </tr>
-                <tr th:each="wsd : ${scheduleList}">
-                    <td th:text="${wsd.idSchedule}"></td>
-                    <td th:text="${wsd.nameCustomer}"></td>
-                    <td  th:text="${wsd.nameService}"></td>
-                    <td  th:text="${wsd.price}"></td>
-                    <td  th:text="${wsd.serviceBookingDate}"></td>
-                    <td class="trang-thai-xac-nhan"
-                        th:text="${wsd.confirmationStatus}"
-                        th:classappend="${wsd.confirmationStatus == 'Đã xác nhận'} ? ' text-success' : ' text-danger'">
-                    </td>
-
-                    <td class="trang-thai-hoan-thanh"
-                        th:text="${wsd.executionStatus}"
-                        th:classappend="${wsd.executionStatus == 'Đã thực hiện'} ? ' text-success' : ' text-danger'">
-                    </td>
-                    <td th:text="${wsd.generalNotes}"></td>
-                    <td>
-                        <a th:href="@{/treatmentcycledoctor/{id}(id=${wsd.getIdSchedule()})}">Xem</a>
-                    </td>
-                    <td>
-                        <button type="button"
-                                th:attr="onclick='showNoteForm(&quot;noteForm_' + ${wsd.idSchedule} + '&quot;)'">
-                            Ghi chú
-                        </button>
-                        <div th:attr="id='noteForm_' + ${wsd.idSchedule}"
-                             class="note-popup">
-                            <form method="post" th:action="@{/saveGeneralNotes}">
-                                <input type="hidden" name="id" th:value="${wsd.idSchedule}" />
-                                <label>Ghi chú tổng quan:</label><br>
-                                <textarea name="note" rows="4" cols="30"></textarea><br><br>
-                                <button type="submit">Lưu</button>
-                                <button type="button"
-                                        th:attr="onclick='hideNoteForm(&quot;noteForm_' + ${wsd.idSchedule} + '&quot;)'">
-                                    Đóng
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-
+                </thead>
             </table>
+
+            <div class="scroll-container">
+                <table class="bang-lich-lam">
+                    <tbody>
+                    <tr th:each="wsd : ${scheduleList}">
+                        <td th:text="${wsd.idSchedule}"></td>
+                        <td th:text="${wsd.nameCustomer}"></td>
+                        <td th:text="${wsd.nameService}"></td>
+                        <td th:text="${#numbers.formatDecimal(wsd.price, 0, 'POINT', 0, 'POINT')} + 'đ' "></td>
+                        <td th:text="${wsd.serviceBookingDate}"></td>
+                        <td class="trang-thai-xac-nhan"
+                            th:text="${wsd.confirmationStatus}"
+                            th:classappend="${wsd.confirmationStatus == 'Đã xác nhận'} ? ' text-success' : ' text-danger'">
+                        </td>
+                        <td class="trang-thai-hoan-thanh"
+                            th:text="${wsd.executionStatus}"
+                            th:classappend="${wsd.executionStatus == 'Đã thực hiện'} ? ' text-success' : ' text-danger'">
+                        </td>
+                        <td th:text="${wsd.generalNotes}"></td>
+                        <td>
+                            <a th:href="@{/treatmentcycledoctor/{id}(id=${wsd.getIdSchedule()})}">Xem</a>
+                        </td>
+                        <td>
+                            <button type="button"
+                                    th:attr="onclick='showNoteForm(&quot;noteForm_' + ${wsd.idSchedule} + '&quot;)'">
+                                Ghi chú
+                            </button>
+                            <div th:attr="id='noteForm_' + ${wsd.idSchedule}" class="note-popup">
+                                <form method="post" th:action="@{/saveGeneralNotes}">
+                                    <input type="hidden" name="id" th:value="${wsd.idSchedule}" />
+                                    <label>Ghi chú tổng quan:</label><br>
+                                    <textarea name="note" rows="4" cols="30"></textarea><br><br>
+                                    <button type="submit">Lưu</button>
+                                    <button type="button"
+                                            th:attr="onclick='hideNoteForm(&quot;noteForm_' + ${wsd.idSchedule} + '&quot;)'">
+                                        Đóng
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
@@ -352,6 +396,26 @@
         document.getElementById(id).style.display = 'none';
         document.body.classList.remove('no-scroll');
     }
+    function syncTableWidths() {
+        const headerTable = document.querySelector('.table-wrapper table.bang-lich-lam');
+        const bodyTable = document.querySelector('.scroll-container table.bang-lich-lam');
+
+        if (!headerTable || !bodyTable) return;
+
+        const headerCols = headerTable.querySelectorAll('th');
+        const bodyCols = bodyTable.querySelectorAll('tr:first-child td');
+
+        if (headerCols.length !== bodyCols.length) return;
+
+        for (let i = 0; i < headerCols.length; i++) {
+            const width = Math.max(headerCols[i].offsetWidth, bodyCols[i]?.offsetWidth || 0);
+            headerCols[i].style.width = width + 'px';
+            bodyCols[i].style.width = width + 'px';
+        }
+    }
+
+    window.addEventListener('load', syncTableWidths);
+    window.addEventListener('resize', syncTableWidths);
 </script>
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

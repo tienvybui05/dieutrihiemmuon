@@ -1,7 +1,7 @@
 <header th:fragment="headerFragment">
     <!-- Spinner Start -->
     <div id="spinner"
-         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner"></div>
     </div>
     <!-- Spinner End -->
@@ -40,7 +40,7 @@
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <a href="index.html" class="navbar-brand p-0">
+            <a href="index" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Startup</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -48,21 +48,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="service.html" class="nav-item nav-link">Services</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Blog</a>
+                    <a href="index" class="nav-item nav-link active">Trang chủ</a>
+                    <a href="about" class="nav-item nav-link">Giới thiệu</a>
+                    <a href="services" class="nav-item nav-link">Dịch vụ</a>
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dic</a>
                         <div class="dropdown-menu m-0">
                             <a href="blog.html" class="dropdown-item">Blog Grid</a>
                             <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                            <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#changePasswordModal">
                                 Đổi mật khẩu
                             </a>
 
                         </div>
-                    </div>
-                    <div class="nav-item dropdown">
+                    </div> -->
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
                             <a href="price.html" class="dropdown-item">Pricing Plan</a>
@@ -71,19 +72,21 @@
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             <a href="quote.html" class="dropdown-item">Free Quote</a>
                         </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div> -->
+                    <a href="blog" class="nav-item nav-link">Tin tức</a>
+                    <a href="contact" class="nav-item nav-link">Liên hệ</a>
                 </div>
                 <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal"
-                         data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                <a href="https://htmlcodex.com/startup-company-website-template"
-                   class="btn btn-primary py-2 px-4 ms-3">Download Pro Version</a>
+                    data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                <a href="login" class="btn btn-primary py-2 px-4 ms-3">Đăng nhập</a>
+                <a href="register" class="btn btn-primary py-2 px-4 ms-3">Đăng ký</a>
             </div>
         </nav>
     </div>
 
     <!-- Modal đổi mật khẩu -->
-    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-4">
                 <div class="modal-header border-0">
@@ -93,13 +96,16 @@
                 <div class="modal-body">
                     <form method="post" th:action="@{/change-password}">
                         <div class="mb-3">
-                            <input type="password" class="form-control" name="oldPassword" placeholder="Mật khẩu cũ" required>
+                            <input type="password" class="form-control" name="oldPassword" placeholder="Mật khẩu cũ"
+                                required>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" name="newPassword" placeholder="Mật khẩu mới" required>
+                            <input type="password" class="form-control" name="newPassword" placeholder="Mật khẩu mới"
+                                required>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" name="confirmPassword" placeholder="Xác nhận mật khẩu" required>
+                            <input type="password" class="form-control" name="confirmPassword"
+                                placeholder="Xác nhận mật khẩu" required>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Đổi mật khẩu</button>
                     </form>

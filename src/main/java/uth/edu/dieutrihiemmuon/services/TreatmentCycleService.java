@@ -243,6 +243,20 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
     }
 
     @Override
+    public boolean cancelConfirmationStatus(long id) {
+        try {
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            treatmentCycle.setConfirmationStatus("Đang chờ xác nhận");
+            treatmentCycleRepository.save(treatmentCycle);
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println("Lỗi" + e);
+            return false;
+        }
+    }
+
+    @Override
     public long numberOfSchedulesToDayALL() {
         long count = 0;
         LocalDate today = LocalDate.now();
@@ -258,4 +272,5 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
         }
         return count;
     }
+
 }

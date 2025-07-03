@@ -95,12 +95,23 @@
                                     <a class="admin-chi-tiet" th:href="@{/admin/ScheduleManagement/DetailDoctorScheduleManagement/{id}(id=${wsd.getIdSchedule()})}">Xem</a>
                                 </td>
                                 <td class="admin-hanh-dong">
-                                    <form th:action="@{/admin/ScheduleManagement/ConfirmDoctorSchedule/{id}(id=${wsd.getIdSchedule()})}" method="post">
+                                    <!-- Nếu chưa xác nhận -->
+                                    <form th:if="${wsd.confirmationStatus != 'Đã xác nhận'}"
+                                          th:action="@{/admin/ScheduleManagement/ConfirmDoctorSchedule/{id}(id=${wsd.getIdSchedule()})}"
+                                          method="post">
                                         <input type="hidden" name="doctorId" th:value="${wsd.getIdDoctor()}" />
-                                        <button type="submit"
-                                                class="btn btn-sm btn-outline-success"
-                                                th:disabled="${wsd.confirmationStatus == 'Đã xác nhận'}">
+                                        <button type="submit" class="btn btn-sm btn-outline-success">
                                             Xác nhận
+                                        </button>
+                                    </form>
+
+                                    <!-- Nếu đã xác nhận -->
+                                    <form th:if="${wsd.confirmationStatus == 'Đã xác nhận'}"
+                                          th:action="@{/admin/ScheduleManagement/CancelDoctorSchedule/{id}(id=${wsd.getIdSchedule()})}"
+                                          method="post">
+                                        <input type="hidden" name="doctorId" th:value="${wsd.getIdDoctor()}" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            Hủy xác nhận
                                         </button>
                                     </form>
                                 </td>

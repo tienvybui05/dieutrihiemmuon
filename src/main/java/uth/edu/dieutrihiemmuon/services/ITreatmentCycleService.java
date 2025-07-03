@@ -19,5 +19,6 @@ public interface ITreatmentCycleService {
     public CheckScheduleDTO NumberOfExecutedAndUnexecutedSeriesInTheDay(long id);
     public double revenue();
     public long numberOfSchedulesToDayALL();
+    public boolean cancelConfirmationStatus(long id);
 }
 

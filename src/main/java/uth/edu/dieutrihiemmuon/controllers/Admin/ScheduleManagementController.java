@@ -57,4 +57,10 @@ public class ScheduleManagementController {
         treatmentCycleService.updateConfirmationStatus(id);
         return "redirect:/admin/ScheduleManagement/ConfirmDoctorSchedule/" + doctorId;
     }
+
+    @PostMapping("admin/ScheduleManagement/CancelDoctorSchedule/{id}")
+    public String cancelConfirmSchedule(@PathVariable("id") Long id, @RequestParam("doctorId") Long doctorId) {
+        treatmentCycleService.cancelConfirmationStatus(id);
+        return "redirect:/admin/ScheduleManagement/ConfirmDoctorSchedule/" + doctorId;
+    }
 }

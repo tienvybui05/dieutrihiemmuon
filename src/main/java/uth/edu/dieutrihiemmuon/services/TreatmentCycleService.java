@@ -152,8 +152,17 @@ public class TreatmentCycleService implements  ITreatmentCycleService {
        try{
            List<TreatmentCycle>  treatmentCycles= treatmentCycleRepository.findByUserTreatmentCycle_idUser(id);
            List<WorkscheduledoctorDTO> workscheduledoctorDTOS = new ArrayList<WorkscheduledoctorDTO>();
+           LocalDate today = LocalDate.now();
            for(TreatmentCycle treatmentCycle : treatmentCycles) {
-               WorkscheduledoctorDTO wsd = new WorkscheduledoctorDTO(treatmentCycle);
+               boolean check = false;
+               List<TreatmentSession> treatmentSessions = sessionRepository.findByTreatmentCycle_idTreatmentCycle(treatmentCycle.getIdTreatmentCycle());
+               for(TreatmentSession treatmentSession : treatmentSessions) {
+                   if(treatmentSession.getTreatmentDay()!=null && treatmentSession.getTreatmentDay().equals(today)) {
+                       check = true;
+                       break;
+                   }
+               }
+               WorkscheduledoctorDTO wsd = new WorkscheduledoctorDTO(treatmentCycle,check);
                workscheduledoctorDTOS.add(wsd);
            }
 

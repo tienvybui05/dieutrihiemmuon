@@ -167,6 +167,7 @@
       background-color: #01cdb6;
     }
     .form-huy-lich button{
+      width: 90px;
       margin-left: 5px;
       background-color: #ffffff; /* Bootstrap success green */
       color: red;
@@ -184,9 +185,10 @@
       color: #FFFFFF;
     }
     .form-danh-gia button{
+      width: 90px;
       margin-left: 5px;
       background-color: #ffffff; /* Bootstrap success green */
-      color: #009f91;
+      color: #006c63;
       border: none;
       padding: 6px 14px;
       font-size: 13px;
@@ -214,6 +216,20 @@
 
     .quay-ve-lịch-lam a:hover {
       color: #1b5dc9;
+    }
+    .badge-schedule {
+      display: inline-block;
+      background-color: #f43c4f; /* màu cam giống Premium */
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: bold;
+      border-top-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      position: relative;
+      top: 0;
+      right: 0;
+      margin: 0;
     }
   </style>
 
@@ -279,6 +295,8 @@
             <td th:text="${cycle.generalNotes}"></td>
             <td>
               <a th:href="@{/treatmentcyclecustomer/{id}(id=${cycle.getIdSchedule()})}">Xem</a>
+              <p th:if="${cycle.isScheduled}" class="badge-schedule">Có hẹn</p>
+
             </td>
             <td class="hanh-dong">
               <form class="form-danh-gia"

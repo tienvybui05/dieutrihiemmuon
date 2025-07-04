@@ -44,7 +44,7 @@ public class TreatmentSessionService implements ITreatmentSessionService {
         try {
             TreatmentSession treatmentSession = treatmentSessionRepository.findById(dto.getIdTreatmentTimes()).orElse(null);
             long id = treatmentSession.getTreatmentCycle().getIdTreatmentCycle();
-            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id).orElse(null);
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(id);
             if (treatmentSession == null) {
                 return false;
             }

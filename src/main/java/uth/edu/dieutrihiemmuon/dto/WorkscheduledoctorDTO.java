@@ -22,6 +22,7 @@ public class WorkscheduledoctorDTO {
    private String confirmationStatus;
    private String generalNotes;
 
+   private boolean isScheduled;
     public WorkscheduledoctorDTO() {}
      public WorkscheduledoctorDTO(TreatmentCycle treatmentCycle)
      {
@@ -49,6 +50,32 @@ public class WorkscheduledoctorDTO {
          }
 
      }
+    public WorkscheduledoctorDTO(TreatmentCycle treatmentCycle ,boolean check)
+    {
+        Doctor doctor=  treatmentCycle.getDoctorTreatmentCycle();
+        User doctorUser = doctor.getUser();
+        ServicePackage servicePackage =  treatmentCycle.getServiceTreatmentCycle();
+        User user =  treatmentCycle.getUserTreatmentCycle();
+        this.idCustomer = user.getIdUser();
+        this.idDoctor = doctor.getIdDoctor();
+        this.idSchedule = treatmentCycle.getIdTreatmentCycle();
+        this.NameDoctor = doctorUser.getFullName();
+        this.NameCustomer = user.getFullName();
+        this.NameService = servicePackage.getServiceName();
+        this.price = servicePackage.getPrice();
+        this. serviceBookingDate = treatmentCycle.getServiceBookingDate();
+        this.executionStatus = treatmentCycle.getExecutionStatus();
+        this.paymentStatus = treatmentCycle.getPaymentStatus();
+        this.confirmationStatus = treatmentCycle.getConfirmationStatus();
+        if(treatmentCycle.getGeneralNotes() == null)
+        {
+            this.generalNotes = "Ghi chú";
+        }
+        else {
+            this.generalNotes = treatmentCycle.getGeneralNotes();
+        }
+        this.isScheduled = check;
+    }
 
     public long getIdCustomer() {
         return idCustomer;
@@ -144,5 +171,13 @@ public class WorkscheduledoctorDTO {
 
     public void setGeneralNotes(String generalNotes) {
         this.generalNotes = generalNotes;
+    }
+
+    public boolean isScheduled() {
+        return isScheduled;
+    }
+
+    public void setScheduled(boolean scheduled) {
+        isScheduled = scheduled;
     }
 }

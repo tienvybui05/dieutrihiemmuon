@@ -65,6 +65,7 @@
                         <table class="table table-striped" id="table1">
                             <thead>
                             <tr>
+                                <th>Mã lịch</th>
                                 <th>Khách hàng</th>
                                 <th>Dịch vụ</th>
                                 <th>Giá</th>
@@ -78,6 +79,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="wsd : ${scheduleList}">
+                                <td th:text="${wsd.idSchedule}"></td>
                                 <td th:text="${wsd.nameCustomer}"></td>
                                 <td  th:text="${wsd.nameService}"></td>
                                 <td  th:text="${#numbers.formatDecimal(wsd.price, 0, 'POINT', 0, 'POINT')}"></td>

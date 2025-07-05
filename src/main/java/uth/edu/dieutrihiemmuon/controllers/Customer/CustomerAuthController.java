@@ -10,13 +10,23 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uth.edu.dieutrihiemmuon.dto.RegisterDTO;
+import uth.edu.dieutrihiemmuon.dto.UserDTO;
+import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.services.ICustomerService;
+import uth.edu.dieutrihiemmuon.services.UserService;
+
+import java.util.List;
 
 @Controller
 public class CustomerAuthController {
     @Autowired
     private ICustomerService customerService;
+
+    @Autowired
+    private UserService userService;
 
     //Login
     @GetMapping("/login")
@@ -66,8 +76,37 @@ public class CustomerAuthController {
     }
 
     @GetMapping("/customer/auth/changepassword")
-    public String changepassword() {
+    public String showChangePasswordForm(Model model) {
         return "customer/auth/changepassword";
     }
+
+    @PostMapping("/customer/auth/changepassword")
+    public String changepassword(@RequestParam("oldPassword") String oldPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 @RequestParam("confirmPassword") String confirmPassword,
+                                 Authentication authentication,
+                                 RedirectAttributes redirectAttributes) {
+        String username = authentication.getName();
+        UserDTO userDTO = userService.getUserByUserName(username);
+
+        // Kiểm tra mật khẩu mới và mật khẩu xác nhận có trùng không
+        if (!newPassword.equals(confirmPassword)) {
+            redirectAttributes.addFlashAttribute("error", "Mật khẩu mới và xác nhận không trùng khớp.");
+            return "redirect:/customer/auth/changepassword";
+        }
+
+        // Kiểm tra mật khẩu cũ
+        boolean isOldPasswordCorrect = userService.checkPassword(userDTO.getUserName(), oldPassword);
+        if (!isOldPasswordCorrect) {
+            redirectAttributes.addFlashAttribute("error", "Mật khẩu cũ không đúng.");
+            return "redirect:/customer/auth/changepassword";
+        }
+
+        // Cập nhật mật khẩu mới
+        userService.updatePassword(userDTO.getUserName(), newPassword);
+        redirectAttributes.addFlashAttribute("success", "Đổi mật khẩu thành công.");
+        return "redirect:/";  // Redirect đến trang thành công
+    }
+
 
 }

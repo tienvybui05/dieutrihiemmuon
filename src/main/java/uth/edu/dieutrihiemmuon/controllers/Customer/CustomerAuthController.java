@@ -65,5 +65,9 @@ public class CustomerAuthController {
         return "customer/auth/error403";
     }
 
+    @GetMapping("/customer/auth/changepassword")
+    public String changepassword() {
+        return "customer/auth/changepassword";
+    }
 
 }

@@ -293,10 +293,9 @@
                 th:classappend="${cycle.executionStatus == 'Đã thực hiện'} ? ' text-success' : ' text-danger'">
             </td>
             <td th:text="${cycle.generalNotes}"></td>
-            <td>
+            <td style="text-align: left">
               <a th:href="@{/treatmentcyclecustomer/{id}(id=${cycle.getIdSchedule()})}">Xem</a>
-              <p th:if="${cycle.isScheduled}" class="badge-schedule">Có hẹn</p>
-
+              <p th:if="${cycle.isScheduled}" class="badge-schedule" style="float: right;">Có hẹn</p>
             </td>
             <td class="hanh-dong">
               <form class="form-danh-gia"
@@ -305,7 +304,6 @@
                     th:if="${cycle.executionStatus == 'Đã thực hiện'}">
                 <button type="submit">Đánh giá</button>
               </form>
-
               <form class="form-huy-lich"
                     th:action="@{/cancelSchedule}"
                     method="post"

@@ -1,4 +1,4 @@
-<header th:fragment="headerFragment">
+<header th:fragment="headerFragment" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -79,9 +79,13 @@
                 <!-- Chưa đăng nhập -->
                 <!-- <a href="login" class="btn btn-primary py-2 px-4 ms-3">Đăng nhập</a>
                 <a href="register" class="btn btn-primary py-2 px-4 ms-3">Đăng ký</a> -->
+                <div sec:authorize="isAnonymous()">
+                    <a href="login" class="btn btn-primary py-2 px-4 ms-3">Đăng nhập</a>
+                    <a href="register" class="btn btn-primary py-2 px-4 ms-3">Đăng ký</a>
+                </div>
 
                 <!-- Đã đăng nhập -->
-                <div class="nav-item dropdown">
+                <div class="nav-item dropdown" sec:authorize="isAuthenticated()">
                     <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown"
                         style="color: #fff;">
                         <i class="fa fa-user me-2"></i>
@@ -91,7 +95,9 @@
                         <a href="profile" class="dropdown-item">Thông tin cá nhân</a>
                         <a href="#" class="dropdown-item" data-bs-toggle="modal"
                             data-bs-target="#changePasswordModal">Đổi mật khẩu</a>
-                        <a href="logout" class="dropdown-item">Đăng xuất</a>
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit"  class="dropdown-item">Đăng xuất</button>
+                        </form>
                     </div>
                 </div>
 

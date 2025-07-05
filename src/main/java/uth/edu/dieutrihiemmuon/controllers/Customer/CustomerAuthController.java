@@ -108,5 +108,4 @@ public class CustomerAuthController {
         return "redirect:/";  // Redirect đến trang thành công
     }
 
-
 }

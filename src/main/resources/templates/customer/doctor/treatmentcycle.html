@@ -216,10 +216,11 @@
 
                 <span>Ngày điều trị</span>
                 <input type="date" name="treatmentDay" th:field="*{treatmentDay}">
+                <p th:if="${#fields.hasErrors('treatmentDay')}" th:errors="*{treatmentDay}" class="text-danger"></p>
                 <span>Ghi chú:</span>
                 <input type="text" name="note" th:field="*{note}">
                 <span>Trạng thái:</span>
-                <select  name="treatmentStatus" th:field="*{treatmentStatus}" :>
+                <select  name="treatmentStatus" th:field="*{treatmentStatus}" >
                     <option value="Đã thực hiện">Đã thực hiện</option>
                     <option value="Chưa thực hiện">Chưa thực hiện</option>
                 </select>

@@ -44,7 +44,9 @@ public class HomeCustomerController {
 
     //Services
     @GetMapping("/services")
-    public String services() {
+    public String services(Model model) {
+        List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
+        model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
         return "customer/services/index";  // đúng đường dẫn tới file
     }
 }

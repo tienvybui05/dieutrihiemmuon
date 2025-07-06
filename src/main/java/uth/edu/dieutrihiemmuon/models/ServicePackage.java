@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,6 +34,7 @@ public class ServicePackage {
 
     @OneToMany(mappedBy = "servicePackage",cascade = CascadeType.ALL)
     Set<Doctor> doctors = new HashSet<Doctor>();
+
     public ServicePackage() {
     }
 

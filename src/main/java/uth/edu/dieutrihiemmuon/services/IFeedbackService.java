@@ -1,6 +1,8 @@
 package uth.edu.dieutrihiemmuon.services;
 
+import uth.edu.dieutrihiemmuon.dto.FeedbackInformationDTO;
 import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
+import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.Feedback;
 import uth.edu.dieutrihiemmuon.dto.FeedbackDTO;
 import uth.edu.dieutrihiemmuon.models.ServicePackage;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IFeedbackService {
+    public List<FeedbackInformationDTO> getFeedbackInformationList();
     public List<FeedbackDTO> getFeedbacks();
     public  FeedbackDTO getFeedback(long id);
     public  boolean addFeedback(Long serviceId,Long userId, Long treatmentCycleId, String reviewText,Integer rating);
@@ -18,4 +21,5 @@ public interface IFeedbackService {
     public  List<FeedbackDTO> findByReviewDate(LocalDate reviewDate);
     public  List<FeedbackDTO> findByRating(Integer rating);
     public  List<FeedbackDTO> findByReviewDateAndRating(LocalDate reviewDate, Integer rating);
+//    public List<FeedbackInformationDTO> getFeedbackCustomer(long id);
 }

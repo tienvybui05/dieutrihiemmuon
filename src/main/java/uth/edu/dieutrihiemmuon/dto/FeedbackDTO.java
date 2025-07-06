@@ -15,6 +15,7 @@ public class FeedbackDTO {
     // Các thông tin được truyền từ form
     private Long serviceId;
     @NotBlank(message = "Vui lòng nhập nội dung")
+    @Size(max = 1000, message = "Nội dung đánh giá không được vượt quá 1000 ký tự")
     private String reviewText;
     @NotNull(message = "Vui lòng đánh giá số sao")
     @Min(1)

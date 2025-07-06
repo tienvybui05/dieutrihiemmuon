@@ -3,6 +3,7 @@ package uth.edu.dieutrihiemmuon.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import uth.edu.dieutrihiemmuon.models.Feedback;
+import uth.edu.dieutrihiemmuon.models.TreatmentCycle;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,4 +16,5 @@ public interface IFeedbackRepository extends JpaRepository<Feedback, Long>
     List<Feedback> findByReviewDate(LocalDate reviewDate);
     List<Feedback> findByRating(Integer rating);
     List<Feedback> findByReviewDateAndRating(LocalDate reviewDate, Integer rating);
+    List<Feedback> findByUserFeedback_idUser(long idUser);
 }

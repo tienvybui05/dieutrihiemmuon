@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,8 +47,8 @@ public class TreatmentCycle {
     @OneToMany(mappedBy = "treatmentCycle",cascade = CascadeType.ALL)
     Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
 
-    @OneToOne(mappedBy = "treatmentCycleFeedback", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Feedback feedback;
+    @OneToMany(mappedBy = "treatmentCycleFeedback", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Feedback> feedback;
 
     public TreatmentCycle() {
     }

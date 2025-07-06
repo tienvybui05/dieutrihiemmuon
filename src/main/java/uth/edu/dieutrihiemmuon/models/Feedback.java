@@ -11,7 +11,7 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idFeedback;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String reviewText;
 
     @Column(nullable = false)
@@ -20,7 +20,7 @@ public class Feedback {
     @Column(nullable = false, length = 10)
     private LocalDate reviewDate;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_treatmentCycle",nullable = true, unique = true)
     private TreatmentCycle treatmentCycleFeedback;
 

@@ -4,7 +4,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.dieutrihiemmuon.dto.FeedbackDTO;
+import uth.edu.dieutrihiemmuon.dto.FeedbackInformationDTO;
 import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
+import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.*;
 import uth.edu.dieutrihiemmuon.repositories.IFeedbackRepository;
 
@@ -19,6 +21,16 @@ import java.util.Optional;
 public class FeedbackService implements IFeedbackService {
     @Autowired
     private IFeedbackRepository feedbackRepository;
+
+    @Override
+    public List<FeedbackInformationDTO> getFeedbackInformationList() {
+        List<Feedback> feedbacks = feedbackRepository.findAll();
+        List<FeedbackInformationDTO> feedbackInformationDTOS = new ArrayList<FeedbackInformationDTO>();
+        for (Feedback feedback : feedbacks) {
+            feedbackInformationDTOS.add(new FeedbackInformationDTO(feedback));
+        }
+        return feedbackInformationDTOS;
+    }
 
     @Override
     public List<FeedbackDTO> getFeedbacks() {
@@ -150,5 +162,41 @@ public class FeedbackService implements IFeedbackService {
         }
         return feedbacksDTOS;
     }
+
+//    public List<FeedbackInformationDTO> getFeedbackCustomer(long id){
+//            List<Feedback>  feedbacks= feedbackRepository.findByUserFeedback_idUser(id);
+//            List<FeedbackInformationDTO> feedbackInformationDTOS = new ArrayList<>();
+//
+//        for (Feedback feedback : feedbacks) {
+//            feedbackInformationDTOS.add(new FeedbackInformationDTO(feedback));
+//            }
+//        return feedbackRepository.findByUserFeedback_idUser(id).stream()
+//                .map(FeedbackInformationDTO::new)
+//                .collect(Collectors.toList());    }
+
+//    public List<WorkscheduledoctorDTO> getTreatmentScheduleCustomer(long id){
+//        try{
+//            List<TreatmentCycle>  treatmentCycles= treatmentCycleRepository.findByUserTreatmentCycle_idUser(id);
+//            List<WorkscheduledoctorDTO> workscheduledoctorDTOS = new ArrayList<WorkscheduledoctorDTO>();
+//            LocalDate today = LocalDate.now();
+//            for(TreatmentCycle treatmentCycle : treatmentCycles) {
+//                boolean check = false;
+//                List<TreatmentSession> treatmentSessions = sessionRepository.findByTreatmentCycle_idTreatmentCycle(treatmentCycle.getIdTreatmentCycle());
+//                for(TreatmentSession treatmentSession : treatmentSessions) {
+//                    if(treatmentSession.getTreatmentDay()!=null && treatmentSession.getTreatmentDay().equals(today)) {
+//                        check = true;
+//                        break;
+//                    }
+//                }
+//                WorkscheduledoctorDTO wsd = new WorkscheduledoctorDTO(treatmentCycle,check);
+//                workscheduledoctorDTOS.add(wsd);
+//            }
+//
+//            return workscheduledoctorDTOS;
+//        } catch (Exception e) {
+//            throw new RuntimeException("Lỗi khi lấy danh sách đi khám" + e);
+//        }
+//    }
+
 }
 

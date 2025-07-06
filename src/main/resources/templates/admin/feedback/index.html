@@ -19,6 +19,16 @@
     <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
     <link rel="stylesheet"  th:href="@{/admin/vendors/simple-datatables/style.css}">
     <style>
+        .truncate-text {
+            width: 200px; /* Thiết lập chiều rộng cho ô chứa văn bản */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        table {
+            table-layout: fixed;
+            width: 100%; /* Hoặc chiều rộng bạn muốn */
+        }
         .admin-them {
             display: inline-block;
             background-color: #435ebe;
@@ -107,22 +117,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="feedbackDTO : ${FeedbackDTOs}">
-                                <td th:text="${feedbackDTO.idFeedback}"></td>
-<!--                                 khách hàng đáng giá-->
-<!--                                 gói dịch vụ được đánh giá-->
-                                <td th:text="${feedbackDTO.reviewText}"></td>
-                                <td th:text="${feedbackDTO.reviewDate}"></td>
-                                <td th:text="${feedbackDTO.rating}"></td>
-                                <td class="admin-hanh-dong">
-                                    <a class="admin-sua" th:href="@{/admin/feedback/edit/{id}(id=${feedbackDTO.getIdFeedback()})}">Sửa</a>
-                                    <a class="admin-chi-tiet" th:href="@{/admin/feedback/detail/{id}(id=${feedbackDTO.getIdFeedback()})}">Chi tiết</a>
-                                    <a class="admin-xoa"
-                                       th:href="@{/admin/feedback/delete/{id}(id=${feedbackDTO.getIdFeedback()})}"
-                                       onclick="return confirm('Bạn có chắc chắn muốn xóa dịch vụ này không?');">
-                                        Xóa
-                                    </a>
-                                </td>
+                            <tr th:each="feedbackInformationDTO : ${feedbackInformationDTOs}">
+<!--                                <td th:text="${feedbackInformationDTO.idFeedback}"></td>-->
+                                <td th:text="${feedbackInformationDTO.getNameCustomer()}"></td>
+                                <td th:text="${feedbackInformationDTO.getNameService()}"></td>
+                                <td class="truncate-text" th:text="${feedbackInformationDTO.reviewText}"></td>
+                                <td th:text="${feedbackInformationDTO.reviewDate}"></td>
+                                <td th:text="${feedbackInformationDTO.rating}"></td>
+<!--                                <td class="admin-hanh-dong">-->
+<!--                                    <a class="admin-chi-tiet" th:href="@{/admin/feedback/detail/{id}(id=${feedbackDTO.getIdFeedback()})}">Chi tiết</a>-->
+<!--                                    <a class="admin-xoa"-->
+<!--                                       th:href="@{/admin/feedback/delete/{id}(id=${feedbackDTO.getIdFeedback()})}"-->
+<!--                                       onclick="return confirm('Bạn có chắc chắn muốn xóa dịch vụ này không?');">-->
+<!--                                        Xóa-->
+<!--                                    </a>-->
+<!--                                </td>-->
                             </tr>
 
                             </tbody>

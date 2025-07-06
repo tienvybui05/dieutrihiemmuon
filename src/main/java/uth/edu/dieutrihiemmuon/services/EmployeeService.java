@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import uth.edu.dieutrihiemmuon.models.User;
@@ -14,7 +15,8 @@ public class EmployeeService implements IEmployeeService{
     @Autowired
     private IUserRepository userRepository;
 
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllEmployees() {
@@ -45,6 +47,8 @@ public class EmployeeService implements IEmployeeService{
                 throw new IllegalArgumentException("Số điện thoại đã tồn tại");
             }
             // Thiết lập role là EMPLOYEE
+            employee.setPassWord(passwordEncoder.encode(employee.getPassWord()));
+            employee.setImage("default.jpg");
             employee.setRole("EMPLOYEE");
             userRepository.save(employee);
         } else {
@@ -83,8 +87,8 @@ public class EmployeeService implements IEmployeeService{
         existingEmployee.setPhoneNumber(employee.getPhoneNumber());
         existingEmployee.setFullName(employee.getFullName());
         existingEmployee.setAddress(employee.getAddress());
-
-
+        existingEmployee.setPassWord(passwordEncoder.encode(employee.getPassWord()));
+        existingEmployee.setImage("default.jpg");
         // Đảm bảo giữ nguyên role là EMPLOYEE
         existingEmployee.setRole("EMPLOYEE");
 

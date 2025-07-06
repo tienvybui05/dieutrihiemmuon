@@ -37,6 +37,9 @@
                             <i class="bi bi-shield-lock"></i>
                         </div>
                     </div>
+                    <div th:if="${param.error}">
+                        <p style="color: red;">Tên đăng nhập hoặc mật khẩu không đúng.</p>
+                    </div>
                     <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                 </form>
             </div>

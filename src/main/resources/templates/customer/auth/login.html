@@ -90,6 +90,9 @@
                         </span>
 
                     </div>
+                    <div th:if="${param.error}">
+                        <p style="color: red;">Tên đăng nhập hoặc mật khẩu không đúng.</p>
+                    </div>
                     <!-- <div class="form-check mb-3">
                         <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
                         <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>

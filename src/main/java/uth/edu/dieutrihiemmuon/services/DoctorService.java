@@ -126,7 +126,8 @@ public class DoctorService implements IDoctorService{
                 return false;
             }
         } catch (RuntimeException e) {
-              throw new RuntimeException("Lỗi khi thêm bác sĩ" + e);
+            System.out.println("Lỗi khi thêm doctor"+e.getMessage());
+            return false;
         }
     }
 
@@ -203,7 +204,8 @@ public class DoctorService implements IDoctorService{
                 return false;
             }
         } catch (Exception e) {
-            throw new RuntimeException("Lỗi khi cập nhật bác sĩ"+e);
+            System.out.println("Lỗi khi cập nhật thông in doctor"+e.getMessage());
+            return false;
         }
     }
 
@@ -236,8 +238,8 @@ public class DoctorService implements IDoctorService{
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi xóa ảnh bác sĩ");
         } catch (RuntimeException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Lỗi khi xóa bác sĩ khỏi hệ thống");
+            System.out.println("Lỗi khi xóa bác sĩ khỏi hệ thống"+e.getMessage());
+            return false;
         }
     }
 
@@ -257,7 +259,8 @@ public class DoctorService implements IDoctorService{
             DoctorDTO doctorDTO = new DoctorDTO(user.getDoctor());
             return doctorDTO;
         }catch (RuntimeException e) {
-            throw new RuntimeException("Lỗi khi tìm kiếm bằng username" + e);
+           System.out.println("Lỗi khi tìm doctor"+e.getMessage());
+           return null;
         }
 
     }
@@ -274,7 +277,8 @@ public class DoctorService implements IDoctorService{
             return doctorDTO;
         }
         catch (RuntimeException e) {
-            throw new RuntimeException("Lỗi khi tìm kiếm bằng email"+e);
+            System.out.println("Lỗi khi tìm kiếm bằng email"+e.getMessage());
+            return null;
         }
 
     }
@@ -291,7 +295,8 @@ public class DoctorService implements IDoctorService{
             return doctorDTO;
         }
         catch (RuntimeException e) {
-            throw new RuntimeException("Lỗi khi tìm kiếm bằng email"+e);
+            System.out.println("Lỗi khi tìm kiếm bằng PhoneNumber"+e.getMessage());
+            return null;
         }
     }
 

@@ -36,8 +36,9 @@ public class FeedbackController {
 
     @GetMapping("/admin/feedback/detail/{id}")
     public String adminfeedbackdetail(@PathVariable long id, Model model) {
-        FeedbackDTO feedbackDTO = feedbackService.getFeedback(id);
-        model.addAttribute("FeebackDTO", feedbackDTO);
+
+        FeedbackInformationDTO feedbackInformationDTO = feedbackService.getFeedbackInformation(id);
+        model.addAttribute("feedbackInformationDTO", feedbackInformationDTO);
         return "admin/feedback/detail";
     }
     @GetMapping("/admin/feedback/delete/{id}")

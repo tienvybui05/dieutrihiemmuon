@@ -6,6 +6,7 @@ import uth.edu.dieutrihiemmuon.models.*;
 import java.time.LocalDate;
 
 public class FeedbackInformationDTO {
+    private long idFeedback;
     private long idCustomer;
     private long idDoctor;
     private long idService;
@@ -27,8 +28,7 @@ public class FeedbackInformationDTO {
         User user = feedback.getUserFeedback();
         Doctor userDoctor = user.getDoctor();
         ServicePackage servicePackage = feedback.getServiceFeedback();
-
-
+        this.idFeedback = feedback.getIdFeedback();
         this.idCustomer = user.getIdUser();
 //        this.idDoctor = doctor.getIdDoctor();
 //        this.idSchedule = treatmentCycle.getIdTreatmentCycle();
@@ -38,6 +38,10 @@ public class FeedbackInformationDTO {
         this.reviewText = feedback.getReviewText();
         this.reviewDate = feedback.getReviewDate();
         this.rating = feedback.getRating();
+    }
+
+    public long getIdFeedback() {
+        return idFeedback;
     }
 
     public long getIdCustomer() {
@@ -74,6 +78,10 @@ public class FeedbackInformationDTO {
 
     public LocalDate getReviewDate() {
         return reviewDate;
+    }
+
+    public void setIdFeedback(long idFeedback) {
+        this.idFeedback = idFeedback;
     }
 
     public void setIdCustomer(long idCustomer) {

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/admin/css/bootstrap.css}">
+
+    <link rel="stylesheet" th:href="@{/admin/vendors/iconly/bold.css}">
+
+    <link rel="stylesheet" th:href="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap-icons/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/admin/css/app.css}">
+    <link rel="shortcut icon" th:href="@{/admin/images/favicon.svg}" type="image/x-icon">
+    <link rel="stylesheet"  th:href="@{/admin/vendors/simple-datatables/style.css}">
+    <style>
+
+        .thong-tin-dich-vu {
+            margin: 50px;
+            display: flex;
+            box-shadow: 5px 5px 10px 2px rgba(220, 217, 217, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #435ebe;
+        }
+
+        .thong-tin-dich-vu .thong-tin-ca-nhan {
+            width: 100%;
+        }
+
+        .row-one {
+            width: 100%;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .info-label {
+            min-width: 150px;
+            font-weight: 600;
+            color: #435ebe;
+            font-size: 15px;
+        }
+
+        .info-value {
+            flex: 1;
+            font-size: 15px;
+            color: #333;
+            word-break: break-word;
+        }
+
+        .feedback-section {
+            margin-top: 25px;
+            padding: 16px;
+            border-radius: 10px;
+            background-color: #f0f4ff;
+            border-left: 5px solid #435ebe;
+            box-shadow: 2px 2px 5px rgba(67, 94, 190, 0.1);
+        }
+
+        .feedback-label {
+            font-weight: 700;
+            color: #435ebe;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .feedback-content {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #333;
+            white-space: pre-wrap;
+            background-color: #fff;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #dbe3ff;
+            box-shadow: inset 0 0 4px rgba(0,0,0,0.03);
+        }
+
+        .quay-ve{
+
+            background-color: #435ebe;
+            color: white;
+            width: 100px;
+            margin: 0 auto 10px auto;
+
+        }
+
+        .quay-ve:hover {
+            background-color: #768ad3;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <!--    Thêm sidebar-->
+    <div th:replace="layout/admin/sidebar :: sidebarAdminFragment"></div>
+
+    <div id="main">
+        <!--        Thêm header-->
+        <div th:replace="layout/admin/header :: headerAdminFragment"></div>
+
+        <div class="page-heading">
+            <h3>Thông tin dịch vụ</h3>
+        </div>
+        <div class="page-content">
+            <section class="section">
+                <div class="card">
+                    <div class="thong-tin-dich-vu">
+                        <div class="thong-tin-ca-nhan">
+                            <div class="row-one">
+                                <div class="info-row">
+                                    <div class="info-label">Tên khách hàng:</div>
+                                    <div class="info-value" th:text="${feedbackInformationDTO.nameCustomer}"></div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">Gói dịch vụ:</div>
+                                    <div class="info-value" th:text="${feedbackInformationDTO.nameService}"></div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">Ngày đánh giá:</div>
+                                    <div class="info-value" th:text="${feedbackInformationDTO.reviewDate}"></div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">Số sao:</div>
+                                    <div class="info-value" th:text="${feedbackInformationDTO.rating}"></div>
+                                </div>
+
+                                <div class="feedback-section">
+                                    <div class="feedback-label">Nội dung đánh giá:</div>
+                                    <div class="feedback-content" th:text="${feedbackInformationDTO.reviewText}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a th:href="@{/admin/feedback/index}" class="btn  quay-ve">Quay về</a>
+                </div>
+            </section>
+        </div>
+
+
+        <!--        Thêm footer-->
+        <div th:replace="layout/admin/footer :: footerAdminFragment"></div>
+
+    </div>
+</div>
+
+<script th:src="@{/admin/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/admin/vendors/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/admin/js/pages/dashboard.js}"></script>
+
+<script th:src="@{/admin/js/main.js}"></script>
+</body>
+
+</html>

@@ -5,15 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.dieutrihiemmuon.dto.FeedbackDTO;
 import uth.edu.dieutrihiemmuon.dto.FeedbackInformationDTO;
-import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
-import uth.edu.dieutrihiemmuon.dto.WorkscheduledoctorDTO;
 import uth.edu.dieutrihiemmuon.models.*;
 import uth.edu.dieutrihiemmuon.repositories.IFeedbackRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
@@ -40,6 +38,21 @@ public class FeedbackService implements IFeedbackService {
             feedbackDTOS.add(new FeedbackDTO(feedback));
         }
         return feedbackDTOS;
+    }
+
+    public FeedbackInformationDTO getFeedbackInformation(long id) {
+        try {
+            Feedback feedback = feedbackRepository.findById(id);
+            if (feedback != null) {
+                FeedbackInformationDTO feedbackInformationDTO = new FeedbackInformationDTO(feedback);
+                return feedbackInformationDTO;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi khi tìm kiếm đánh giá");
+            return null;
+        }
     }
 
     @Override

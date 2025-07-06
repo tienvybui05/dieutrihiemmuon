@@ -101,9 +101,6 @@
         <div class="page-content">
             <section class="section">
                 <div class="card">
-                    <div class="card-header">
-                        <a class="admin-them" th:href="@{/admin/feedback/create}">Thêm đánh giá</a>
-                    </div>
                     <div class="card-body">
                         <table class="table table-striped" id="table1">
                             <thead>
@@ -118,20 +115,20 @@
                             </thead>
                             <tbody>
                             <tr th:each="feedbackInformationDTO : ${feedbackInformationDTOs}">
-<!--                                <td th:text="${feedbackInformationDTO.idFeedback}"></td>-->
+                                <td th:text="${feedbackInformationDTO.idFeedback}"></td>
                                 <td th:text="${feedbackInformationDTO.getNameCustomer()}"></td>
                                 <td th:text="${feedbackInformationDTO.getNameService()}"></td>
                                 <td class="truncate-text" th:text="${feedbackInformationDTO.reviewText}"></td>
                                 <td th:text="${feedbackInformationDTO.reviewDate}"></td>
                                 <td th:text="${feedbackInformationDTO.rating}"></td>
-<!--                                <td class="admin-hanh-dong">-->
-<!--                                    <a class="admin-chi-tiet" th:href="@{/admin/feedback/detail/{id}(id=${feedbackDTO.getIdFeedback()})}">Chi tiết</a>-->
-<!--                                    <a class="admin-xoa"-->
-<!--                                       th:href="@{/admin/feedback/delete/{id}(id=${feedbackDTO.getIdFeedback()})}"-->
-<!--                                       onclick="return confirm('Bạn có chắc chắn muốn xóa dịch vụ này không?');">-->
-<!--                                        Xóa-->
-<!--                                    </a>-->
-<!--                                </td>-->
+                                <td class="admin-hanh-dong">
+                                    <a class="admin-chi-tiet" th:href="@{/admin/feedback/detail/{id}(id=${feedbackInformationDTO.getIdFeedback()})}">Chi tiết</a>
+                                    <a class="admin-xoa"
+                                       th:href="@{/admin/feedback/delete/{id}(id=${feedbackInformationDTO.getIdFeedback()})}"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa dịch vụ này không?');">
+                                        Xóa
+                                    </a>
+                                </td>
                             </tr>
 
                             </tbody>

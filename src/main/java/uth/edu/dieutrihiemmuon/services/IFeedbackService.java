@@ -15,6 +15,7 @@ public interface IFeedbackService {
     public List<FeedbackInformationDTO> getFeedbackInformationList();
     public List<FeedbackDTO> getFeedbacks();
     public  FeedbackDTO getFeedback(long id);
+    public  FeedbackInformationDTO getFeedbackInformation(long id);
     public  boolean addFeedback(Long serviceId,Long userId, Long treatmentCycleId, String reviewText,Integer rating);
     public  boolean updateFeedback(FeedbackDTO feedbackDTO);
     public  boolean deleteFeedback(long id);

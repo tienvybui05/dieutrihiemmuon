@@ -25,28 +25,37 @@ public class HomeCustomerController {
     public String adminservicepackageindex( Model model) {
         List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
         model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
+        model.addAttribute("activePage", "index");
         return "customer/index";
     }
 
     //About
     @GetMapping("/about")
-    public String about() {
+    public String about(Model model) {
+        model.addAttribute("activePage", "about");
         return "customer/about";
     }
 
     //Blog
     @GetMapping("/blog")
-    public String blog(){ return "customer/blog";}
+    public String blog(Model model){
+        model.addAttribute("activePage", "blog");
+        return "customer/blog";
+    }
 
     // Contact
     @GetMapping("/contact")
-    public String contact(){ return "customer/contact";}
+    public String contact(Model model){
+        model.addAttribute("activePage", "contact");
+        return "customer/contact";
+    }
 
     //Services
     @GetMapping("/services")
     public String services(Model model) {
         List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
         model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
+        model.addAttribute("activePage", "services");
         return "customer/services/index";  // đúng đường dẫn tới file
     }
 }

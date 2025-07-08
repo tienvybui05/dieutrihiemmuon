@@ -1,4 +1,4 @@
-package uth.edu.dieutrihiemmuon;
+package uth.edu.dieutrihiemmuon.CustomerControllerUnitTest;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Test;

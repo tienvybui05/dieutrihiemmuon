@@ -5,6 +5,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import uth.edu.dieutrihiemmuon.models.User;
 import uth.edu.dieutrihiemmuon.services.ICustomerService;
@@ -34,5 +36,21 @@ public String profile(Model model, Authentication authentication) {
 
     return "customer/profile"; // Trả về view
 }
+@PostMapping("/profile")
+public String updateProfile(@ModelAttribute("user") User updatedUser, Authentication authentication) {
+    String username = authentication.getName();
+    User existingUser = customerService.findByUsername(username);
+
+    if (existingUser != null) {
+        existingUser.setFullName(updatedUser.getFullName());
+        existingUser.setDateOfBirth(updatedUser.getDateOfBirth());
+        existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
+        existingUser.setAddress(updatedUser.getAddress());
+        existingUser.setGender(updatedUser.getGender());
+        customerService.updateCustomer(existingUser.getIdUser(), existingUser);
+    }
+    return "redirect:/profile"; // Quay lại profile sau khi lưu
+}
+
 
 }

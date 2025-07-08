@@ -49,6 +49,11 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/admin/auth/login?logout")
                         .permitAll()
                 )
+                .sessionManagement(session -> session
+                        .invalidSessionUrl("/admin/auth/login?timeout")
+                        .maximumSessions(1)
+                        .expiredUrl("/admin/auth/login?expired")
+                )
                 .exceptionHandling(ex -> ex
                         .accessDeniedPage("/admin/auth/error403")
                 );
@@ -83,6 +88,12 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 )
+                .sessionManagement(session -> session
+                        .invalidSessionUrl("/login?timeout")
+                        .maximumSessions(1)
+                        .expiredUrl("/login?expired")
+                )
+
                 .exceptionHandling( ex -> ex
                         .accessDeniedPage("/customer/auth/error403")
                 );

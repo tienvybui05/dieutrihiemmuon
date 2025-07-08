@@ -62,6 +62,8 @@ public class HomeCustomerController {
         List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
         model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
         model.addAttribute("activePage", "services");
+        List<FeedbackInformationDTO> feedbackInformationDTOS = feedbackService.getFeedbackInformationList();
+        model.addAttribute("FeedbackInformationDTOs", feedbackInformationDTOS);
         return "customer/services/index";  // đúng đường dẫn tới file
     }
 }

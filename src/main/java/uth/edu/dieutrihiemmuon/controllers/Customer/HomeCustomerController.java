@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import uth.edu.dieutrihiemmuon.dto.FeedbackInformationDTO;
 import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
+import uth.edu.dieutrihiemmuon.services.FeedbackService;
 import uth.edu.dieutrihiemmuon.services.ICustomerService;
 import uth.edu.dieutrihiemmuon.services.IServicePackageService;
 
@@ -19,6 +21,8 @@ public class HomeCustomerController {
 
     @Autowired
     private IServicePackageService servicePackageService;
+    @Autowired
+    private FeedbackService feedbackService;
 
     // Home Page
     @GetMapping(value = {"/", "/index"})
@@ -26,6 +30,8 @@ public class HomeCustomerController {
         List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
         model.addAttribute("ServicePackageDTOs", servicePackageDTOS);
         model.addAttribute("activePage", "index");
+        List<FeedbackInformationDTO> feedbackInformationDTOS = feedbackService.getFeedbackInformationList();
+        model.addAttribute("FeedbackInformationDTOs", feedbackInformationDTOS);
         return "customer/index";
     }
 

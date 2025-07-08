@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
+import uth.edu.dieutrihiemmuon.dto.FeedbackInformationDTO;
 import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
 import uth.edu.dieutrihiemmuon.models.User;
-import uth.edu.dieutrihiemmuon.services.ICustomerService;
-import uth.edu.dieutrihiemmuon.services.IDoctorService;
-import uth.edu.dieutrihiemmuon.services.IServicePackageService;
-import uth.edu.dieutrihiemmuon.services.ITreatmentCycleService;
+import uth.edu.dieutrihiemmuon.services.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -34,6 +32,8 @@ public class AppointmentController {
 
     @Autowired
     private ITreatmentCycleService treatmentCycleService;
+    @Autowired
+    private FeedbackService feedbackService;
 
     @GetMapping("/appointment/{id}")
     public String appointment(@PathVariable("id") Long id, Model model) {
@@ -41,6 +41,8 @@ public class AppointmentController {
         model.addAttribute("servicePackageDTO", servicePackage);
         List<DoctorDTO> doctors = doctorService.getDoctorsByServiceId(id);
         model.addAttribute("doctors", doctors);
+        List<FeedbackInformationDTO> feedbackInformationDTOS = feedbackService.getFeedbackInformationList();
+        model.addAttribute("FeedbackInformationDTOs", feedbackInformationDTOS);
         return "customer/appointment";
     }
     @PostMapping("/appointment/{id}")

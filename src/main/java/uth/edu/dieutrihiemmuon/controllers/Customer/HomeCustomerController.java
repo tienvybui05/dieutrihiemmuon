@@ -49,6 +49,24 @@ public class HomeCustomerController {
         return "customer/blog";
     }
 
+    @GetMapping("/blog-detail-1")
+    public String blog1(Model model){
+        model.addAttribute("activePage", "blog-detail-1");
+        return "customer/blog-detail-1";
+    }
+
+    @GetMapping("/blog-detail-2")
+    public String blogdetail2(Model model){
+        model.addAttribute("activePage", "blog-detail-2");
+        return "customer/blog-detail-2";
+    }
+
+    @GetMapping("/blog-detail-3")
+    public String blogdetail3(Model model){
+        model.addAttribute("activePage", "blog-detail-3");
+        return "customer/blog-detail-3";
+    }
+
     // Contact
     @GetMapping("/contact")
     public String contact(Model model){

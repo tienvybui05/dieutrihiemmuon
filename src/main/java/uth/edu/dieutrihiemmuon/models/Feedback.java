@@ -24,13 +24,6 @@ public class Feedback {
     @JoinColumn(name = "id_treatmentCycle",nullable = true, unique = true)
     private TreatmentCycle treatmentCycleFeedback;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_service")
-    private ServicePackage serviceFeedback;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user")
-    private User userFeedback;
 
     public Feedback() {
     }
@@ -73,19 +66,6 @@ public class Feedback {
         this.reviewDate = reviewDate;
     }
 
-    public User getUserFeedback() {
-        return userFeedback;
-    }
-
-    public void setUserFeedback(User userFeedback) {this.userFeedback = userFeedback;}
-
-    public ServicePackage getServiceFeedback() {
-        return serviceFeedback;
-    }
-
-    public void setServiceFeedback(ServicePackage serviceFeedback) {
-        this.serviceFeedback = serviceFeedback;
-    }
 
     public TreatmentCycle getTreatmentCycleFeedback() {
         return treatmentCycleFeedback;

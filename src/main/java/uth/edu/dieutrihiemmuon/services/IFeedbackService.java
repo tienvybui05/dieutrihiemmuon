@@ -16,11 +16,10 @@ public interface IFeedbackService {
     public List<FeedbackDTO> getFeedbacks();
     public  FeedbackDTO getFeedback(long id);
     public  FeedbackInformationDTO getFeedbackInformation(long id);
-    public  boolean addFeedback(Long serviceId,Long userId, Long treatmentCycleId, String reviewText,Integer rating);
+    public  boolean addFeedback(Long treatmentCycleId, String reviewText,Integer rating);
     public  boolean updateFeedback(FeedbackDTO feedbackDTO);
     public  boolean deleteFeedback(long id);
     public  List<FeedbackDTO> findByReviewDate(LocalDate reviewDate);
     public  List<FeedbackDTO> findByRating(Integer rating);
     public  List<FeedbackDTO> findByReviewDateAndRating(LocalDate reviewDate, Integer rating);
-//    public List<FeedbackInformationDTO> getFeedbackCustomer(long id);
 }

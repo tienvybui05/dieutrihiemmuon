@@ -21,20 +21,11 @@ public class FeedbackInformationDTO {
     }
 
     public FeedbackInformationDTO(Feedback feedback) {
-//        Doctor doctor=  treatmentCycle.getDoctorTreatmentCycle();
-//        User doctorUser = doctor.getUser();
-//        ServicePackage servicePackage =  treatmentCycle.getServiceTreatmentCycle();
-//        User user =  treatmentCycle.getUserTreatmentCycle();
-        User user = feedback.getUserFeedback();
-        Doctor userDoctor = user.getDoctor();
-        ServicePackage servicePackage = feedback.getServiceFeedback();
+        TreatmentCycle treatmentCycle = feedback.getTreatmentCycleFeedback();
         this.idFeedback = feedback.getIdFeedback();
-        this.idCustomer = user.getIdUser();
-//        this.idDoctor = doctor.getIdDoctor();
-//        this.idSchedule = treatmentCycle.getIdTreatmentCycle();
-//        this.NameDoctor = doctorUser.getFullName();
-        this.NameCustomer = user.getFullName();
-        this.NameService = servicePackage.getServiceName();
+        this.idCustomer = treatmentCycle.getUserTreatmentCycle().getIdUser();
+        this.NameCustomer = treatmentCycle.getUserTreatmentCycle().getFullName();
+        this.NameService = treatmentCycle.getServiceTreatmentCycle().getServiceName();
         this.reviewText = feedback.getReviewText();
         this.reviewDate = feedback.getReviewDate();
         this.rating = feedback.getRating();

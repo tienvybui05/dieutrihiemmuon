@@ -72,8 +72,6 @@ public class FeedbackController {
 
         // Gửi đánh giá
         boolean success = feedbackService.addFeedback(
-                feedbackDTO.getServiceId(),
-                user.getIdUser(),
                 feedbackDTO.getTreatmentCycleId(),
                 feedbackDTO.getReviewText(),
                 feedbackDTO.getRating()

@@ -129,6 +129,25 @@
         .star-rating label:hover ~ label {
             color: #ffc107; /* màu vàng */
         }
+        .quay-ve-lich-lam {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .quay-ve-lich-lam a {
+            background-color: white;
+            border: 2px solid #007b00;
+            color: #007b00;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .quay-ve-lich-lam a:hover {
+            background-color: #007b00;
+            color: white;
+        }
 
     </style>
 </head>
@@ -207,7 +226,6 @@
                                    th:value="${servicePackageDTO.serviceName}" />
 
                             <!-- Ẩn id nhưng vẫn gửi lên server -->
-                            <input type="hidden" name="serviceId" th:value="${servicePackageDTO.idService}" />
                             <input type="hidden" name="treatmentCycleId" th:value="${treatmentCycleDTO.treatmentCycleId}" />
                         </div>
                         <!-- Nhúng FontAwesome  -->
@@ -246,15 +264,22 @@
                 <div class="note-section mb-4">
                     <h4>Cảm ơn vì đã đánh giá:</h4>
                     <ul>
-                        <li>Lịch hẹn có hiệu lực sau khi được xác nhận từ phòng khám.</li>
-                        <li>Thông tin không chính xác có thể khiến việc xác nhận thất bại.</li>
-                        <li>Vui lòng đặt lịch trước ít nhất 24h.</li>
-                        <li>Trường hợp khẩn cấp vui lòng đến trực tiếp phòng khám.</li>
+                        <li>Chúng tôi trân trọng mọi ý kiến đóng góp từ quý khách.</li>
+                        <li>Mọi phản hồi sẽ được xem xét và phản hồi trong thời gian sớm nhất.</li>
+                        <li>Đánh giá của bạn giúp chúng tôi nâng cao chất lượng dịch vụ.</li>
+                        <li>Rất mong được tiếp tục đồng hành và phục vụ bạn trong thời gian tới.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.7s">
+        <a th:href="@{/treatmentschedulecustomer}" class="btn btn-outline-primary px-4 py-2 rounded-pill">
+            <i class="bi bi-arrow-left me-2"></i>Quay về
+        </a>
+    </div>
+
+
 </main>
 
 <!-- Gọi footer -->

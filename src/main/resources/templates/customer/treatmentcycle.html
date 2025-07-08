@@ -63,21 +63,24 @@
             color: white;
         }
 
-        .quay-ve-lịch-lam {
-            margin-top: 20px;
+        .quay-ve-lich-lam {
             text-align: center;
+            margin-top: 30px;
         }
-
-        .quay-ve-lịch-lam a {
+        .quay-ve-lich-lam a {
+            background-color: white;
+            border: 2px solid #007b00;
+            color: #007b00;
+            padding: 10px 25px;
+            border-radius: 5px;
             text-decoration: none;
-            color: #06A3DA;
-            font-weight: bold;
-            font-size: 16px;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            transition: 0.3s ease;
         }
 
-        .quay-ve-lịch-lam a:hover {
-            color: #1b5dc9;
+        .quay-ve-lich-lam a:hover {
+            background-color: #007b00;
+            color: white;
         }
     </style>
 
@@ -118,8 +121,10 @@
             </table>
         </div>
     </div>
-    <div class="quay-ve-lịch-lam">
-        <a th:href="@{/treatmentschedulecustomer}">Quay về</a>
+    <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.4s">
+        <a th:href="@{/treatmentschedulecustomer}" class="btn btn-outline-primary px-4 py-2 rounded-pill">
+            <i class="bi bi-arrow-left me-2"></i>Quay về
+        </a>
     </div>
     <!-- Navbar & Carousel End -->
 </main>

@@ -72,12 +72,10 @@ public class FeedbackService implements IFeedbackService {
     }
 
     @Override
-    public boolean addFeedback(Long serviceId,Long userId, Long treatmentCycleId, String reviewText,Integer rating) {
+    public boolean addFeedback(Long treatmentCycleId, String reviewText,Integer rating) {
 
             // Gan data vao DTO
             FeedbackDTO feedbackDTO = new FeedbackDTO();
-            feedbackDTO.setServiceId(serviceId);
-            feedbackDTO.setUserId(userId);
             feedbackDTO.setTreatmentCycleId(treatmentCycleId);
             feedbackDTO.setReviewText(reviewText);
             feedbackDTO.setReviewDate(LocalDate.now());
@@ -90,13 +88,6 @@ public class FeedbackService implements IFeedbackService {
             feedback.setRating(feedbackDTO.getRating());
             feedback.setReviewDate(feedbackDTO.getReviewDate());
 
-            ServicePackage service = new ServicePackage();
-            service.setIdService(feedbackDTO.getServiceId());
-            feedback.setServiceFeedback(service);
-
-            User user = new User();
-            user.setIdUser(feedbackDTO.getUserId());
-            feedback.setUserFeedback(user);
 
         if (feedbackDTO.getTreatmentCycleId() != null) {
             TreatmentCycle treatmentCycle = new TreatmentCycle();
@@ -175,41 +166,6 @@ public class FeedbackService implements IFeedbackService {
         }
         return feedbacksDTOS;
     }
-
-//    public List<FeedbackInformationDTO> getFeedbackCustomer(long id){
-//            List<Feedback>  feedbacks= feedbackRepository.findByUserFeedback_idUser(id);
-//            List<FeedbackInformationDTO> feedbackInformationDTOS = new ArrayList<>();
-//
-//        for (Feedback feedback : feedbacks) {
-//            feedbackInformationDTOS.add(new FeedbackInformationDTO(feedback));
-//            }
-//        return feedbackRepository.findByUserFeedback_idUser(id).stream()
-//                .map(FeedbackInformationDTO::new)
-//                .collect(Collectors.toList());    }
-
-//    public List<WorkscheduledoctorDTO> getTreatmentScheduleCustomer(long id){
-//        try{
-//            List<TreatmentCycle>  treatmentCycles= treatmentCycleRepository.findByUserTreatmentCycle_idUser(id);
-//            List<WorkscheduledoctorDTO> workscheduledoctorDTOS = new ArrayList<WorkscheduledoctorDTO>();
-//            LocalDate today = LocalDate.now();
-//            for(TreatmentCycle treatmentCycle : treatmentCycles) {
-//                boolean check = false;
-//                List<TreatmentSession> treatmentSessions = sessionRepository.findByTreatmentCycle_idTreatmentCycle(treatmentCycle.getIdTreatmentCycle());
-//                for(TreatmentSession treatmentSession : treatmentSessions) {
-//                    if(treatmentSession.getTreatmentDay()!=null && treatmentSession.getTreatmentDay().equals(today)) {
-//                        check = true;
-//                        break;
-//                    }
-//                }
-//                WorkscheduledoctorDTO wsd = new WorkscheduledoctorDTO(treatmentCycle,check);
-//                workscheduledoctorDTOS.add(wsd);
-//            }
-//
-//            return workscheduledoctorDTOS;
-//        } catch (Exception e) {
-//            throw new RuntimeException("Lỗi khi lấy danh sách đi khám" + e);
-//        }
-//    }
 
 }
 

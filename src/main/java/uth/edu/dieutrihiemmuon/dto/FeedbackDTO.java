@@ -13,7 +13,6 @@ public class FeedbackDTO {
     private long idFeedback;
 
     // Các thông tin được truyền từ form
-    private Long serviceId;
     @NotBlank(message = "Vui lòng nhập nội dung")
     @Size(max = 1000, message = "Nội dung đánh giá không được vượt quá 1000 ký tự")
     private String reviewText;
@@ -23,7 +22,6 @@ public class FeedbackDTO {
     private int rating;
 
     // Gán tự động trong controller/service
-    private Long userId;
     private LocalDate reviewDate;
     private Long treatmentCycleId;
 
@@ -32,18 +30,14 @@ public class FeedbackDTO {
 
     public FeedbackDTO(Feedback feedback) {
         this.idFeedback = feedback.getIdFeedback();
-        this.serviceId = feedback.getServiceFeedback().getIdService();
-        this.userId = feedback.getUserFeedback().getIdUser();
         this.treatmentCycleId = feedback.getTreatmentCycleFeedback().getIdTreatmentCycle();
         this.reviewText = feedback.getReviewText();
         this.rating = feedback.getRating();
         this.reviewDate = feedback.getReviewDate();
     }
-    public FeedbackDTO(Long idFeedback,Long serviceId,Long userID, Long treatmentCycleId, String reviewText,Integer rating,LocalDate reviewDate) {
+    public FeedbackDTO(Long idFeedback,Long treatmentCycleId, String reviewText,Integer rating,LocalDate reviewDate) {
         this.idFeedback = idFeedback;
-        this.serviceId = serviceId;
         this.treatmentCycleId = treatmentCycleId;
-        this.userId = userID;
         this.reviewText = reviewText;
         this.rating = rating;
         this.reviewDate = reviewDate;
@@ -51,14 +45,6 @@ public class FeedbackDTO {
 
     public long getIdFeedback() {
         return idFeedback;
-    }
-
-    public Long getServiceId() {
-        return serviceId;
-    }
-
-    public Long getUserId() {
-        return userId;
     }
 
     public Long getTreatmentCycleId() {return treatmentCycleId; }
@@ -77,14 +63,6 @@ public class FeedbackDTO {
 
     public void setIdFeedback(long idFeedback) {
         this.idFeedback = idFeedback;
-    }
-
-    public void setServiceId(Long serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public void setTreatmentCycleId(Long treatmentCycleId) { this.treatmentCycleId = treatmentCycleId; }

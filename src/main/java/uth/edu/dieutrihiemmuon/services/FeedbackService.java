@@ -161,5 +161,16 @@ public class FeedbackService implements IFeedbackService {
         return feedbacksDTOS;
     }
 
+    @Override
+    public List<FeedbackInformationDTO> getTop4FeedbackInformation() {
+        List<Feedback> feedbacks = feedbackRepository.findTop4ByOrderByRatingDesc();
+        List<FeedbackInformationDTO> feedbackInformationDTOS = new ArrayList<FeedbackInformationDTO>();
+        for (Feedback feedback : feedbacks) {
+            FeedbackInformationDTO feedbackInformationDTO = new FeedbackInformationDTO(feedback);
+            feedbackInformationDTOS.add(feedbackInformationDTO);
+        }
+        return feedbackInformationDTOS;
+    }
+
 }
 

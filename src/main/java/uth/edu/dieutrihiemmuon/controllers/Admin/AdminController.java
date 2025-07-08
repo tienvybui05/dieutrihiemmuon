@@ -39,6 +39,9 @@ public class AdminController {
     @Autowired
     private IServicePackageService servicePackageService;
 
+    @Autowired
+    private IFeedbackService feedbackService;
+
     @GetMapping("/admin")
     public String index(Authentication authentication, Model model) {
         String username = authentication.getName();
@@ -48,6 +51,8 @@ public class AdminController {
         long countservice = servicePackageService.countServicePackage();
         double centralRevenue = treatmentCycleService.revenue();
         long countSchedule = treatmentCycleService.numberOfSchedulesToDayALL();
+        List<FeedbackInformationDTO> feedbackInformationDTOS = feedbackService.getTop4FeedbackInformation();
+        model.addAttribute("feedbackInformationDTOS", feedbackInformationDTOS);
         model.addAttribute("countSchedule", countSchedule);
         model.addAttribute("revenue",centralRevenue);
         model.addAttribute("countservice", countservice);

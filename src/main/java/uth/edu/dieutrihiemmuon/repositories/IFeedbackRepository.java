@@ -16,4 +16,5 @@ public interface IFeedbackRepository extends JpaRepository<Feedback, Long>
     List<Feedback> findByReviewDate(LocalDate reviewDate);
     List<Feedback> findByRating(Integer rating);
     List<Feedback> findByReviewDateAndRating(LocalDate reviewDate, Integer rating);
+    List<Feedback> findTop4ByOrderByRatingDesc();
 }

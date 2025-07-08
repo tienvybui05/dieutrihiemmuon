@@ -202,7 +202,7 @@ xmlns:th="http://www.thymeleaf.org">
                         <div class="col-12 col-xl-8" style="max-width: 50%;">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Bình luận mới nhất</h4>
+                                    <h4>Bình luận của khách hàng</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -213,47 +213,17 @@ xmlns:th="http://www.thymeleaf.org">
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                            <tr th:each="feedback :${feedbackInformationDTOS}">
                                                 <td class="col-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar avatar-md">
                                                             <img src="admin/images/faces/5.jpg">
                                                         </div>
-                                                        <p class="font-bold ms-3 mb-0">Si Cantik</p>
+                                                        <p class="font-bold ms-3 mb-0" th:text="${feedback.nameCustomer}"></p>
                                                     </div>
                                                 </td>
                                                 <td class="col-auto">
-                                                    <p class=" mb-0">Congratulations on your graduation!</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <img src="admin/images/faces/2.jpg">
-                                                        </div>
-                                                        <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                    </div>
-                                                </td>
-                                                <td class="col-auto">
-                                                    <p class=" mb-0">Wow amazing design! Can you make another
-                                                        tutorial for
-                                                        this design?</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <img src="admin/images/faces/2.jpg">
-                                                        </div>
-                                                        <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                    </div>
-                                                </td>
-                                                <td class="col-auto">
-                                                    <p class=" mb-0">Wow amazing design! Can you make another
-                                                        tutorial for
-                                                        this design?</p>
+                                                    <p class=" mb-0" th:text="${feedback.reviewText}"></p>
                                                 </td>
                                             </tr>
                                             </tbody>

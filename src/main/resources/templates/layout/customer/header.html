@@ -60,7 +60,8 @@
                         </a>
                         <div class="dropdown-menu m-0">
                             <a href="/profile" class="dropdown-item">Thông tin cá nhân</a>
-                            <a href="/treatmentschedulecustomer" class="dropdown-item">Lịch điều trị</a>
+                            <a href="/treatmentschedulecustomer" class="dropdown-item" sec:authorize="hasRole('CUSTOMER')">Lịch điều trị</a>
+                            <a href="/workscheduledoctor" class="dropdown-item" sec:authorize="hasRole('DOCTOR')">Lịch làm</a>
                             <a href="/customer/auth/changepassword" class="dropdown-item">Đổi mật khẩu</a>
                             <form th:action="@{/logout}" method="post">
                                 <button type="submit"  class="dropdown-item">Đăng xuất</button>

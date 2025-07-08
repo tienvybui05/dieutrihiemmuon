@@ -26,7 +26,7 @@ public class Doctor {
     private User user;
 
     @OneToMany(mappedBy = "doctorTreatmentCycle",cascade = CascadeType.ALL)
-    Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
+    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_service")

@@ -22,4 +22,5 @@ public interface IFeedbackService {
     public  List<FeedbackDTO> findByReviewDate(LocalDate reviewDate);
     public  List<FeedbackDTO> findByRating(Integer rating);
     public  List<FeedbackDTO> findByReviewDateAndRating(LocalDate reviewDate, Integer rating);
+    public List<FeedbackInformationDTO> getTop4FeedbackInformation();
 }

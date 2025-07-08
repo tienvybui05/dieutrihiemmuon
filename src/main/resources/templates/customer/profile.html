@@ -97,7 +97,7 @@
 
                     <div class="row mb-4">
                         <div class="col-md-3 text-center">
-                            <img src="https://via.placeholder.com/120" class="rounded-circle mb-2" alt="Avatar"
+                            <img th:src="@{'/admin/images/faces/' + ${image}}" class="rounded-circle mb-2" alt="Avatar"
                                 width="120">
                             <h5 class="mb-0" th:text="*{fullName}">Alexa Rawles</h5>
                             <small class="text-muted" th:text="*{email}">alexarawles@gmail.com</small>

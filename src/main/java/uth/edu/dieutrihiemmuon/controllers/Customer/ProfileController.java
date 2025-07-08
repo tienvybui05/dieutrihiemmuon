@@ -30,10 +30,10 @@ public String profile(Model model, Authentication authentication) {
         model.addAttribute("error", "Không tìm thấy người dùng");
         return "error"; // Trả về view error.html
     }
-
+    String image = user.getImage();
     // Truyền user vào Thymeleaf
     model.addAttribute("user", user);
-
+    model.addAttribute("image", image);
     return "customer/profile"; // Trả về view
 }
 @PostMapping("/profile")

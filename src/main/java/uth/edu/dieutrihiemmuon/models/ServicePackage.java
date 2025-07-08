@@ -30,10 +30,10 @@ public class ServicePackage {
     private Double price;
 
     @OneToMany(mappedBy = "serviceTreatmentCycle",cascade = CascadeType.ALL)
-    Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
+    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
 
     @OneToMany(mappedBy = "servicePackage",cascade = CascadeType.ALL)
-    Set<Doctor> doctors = new HashSet<Doctor>();
+    private Set<Doctor> doctors = new HashSet<Doctor>();
 
     public ServicePackage() {
     }

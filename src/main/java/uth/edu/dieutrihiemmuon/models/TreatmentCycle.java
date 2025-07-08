@@ -45,7 +45,7 @@ public class TreatmentCycle {
     private ServicePackage serviceTreatmentCycle;
 
     @OneToMany(mappedBy = "treatmentCycle",cascade = CascadeType.ALL)
-    Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
+    private Set<TreatmentSession> treatmentSessions = new HashSet<TreatmentSession>();
 
     @OneToMany(mappedBy = "treatmentCycleFeedback", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Feedback> feedback;

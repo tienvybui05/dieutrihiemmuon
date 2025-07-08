@@ -68,7 +68,7 @@ public class User {
     private Doctor doctor;
 
     @OneToMany(mappedBy = "userTreatmentCycle",cascade = CascadeType.ALL)
-    Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
+    private Set<TreatmentCycle> treatmentCycles = new HashSet<TreatmentCycle>();
     public User() {
 
     }

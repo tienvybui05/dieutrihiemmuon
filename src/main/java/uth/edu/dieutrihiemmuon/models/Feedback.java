@@ -21,7 +21,7 @@ public class Feedback {
     private LocalDate reviewDate;
 
     @ManyToOne
-    @JoinColumn(name = "id_treatmentCycle",nullable = true, unique = true)
+    @JoinColumn(name = "id_treatmentCycle",nullable = true)
     private TreatmentCycle treatmentCycleFeedback;
 
 
@@ -58,14 +58,14 @@ public class Feedback {
         this.reviewText = reviewText;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
 
     public void setReviewDate(LocalDate reviewDate) {
         this.reviewDate = reviewDate;
     }
 
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 
     public TreatmentCycle getTreatmentCycleFeedback() {
         return treatmentCycleFeedback;

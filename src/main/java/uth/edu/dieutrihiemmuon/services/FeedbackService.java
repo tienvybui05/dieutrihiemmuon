@@ -7,6 +7,7 @@ import uth.edu.dieutrihiemmuon.dto.FeedbackDTO;
 import uth.edu.dieutrihiemmuon.dto.FeedbackInformationDTO;
 import uth.edu.dieutrihiemmuon.models.*;
 import uth.edu.dieutrihiemmuon.repositories.IFeedbackRepository;
+import uth.edu.dieutrihiemmuon.repositories.ITreatmentCycleRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.List;
 public class FeedbackService implements IFeedbackService {
     @Autowired
     private IFeedbackRepository feedbackRepository;
+    @Autowired
+    private ITreatmentCycleRepository treatmentCycleRepository;
 
     @Override
     public List<FeedbackInformationDTO> getFeedbackInformationList() {
@@ -74,31 +77,22 @@ public class FeedbackService implements IFeedbackService {
     @Override
     public boolean addFeedback(Long treatmentCycleId, String reviewText,Integer rating) {
 
-            // Gan data vao DTO
-            FeedbackDTO feedbackDTO = new FeedbackDTO();
-            feedbackDTO.setTreatmentCycleId(treatmentCycleId);
-            feedbackDTO.setReviewText(reviewText);
-            feedbackDTO.setReviewDate(LocalDate.now());
-            feedbackDTO.setRating(rating);
+            TreatmentCycle treatmentCycle = treatmentCycleRepository.findById(treatmentCycleId).orElse(null);
 
+            if(treatmentCycle == null) {
+                return false;
+            }
             // Chuyen data tu DTO -> Entity
             Feedback feedback = new Feedback();
+            LocalDate localDate = LocalDate.now();
 
-            feedback.setReviewText(feedbackDTO.getReviewText());
-            feedback.setRating(feedbackDTO.getRating());
-            feedback.setReviewDate(feedbackDTO.getReviewDate());
-
-
-        if (feedbackDTO.getTreatmentCycleId() != null) {
-            TreatmentCycle treatmentCycle = new TreatmentCycle();
-            treatmentCycle.setIdTreatmentCycle(feedbackDTO.getTreatmentCycleId());
+            feedback.setReviewText(reviewText);
+            feedback.setRating(rating);
+            feedback.setReviewDate(localDate);
             feedback.setTreatmentCycleFeedback(treatmentCycle);
-        }
+            feedbackRepository.save(feedback);
 
-
-        feedbackRepository.save(feedback);
-
-            return true;
+                return true;
 
     }
 

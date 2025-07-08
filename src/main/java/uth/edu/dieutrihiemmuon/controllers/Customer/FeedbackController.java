@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uth.edu.dieutrihiemmuon.dto.FeedbackDTO;
 import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
 import uth.edu.dieutrihiemmuon.dto.TreatmentCycleDTO;
@@ -38,12 +39,15 @@ public class FeedbackController {
 
     @GetMapping("/feedback/{id}")
     public String feedback(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("FeedbackDTO", new FeedbackDTO());
+        if (!model.containsAttribute("FeedbackDTO")) {
+            model.addAttribute("FeedbackDTO", new FeedbackDTO());
+        }
 
         TreatmentCycleDTO treatmentCycle = treatmentCycleService.getTreatmentCycle(id);
         model.addAttribute("treatmentCycleDTO", treatmentCycle);
         ServicePackageDTO servicePackage = servicePackageService.getServicePackage(treatmentCycle.getServiceId());
         model.addAttribute("servicePackageDTO", servicePackage);
+
         return "customer/feedback";
     }
 
@@ -52,25 +56,22 @@ public class FeedbackController {
                                        @Valid @ModelAttribute("FeedbackDTO") FeedbackDTO feedbackDTO,
                                        BindingResult result,
                                        Model model,
-                                       Authentication authentication) {
+                                       Authentication authentication,
+                                       RedirectAttributes redirectAttributes) {
 
         TreatmentCycleDTO treatmentCycle = treatmentCycleService.getTreatmentCycle(id);
-        model.addAttribute("treatmentCycleDTO", treatmentCycle);
-
-        ServicePackageDTO servicePackage = servicePackageService.getServicePackage(id);
-        model.addAttribute("servicePackageDTO", servicePackage);
-
+        ServicePackageDTO servicePackage = servicePackageService.getServicePackage(treatmentCycle.getServiceId());
 
         if (result.hasErrors()) {
-            // Có lỗi trong form, quay lại trang đánh giá với thông báo lỗi
-            return "customer/feedback";
+            // Đưa lại dữ liệu feedback và lỗi để hiển thị lại sau redirect
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.FeedbackDTO", result);
+            redirectAttributes.addFlashAttribute("FeedbackDTO", feedbackDTO);
+            return "redirect:/feedback/" + id;
         }
 
-        // Lấy thông tin user
         String username = authentication.getName();
         User user = customerService.findByUsername(username);
 
-        // Gửi đánh giá
         boolean success = feedbackService.addFeedback(
                 feedbackDTO.getTreatmentCycleId(),
                 feedbackDTO.getReviewText(),
@@ -78,12 +79,12 @@ public class FeedbackController {
         );
 
         if (success) {
-            model.addAttribute("showPaymentModal", true); // nếu cần hiển thị modal
+            redirectAttributes.addFlashAttribute("showPaymentModal", true);
         } else {
-            model.addAttribute("error", "Đánh giá thất bại.");
+            redirectAttributes.addFlashAttribute("error", "Đánh giá thất bại.");
         }
 
-        return "customer/feedback";
+        return "redirect:/feedback/" + id;
     }
 
 

@@ -83,6 +83,7 @@ public class DoctorController {
     @GetMapping("/admin/doctor/edit/{id}")
     public String admindoctoredit(@PathVariable long id, Model model) {
         DoctorDTO doctorDTO = doctorService.getDoctor(id);
+        doctorDTO.setPassWord("Password");
         ServicePackageDTO servicePackageDTO = servicePackageService.getServicePackage(doctorDTO.getIdService());
         List<ServicePackageDTO> servicePackageDTOS = servicePackageService.getServicePackages();
         model.addAttribute("ServicePackageDTOs", servicePackageDTOS);

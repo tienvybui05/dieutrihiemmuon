@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
+import uth.edu.dieutrihiemmuon.dto.DoctorInformationDTO;
 import uth.edu.dieutrihiemmuon.models.Doctor;
 import uth.edu.dieutrihiemmuon.models.ServicePackage;
 import uth.edu.dieutrihiemmuon.models.User;
@@ -190,7 +191,10 @@ public class DoctorService implements IDoctorService{
             user.setGender(doctorDTO.getGender());
             user.setPhoneNumber(doctorDTO.getPhoneNumber());
             user.setUserName(doctorDTO.getUserName());
-            user.setPassWord(passwordEncoder.encode(doctorDTO.getPassWord()));
+            if(!doctorDTO.getPassWord().equals("Password"))
+            {
+                user.setPassWord(passwordEncoder.encode(doctorDTO.getPassWord()));
+            }
             user.setImage(doctorDTO.getImage());
             doctor.setDegree(doctorDTO.getDegree());
             doctor.setExperience(doctorDTO.getExperience());
@@ -310,5 +314,16 @@ public class DoctorService implements IDoctorService{
     public long countDoctors() {
         long count = doctorRepository.count();
         return count;
+    }
+
+    @Override
+    public List<DoctorInformationDTO> getDoctorInformation() {
+        List<Doctor> doctors = doctorRepository.findAll();
+        List<DoctorInformationDTO> doctorInformationDTOS = new ArrayList<>();
+        for (Doctor doctor : doctors) {
+            DoctorInformationDTO doctorInformationDTO = new DoctorInformationDTO(doctor);
+            doctorInformationDTOS.add(doctorInformationDTO);
+        }
+        return doctorInformationDTOS;
     }
 }

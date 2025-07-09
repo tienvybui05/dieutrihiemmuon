@@ -8,10 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
+import uth.edu.dieutrihiemmuon.dto.DoctorInformationDTO;
 import uth.edu.dieutrihiemmuon.dto.FeedbackInformationDTO;
 import uth.edu.dieutrihiemmuon.dto.ServicePackageDTO;
 import uth.edu.dieutrihiemmuon.services.FeedbackService;
 import uth.edu.dieutrihiemmuon.services.ICustomerService;
+import uth.edu.dieutrihiemmuon.services.IDoctorService;
 import uth.edu.dieutrihiemmuon.services.IServicePackageService;
 
 @Controller
@@ -23,7 +26,8 @@ public class HomeCustomerController {
     private IServicePackageService servicePackageService;
     @Autowired
     private FeedbackService feedbackService;
-
+    @Autowired
+    private IDoctorService doctorService;
     // Home Page
     @GetMapping(value = {"/", "/index"})
     public String adminservicepackageindex( Model model) {
@@ -89,6 +93,8 @@ public class HomeCustomerController {
     // view doctors
     @GetMapping("/viewdoctors")
     public String viewdoctors(Model model) {
+        List<DoctorInformationDTO> doctors = doctorService.getDoctorInformation();
+        model.addAttribute("listDoctor", doctors);
         model.addAttribute("activePage", "viewdoctors");
         return "customer/viewdoctors";
     }

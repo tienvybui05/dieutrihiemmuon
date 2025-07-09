@@ -1,6 +1,7 @@
 package uth.edu.dieutrihiemmuon.services;
 
 import uth.edu.dieutrihiemmuon.dto.DoctorDTO;
+import uth.edu.dieutrihiemmuon.dto.DoctorInformationDTO;
 import uth.edu.dieutrihiemmuon.models.Doctor;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface IDoctorService {
     public DoctorDTO  findByPhoneNumber(String phoneNumber);
     public List<DoctorDTO> getDoctorsByServiceId(long id);
     public long countDoctors();
+    public List<DoctorInformationDTO> getDoctorInformation();
 }

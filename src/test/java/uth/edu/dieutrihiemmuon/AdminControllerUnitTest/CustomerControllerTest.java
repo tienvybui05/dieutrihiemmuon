@@ -191,10 +191,10 @@ class CustomerControllerTest {
 
         String view = customerController.updateCustomer(customerId, updatedCustomer, bindingResult, model);
 
-        // ✅ Assert trả về đúng view
+        // Assert trả về đúng view
         assertEquals("admin/customer/edit", view);
 
-        // ✅ Verify gắn attribute error vào model
+        // Verify gắn attribute error vào model
         verify(model).addAttribute("error", "Không tìm thấy người dùng");
     }
 
@@ -219,10 +219,10 @@ class CustomerControllerTest {
 
         String view = customerController.updateCustomer(customerId, updatedCustomer, bindingResult, model);
 
-        // ✅ Assert trả về đúng view
+        // Assert trả về đúng view
         assertEquals("admin/customer/edit", view);
 
-        // ✅ Verify gọi rejectValue với lỗi username
+        // Verify gọi rejectValue với lỗi username
         verify(bindingResult).rejectValue("userName", "error.customer", "Tên đăng nhập đã tồn tại");
     }
 

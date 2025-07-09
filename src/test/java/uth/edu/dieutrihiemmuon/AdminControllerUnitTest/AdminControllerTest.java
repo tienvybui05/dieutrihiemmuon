@@ -85,7 +85,7 @@ class AdminControllerTest {
         // Assert view name
         assertEquals("admin/index", view);
 
-        // ✅ Verify model attributes
+        // Verify model attributes
         verify(model).addAttribute("user", userDTO);
         verify(model).addAttribute("countCustomer", 10L);
         verify(model).addAttribute("countDoctor", 5L);
@@ -94,7 +94,7 @@ class AdminControllerTest {
         verify(model).addAttribute("countSchedule", 7L);
         verify(model).addAttribute("feedbackInformationDTOS", feedbacks);
 
-        // ✅ Verify all services called
+        // Verify all services called
         verify(userService).getUserByUserName(username);
         verify(customerService).countCustomers();
         verify(doctorService).countDoctors();

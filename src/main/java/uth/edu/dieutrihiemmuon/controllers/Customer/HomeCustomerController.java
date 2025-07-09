@@ -84,4 +84,12 @@ public class HomeCustomerController {
         model.addAttribute("FeedbackInformationDTOs", feedbackInformationDTOS);
         return "customer/services/index";  // đúng đường dẫn tới file
     }
+
+
+    // view doctors
+    @GetMapping("/viewdoctors")
+    public String viewdoctors(Model model) {
+        model.addAttribute("activePage", "viewdoctors");
+        return "customer/viewdoctors";
+    }
 }
